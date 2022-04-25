@@ -5,6 +5,7 @@
 SceneManager scene;
 extern Create_Stage	c_st;
 
+//ƒeƒXƒg
 
 GameManager::GameManager() {
 	pla = nullptr;
