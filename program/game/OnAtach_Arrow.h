@@ -6,6 +6,12 @@ public:
 
 	OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed);
 
+	int atach_Arrow_sizeW = 10;
+	int atach_Arrow_sizeH = 10;
+	int atach_Arrow_speed = 0;
+
+	t2k::Vector3 atach_Arrow_dir;
+
 	void update(const float deltatime)override;
 	void render(const float deltatime)override;
 };

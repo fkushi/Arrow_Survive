@@ -100,10 +100,11 @@ void GameManager::render(float deltatime) {
 	for (auto eb : enm_B)eb->render(deltatime);
 	/*Timer*/
 	for (auto t : time)t->render(deltatime);
-	/*PLAYER*/
+	/*ARROW*/
 	for (auto bp : blt_pla)bp->render(deltatime);
+	for (auto at_aw : atach_arw)at_aw->render(deltatime);
 #endif
-	//for (auto ba : base)ba->render(deltatime);
+	/*PLAYER*/
 	if(pla != nullptr)pla->render(deltatime);
 }
 //----------------------------------------------------------------------------------------

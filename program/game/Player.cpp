@@ -67,6 +67,7 @@ void Player::update(const float deltatime) {
 void Player::render(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*HP*/
+	//--------------------------------------------------------------------------------------------------
 	img.img_hp();
 	int gezi_min_x = (int)pos.x - (pla_w >> 1) - 5;
 	int gezi_min_y = (int)pos.y + (pla_h >> 1) + 5;
@@ -82,12 +83,17 @@ void Player::render(const float deltatime) {
 		gezi_min_x + (gezi_max_x - gezi_min_x) * (gezi_now_num - gezi_min_num) / (gezi_max_num - gezi_min_num),
 		gezi_max_y, img.hp_green, true);
 	//--------------------------------------------------------------------------------------------------
-	/*•`‰æ*/
+	/*•`‰æˆ—*/
+	//--------------------------------------------------------------------------------------------------
 	int atach = gamemanager->atach.pla_enemyB_check;
 	img.img_player();
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	//-------------------------------------------------------------------------------
+	/*“–‚½‚Á‚½‚ÌPlayer‚ÌÔF‚É•Ï‚í‚éˆ—*/
 	if(atach == 1 || atach == 2 || atach == 3 || atach == 4)SetDrawBright(255, 0, 0);
 	else SetDrawBright(255, 255, 255);
+	//-------------------------------------------------------------------------------
+	/*player‚Ì•`‰æ*/
 	if (!anim_pla.init_anim_pla) DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, 0, img.img_pla, true, pla_dir);
 	else DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, 0, img.anim_pla[anim_pla.anim_move][anim_pla.anim_frame], true, pla_dir);
 
