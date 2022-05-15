@@ -24,6 +24,10 @@ t2k::Vector3 GameManager::GetPos_ChangedPlayer(int pos_x, int pos_y) {
 	pla->pos.y = (float)pos_y;
 	return pla->pos;
 }
+//PLYER‚ÌŒü‚«Afalse‚Í‰EAture‚Í¶
+bool GameManager::GetPla_pla_dir() {
+	return pla->pla_dir;
+}
 //PLAYER_SIZE
 int GameManager::GetPlaSize_W() {
 	return pla->pla_w;
@@ -36,6 +40,7 @@ int GameManager::GetPlaSize_H() {
 int GameManager::GetPlaHp_now() {
 	return pla->gezi_now_num;
 }
+
 //PLAYER_BULLET
 void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Bullet_Player(start, dir, radian, speed, pla->pla_dir);

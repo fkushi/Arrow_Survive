@@ -43,6 +43,7 @@ public:
 	//PLAYER
 	t2k::Vector3 GetPosPlayer();
 	t2k::Vector3 GetPos_ChangedPlayer(int pos_x,int pos_y);
+	bool GetPla_pla_dir();
 	int GetPlaSize_W();
 	int GetPlaSize_H();
 	int GetPlaHp_now();

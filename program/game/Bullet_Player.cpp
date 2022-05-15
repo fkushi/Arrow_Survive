@@ -13,6 +13,8 @@ Bullet_Player::Bullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian,
 	RAD = (radian * 3.14f) / 180;
 	SPEED = speed;
 	DIR = pla_dir;
+	if (!gamemanager->GetPla_pla_dir())new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1), start.y, 0), dir, speed);
+	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1), start.y, 0), dir, speed);
 	gamemanager->blt_pla.emplace_back(this);
 }
 
