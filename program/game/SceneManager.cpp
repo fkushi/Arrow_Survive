@@ -11,12 +11,16 @@ extern IMG_load img;
 Taitle			taitle;
 GameEnd			end;
 Create_Stage	c_st;
-
+//----------------------------------------------------------------------------------------
+/*シーン制御*/
+//----------------------------------------------------------------------------------------
+/*タイトル*/
 bool SceneManager::seqTitle(const float deltatime) {
 	taitle.render(deltatime);
 	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER))sequence_.change(&SceneManager::seqStage);
 	return true;
 }
+/*プレイステージ*/
 bool SceneManager::seqStage(const float deltatime) {
 	if (sequence_.isStart()) {
 		/*最初のステージ*/
@@ -41,20 +45,25 @@ bool SceneManager::seqStage(const float deltatime) {
 	}
 	return true;
 }
+/*ゲーム終了*/
 bool SceneManager::seqGameEnd(const float deltatime) {
 	end.render(deltatime);
 	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER))sequence_.change(&SceneManager::seqTitle);
 	return true;
 }
-
+/*全デリート*/
 void SceneManager::Del_END() {
 	gamemanager->pla = nullptr;
 	c_st.stage_type = 0;
 	img.init_img_back = false;
+	/*arrow*/
 	for (auto bp : gamemanager->blt_pla)bp->is_alive = false;
+	/*stage*/
 	for (auto st_a : gamemanager->m_stA)st_a->is_alive = false;
 	for (auto st_b : gamemanager->m_stB)st_b->is_alive = false;
 	for (auto p_b : gamemanager->pop_stB)p_b->is_alive = false;
+	/*enemy*/
 	for (auto eb : gamemanager->enm_B)eb->is_alive = false;
+	/*base*/
 	for (auto ba : gamemanager->base)ba->is_alive = false;
 }

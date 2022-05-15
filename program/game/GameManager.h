@@ -10,6 +10,7 @@
 #include"Enemy_B.h"
 #include"map_Wall.h"
 #include"OnAtachEnter.h"
+#include"OnAtach_Arrow.h"
 
 class GameManager {
 public:
@@ -18,14 +19,18 @@ public:
 	Player*						pla;
 	OnAtachEnter				atach;
 	std::list<Base*>			base;
-	std::list<Timer*>			time;
+	/*Arrow*/
 	std::list<Bullet_Player*>	blt_pla;
+	std::list<OnAtach_Arrow*>	atach_arw;
+	/*Stage*/
+	std::list<Timer*>			time;
 	std::list<map_StageA*>		m_stA;
 	std::list<map_StageB*>		m_stB;
+	std::list<map_Wall*>		m_wal;
+	/*Enemy*/
 	std::list<Pop_EnemyB*>		pop_stB;
 	std::list<Enemy_B*>			enm_B;
-	std::list<map_Wall*>		m_wal;
-
+	
 	/*ä÷êî*/
 	//PLAYER
 	t2k::Vector3 GetPosPlayer();

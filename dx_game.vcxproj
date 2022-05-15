@@ -26,6 +26,7 @@
     <ClCompile Include="program\game\map_StageB.cpp" />
     <ClCompile Include="program\game\map_Wall.cpp" />
     <ClCompile Include="program\game\OnAtachEnter.cpp" />
+    <ClCompile Include="program\game\OnAtach_Arrow.cpp" />
     <ClCompile Include="program\game\Player.cpp" />
     <ClCompile Include="program\game\Pop_EnemeyB.cpp" />
     <ClCompile Include="program\game\SceneManager.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="program\game\map_StageB.h" />
     <ClInclude Include="program\game\map_Wall.h" />
     <ClInclude Include="program\game\OnAtachEnter.h" />
+    <ClInclude Include="program\game\OnAtach_Arrow.h" />
     <ClInclude Include="program\game\Player.h" />
     <ClInclude Include="program\game\Pop_EnemeyB.h" />
     <ClInclude Include="program\game\SceneManager.h" />

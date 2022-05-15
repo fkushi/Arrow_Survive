@@ -25,5 +25,5 @@ void Pop_EnemyB::update(const float deltatime) {
 }
 void Pop_EnemyB::render(const float deltatime) {
 	img.img_pop();
-	DrawRotaGraph(pos.x, pos.y, 1.0, 0, img.pop, true);
+	DrawRotaGraph((int)pos.x, (int)pos.y, 1.0, 0, img.pop, true);
 }

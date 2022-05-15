@@ -139,6 +139,9 @@
     <ClCompile Include="program\game\Timer.cpp">
       <Filter>program\game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\OnAtach_Arrow.cpp">
+      <Filter>program\game\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\support\FrameRateController.h">
@@ -275,6 +278,9 @@
     </ClInclude>
     <ClInclude Include="program\game\Timer.h">
       <Filter>program\game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\OnAtach_Arrow.h">
+      <Filter>program\game\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

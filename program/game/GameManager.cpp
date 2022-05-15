@@ -13,6 +13,7 @@ void GameManager::initialize() {
 }
 //----------------------------------------------------------------------------------------
 /*ŠÖ”*/
+//----------------------------------------------------------------------------------------
 /*PLAYER*/
 //PLAYER_POSITION
 t2k::Vector3 GameManager::GetPosPlayer() {
@@ -69,7 +70,8 @@ int GameManager::GetTime_S() {
 	for (auto t : time)return (int)t->s;
 	return true;
 }
-
+//----------------------------------------------------------------------------------------
+/*update,render*/
 //----------------------------------------------------------------------------------------
 void GameManager::update(float deltatime) {
 	for (auto ba : base)ba->update(deltatime);
@@ -86,13 +88,11 @@ void GameManager::update(float deltatime) {
 		it++;
 	}
 }
-/*•`‰æ*/
 void GameManager::render(float deltatime) {
 #if 1
 	/*STAGE*/
 	for (auto m_b : m_stB)m_b->render(deltatime);
 	for (auto m_a : m_stA)m_a->render(deltatime);
-	
 	/*WALL*/
 	for (auto m_w : m_wal)m_w->render(deltatime);
 	/*ENEMY*/
@@ -109,6 +109,17 @@ void GameManager::render(float deltatime) {
 //----------------------------------------------------------------------------------------
 /*Delete_Check*/
 void GameManager::eraceCheck() {
+	/*Stage*/
+	{
+		std::list<map_Wall*>::iterator it = m_wal.begin();
+		while (it != m_wal.end()) {
+			if (!(*it)->is_alive) {
+				it = m_wal.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
 	{
 		std::list<Timer*>::iterator it = time.begin();
 		while (it != time.end()) {
@@ -139,6 +150,8 @@ void GameManager::eraceCheck() {
 			it++;
 		}
 	}
+	//-----------------------------------------------------------------------------------------------
+	/*Arrow*/
 	{
 		std::list<Bullet_Player*>::iterator it = blt_pla.begin();
 		while (it != blt_pla.end()) {
@@ -149,6 +162,18 @@ void GameManager::eraceCheck() {
 			it++;
 		}
 	}
+	{
+		std::list<OnAtach_Arrow*>::iterator it = atach_arw.begin();
+		while (it != atach_arw.end()) {
+			if (!(*it)->is_alive) {
+				it = atach_arw.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
+	//-----------------------------------------------------------------------------------------------
+	/*Enemy*/
 	{
 		std::list<Pop_EnemyB*>::iterator it = pop_stB.begin();
 		while (it != pop_stB.end()) {
@@ -164,16 +189,6 @@ void GameManager::eraceCheck() {
 		while (it != enm_B.end()) {
 			if (!(*it)->is_alive) {
 				it = enm_B.erase(it);
-				continue;
-			}
-			it++;
-		}
-	}
-	{
-		std::list<map_Wall*>::iterator it = m_wal.begin();
-		while (it != m_wal.end()) {
-			if (!(*it)->is_alive) {
-				it = m_wal.erase(it);
 				continue;
 			}
 			it++;
