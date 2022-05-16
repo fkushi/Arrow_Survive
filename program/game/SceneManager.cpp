@@ -58,6 +58,7 @@ void SceneManager::Del_END() {
 	img.init_img_back = false;
 	/*arrow*/
 	for (auto bp : gamemanager->blt_pla)bp->is_alive = false;
+	for (auto ataw : gamemanager->atach_arw)ataw->is_alive = false;
 	/*stage*/
 	for (auto st_a : gamemanager->m_stA)st_a->is_alive = false;
 	for (auto st_b : gamemanager->m_stB)st_b->is_alive = false;
