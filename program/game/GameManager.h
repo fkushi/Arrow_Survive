@@ -53,6 +53,8 @@ public:
 	int GetBase_Changetype(int back_type);
 	int GetTime_S();
 	int GetTime_M();
+	//Vector
+	int FixVector(float pos_x, float pos_y);
 	
 	//---------------------------------------------------------------------------------------------------
 	/*CREATE_OBJECT*/

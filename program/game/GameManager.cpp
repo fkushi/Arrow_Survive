@@ -14,7 +14,9 @@ void GameManager::initialize() {
 //----------------------------------------------------------------------------------------
 /*ŠÖ”*/
 //----------------------------------------------------------------------------------------
+//------------------------------------------------------
 /*PLAYER*/
+//------------------------------------------------------
 //PLAYER_POSITION
 t2k::Vector3 GameManager::GetPosPlayer() {
 	return pla->pos;
@@ -45,12 +47,16 @@ int GameManager::GetPlaHp_now() {
 void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Bullet_Player(start, dir, radian, speed, pla->pla_dir);
 }
+//------------------------------------------------------
 /*ENEMY*/
+//------------------------------------------------------
 //EnemyB
 void GameManager::createEnemyB(t2k::Vector3 start, int speed) {
 	new Enemy_B(start, speed);
 }
+//------------------------------------------------------
 /*STAGE*/
+//------------------------------------------------------
 //WALL
 int GameManager::GetAtachWall() {
 	for (auto wal : m_wal) return wal->atach_wal;
@@ -65,7 +71,9 @@ int GameManager::GetBase_Backtype() {
 	for (auto ba : base) return ba->stage_type;
 	return true;
 }
+//------------------------------------------------------
 /*SCENE*/
+//------------------------------------------------------
 //Timer
 int GameManager::GetTime_M() {
 	for (auto t : time)return t->m;
@@ -75,6 +83,12 @@ int GameManager::GetTime_S() {
 	for (auto t : time)return (int)t->s;
 	return true;
 }
+//------------------------------------------------------
+/*Vector*/
+//------------------------------------------------------
+
+
+
 //----------------------------------------------------------------------------------------
 /*update,render*/
 //----------------------------------------------------------------------------------------
