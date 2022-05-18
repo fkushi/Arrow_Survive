@@ -47,13 +47,13 @@ void Player::update(const float deltatime) {
 	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_N)) {
 		if (!pla_dir) {
 			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 0, 0), 0, 8);
-			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 1, 0), 45, 8);
-			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, -1, 0), -45, 8);
+			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 1, 0), 45, 8);
+			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, -1, 0), -45, 8);
 		}
 		else {
 			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, 0, 0), 0, 8);
-			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, -1, 0), 45, 8);
-			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, 1, 0), -45, 8);
+			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, -1, 0), 45, 8);
+			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, 1, 0), -45, 8);
 		}
 	}
 	//--------------------------------------------------------------------------------------------------

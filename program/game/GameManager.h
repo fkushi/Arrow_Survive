@@ -54,7 +54,7 @@ public:
 	int GetTime_S();
 	int GetTime_M();
 	//Vector
-	int FixVector(float pos_x, float pos_y);
+	t2k::Vector3 FixVector(float pos_x, float pos_y);
 	
 	//---------------------------------------------------------------------------------------------------
 	/*CREATE_OBJECT*/

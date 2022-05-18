@@ -14,6 +14,7 @@ void GameManager::initialize() {
 //----------------------------------------------------------------------------------------
 /*ŠÖ”*/
 //----------------------------------------------------------------------------------------
+
 //------------------------------------------------------
 /*PLAYER*/
 //------------------------------------------------------
@@ -42,11 +43,11 @@ int GameManager::GetPlaSize_H() {
 int GameManager::GetPlaHp_now() {
 	return pla->gezi_now_num;
 }
-
 //PLAYER_BULLET
 void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Bullet_Player(start, dir, radian, speed, pla->pla_dir);
 }
+
 //------------------------------------------------------
 /*ENEMY*/
 //------------------------------------------------------
@@ -54,6 +55,7 @@ void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, floa
 void GameManager::createEnemyB(t2k::Vector3 start, int speed) {
 	new Enemy_B(start, speed);
 }
+
 //------------------------------------------------------
 /*STAGE*/
 //------------------------------------------------------
@@ -71,6 +73,7 @@ int GameManager::GetBase_Backtype() {
 	for (auto ba : base) return ba->stage_type;
 	return true;
 }
+
 //------------------------------------------------------
 /*SCENE*/
 //------------------------------------------------------
@@ -86,8 +89,13 @@ int GameManager::GetTime_S() {
 //------------------------------------------------------
 /*Vector*/
 //------------------------------------------------------
+t2k::Vector3 GameManager::FixVector(float pos_x, float pos_y) {
+	float sum = sqrt(pos_x * pos_x + pos_y * pos_y);
+	float dx = sum/pos_x;
+	float dy = sum/pos_y;
 
 
+}
 
 //----------------------------------------------------------------------------------------
 /*update,render*/

@@ -14,15 +14,17 @@ Bullet_Player::Bullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian,
 	SPEED = speed;
 	DIR = pla_dir;
 	if (!gamemanager->GetPla_pla_dir()) {
-		new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1), start.y, 0), dir, speed);
+		new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 5, start.y, 0), dir, speed);
+		//if(start.y >= 1)new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 10, start.y - 10 , 0), dir, speed);
+		//if(start.y <= 0)new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 10, start.y + 10 , 0), dir, speed);
 	}
-	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1), start.y, 0), dir, speed);
+	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1) + 5, start.y, 0), dir, speed);
 	gamemanager->blt_pla.emplace_back(this);
 }
 
 void Bullet_Player::update(const float deltatime) {
-	pos.x += SPEED * blt_dir.x;
-	pos.y += SPEED * blt_dir.y;
+	/*pos.x += SPEED * blt_dir.x;
+	pos.y += SPEED * blt_dir.y;*/
 	if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
 } 
 void Bullet_Player::render(const float deltatime) {
