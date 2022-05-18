@@ -19,6 +19,7 @@ Player::Player(t2k::Vector3 start,int speed) {
 void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*アニメーション*/
+	//--------------------------------------------------------------------------------------------------
 	anim_pla.anim_Player_Controll(deltatime);
 	//--------------------------------------------------------------------------------------------------
 	/*当たり判定*/
@@ -28,6 +29,7 @@ void Player::update(const float deltatime) {
 	preve_pos = pos;
 	//--------------------------------------------------------------------------------------------------
 	/*操作*/
+	//--------------------------------------------------------------------------------------------------
 	if (gamemanager->atach.pla_up)if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP))pos.y -= pla_speed;
 	if (gamemanager->atach.pla_down)if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN))pos.y += pla_speed;
 	if (gamemanager->atach.pla_right) {
@@ -44,6 +46,7 @@ void Player::update(const float deltatime) {
 	}
 	//--------------------------------------------------------------------------------------------------
 	/*Bullet*/
+	//--------------------------------------------------------------------------------------------------
 	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_N)) {
 		if (!pla_dir) {
 			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 0, 0), 0, 8);
@@ -57,12 +60,11 @@ void Player::update(const float deltatime) {
 		}
 	}
 	//--------------------------------------------------------------------------------------------------
-	/*HP_test*/
+	/*HP*/
+	//--------------------------------------------------------------------------------------------------
 	int check = gamemanager->atach.pla_enemyB_check;
 	if((check == 1 || check == 2 || check == 3 || check == 4) && hp_frame % 2 == 0 
 		&& gezi_now_num > gezi_min_num)gezi_now_num--;
-	//if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_W) && hp_frame % 2 == 0 && gezi_now_num < gezi_max_num)gezi_now_num++;
-	//if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_S) && hp_frame % 2 == 0 && gezi_now_num > gezi_min_num)gezi_now_num--;
 }
 void Player::render(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
@@ -90,15 +92,19 @@ void Player::render(const float deltatime) {
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	//-------------------------------------------------------------------------------
 	/*当たった時のPlayerの赤色に変わる処理*/
+	//-------------------------------------------------------------------------------
 	if(atach == 1 || atach == 2 || atach == 3 || atach == 4)SetDrawBright(255, 0, 0);
 	else SetDrawBright(255, 255, 255);
 	//-------------------------------------------------------------------------------
 	/*playerの描画*/
+	//-------------------------------------------------------------------------------
 	if (!anim_pla.init_anim_pla) DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, 0, img.img_pla, true, pla_dir);
 	else DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, 0, img.anim_pla[anim_pla.anim_move][anim_pla.anim_frame], true, pla_dir);
 
 #if PLA_DEBUG
+	//-------------------------------------------------------------------------------
 	/*Debug*/
+	//-------------------------------------------------------------------------------
 	SetFontSize(20);
 	DrawStringEx(100, 100, 255, "posX:%1.0f,posY:%1.0f", pos.x, pos.y);
 	DrawStringEx(100, 120, 255, "grand_atach = %d", gamemanager->GetAtachWall());

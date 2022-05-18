@@ -23,8 +23,8 @@ Bullet_Player::Bullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian,
 }
 
 void Bullet_Player::update(const float deltatime) {
-	/*pos.x += SPEED * blt_dir.x;
-	pos.y += SPEED * blt_dir.y;*/
+	pos.x += SPEED * blt_dir.x;
+	pos.y += SPEED * blt_dir.y;
 	if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
 } 
 void Bullet_Player::render(const float deltatime) {

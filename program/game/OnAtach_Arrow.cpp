@@ -12,8 +12,8 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed) {
 }
 
 void OnAtach_Arrow::update(const float deltatime) {
-	/*pos.x += atach_Arrow_dir.x * atach_Arrow_speed;
-	pos.y += atach_Arrow_dir.y * atach_Arrow_speed;*/
+	pos.x += atach_Arrow_dir.x * atach_Arrow_speed;
+	pos.y += atach_Arrow_dir.y * atach_Arrow_speed;
 }
 void OnAtach_Arrow::render(const float deltatime) {
 	int p_x1 = (int)pos.x - (atach_Arrow_sizeW >> 1);

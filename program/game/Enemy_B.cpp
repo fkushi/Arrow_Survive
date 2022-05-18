@@ -19,9 +19,10 @@ void Enemy_B::update(const float deltatime) {
 	preve_pos = pos;
 	/*アニメーション*/
 	anim_enmB.enemy_anim_Controll(deltatime);
+	#if DEBUG_ENM_B
 	//----------------------------------------------------------------
-#if DEBUG_ENM_B
 	/*追従*/
+	//----------------------------------------------------------------
 	float A, B, C, dx, dy;
 	A = gamemanager->GetPosPlayer().x - pos.x;
 	B = gamemanager->GetPosPlayer().y - pos.y;
