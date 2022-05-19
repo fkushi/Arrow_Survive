@@ -7,7 +7,9 @@ extern GameManager* gamemanager;
 OnAtachEnter::OnAtachEnter() {
 
 }
+//---------------------------------------------------------------------------------------------------------------
 /*wallìñÇΩÇËîªíË*/
+//---------------------------------------------------------------------------------------------------------------
 void OnAtachEnter::Atach_Pla_Wall() {
 	//grand = -1,right = 0,left = 1,up = 2,down = 3
 	//couner_upR = 4,corner_upL = 5,corner_downR = 6,corner_downL = 7
@@ -41,16 +43,20 @@ void OnAtachEnter::Atach_Pla_Wall() {
 		pla_left = true;
 	}else pla_left = false;
 }
+
 //---------------------------------------------------------------------------------------------------------------
 /*POPìñÇΩÇËîªíË*/
+//---------------------------------------------------------------------------------------------------------------
 void OnAtachEnter::Atach_Pla_Pop() {
 	for (auto pb : gamemanager->pop_stB) {
 		int pla_pop_check = t2k::isIntersectRectToCorrectPosition(gamemanager->pla->pos, gamemanager->pla->preve_pos,
 			gamemanager->GetPlaSize_W(), gamemanager->GetPlaSize_H(), pb->pos, pb->size_w, pb->size_h);
 	}
 }
+
 //---------------------------------------------------------------------------------------------------------------
 /*ENEMYìñÇΩÇËîªíË*/
+//---------------------------------------------------------------------------------------------------------------
 void OnAtachEnter::Atach_Pla_Enemy() {
 	for (auto eb : gamemanager->enm_B) {
 		//PlayerÇ∆EnemyB
@@ -71,6 +77,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 }
 //---------------------------------------------------------------------------------------------------------------
 /*ï€óØ*/
+//---------------------------------------------------------------------------------------------------------------
 //ÉçÅ[ÉJÉãç¿ïWÇ…ÇÊÇÈìñÇΩÇËîªíË
 void OnAtachEnter::Atach_Pla_Block(t2k::Vector3 pla_pos, int pla_w, int pla_h,
 	t2k::Vector3 box_pos, int box_w, int box_h) {

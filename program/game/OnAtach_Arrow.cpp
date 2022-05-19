@@ -16,10 +16,7 @@ void OnAtach_Arrow::update(const float deltatime) {
 	pos.y += atach_Arrow_dir.y * atach_Arrow_speed;
 }
 void OnAtach_Arrow::render(const float deltatime) {
-	int p_x1 = (int)pos.x - (atach_Arrow_sizeW >> 1);
-	int p_y1 = (int)pos.y - (atach_Arrow_sizeH >> 1);
-	int p_x2 = (int)pos.x + (atach_Arrow_sizeW >> 1);
-	int p_y2 = (int)pos.y + (atach_Arrow_sizeH >> 1);
-	//SetDrawBlendMode(DX_BLENDMODE_SUB, 0);
-	DrawBox(p_x1, p_y1, p_x2, p_y2, GetColor(0, 255, 0), false);
+	
+	DrawCircle((int)pos.x, (int)pos.y, atach_Arrow_radius, GetColor(0, 255, 0), false);
+
 }
