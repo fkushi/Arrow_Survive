@@ -3,6 +3,7 @@
 #include"Base.h"
 #include"Timer.h"
 #include"Player.h"
+#include"Arrow_Type.h"
 #include"Bullet_Player.h"
 #include"map_StageA.h"
 #include"map_StageB.h"
@@ -26,6 +27,7 @@ public:
 	/*Base*/
 	std::list<Base*>			base;
 	/*Arrow*/
+	std::list<Arrow_Type*>		arw_typ;
 	std::list<Bullet_Player*>	blt_pla;
 	std::list<OnAtach_Arrow*>	atach_arw;
 	/*Stage*/
@@ -44,10 +46,13 @@ public:
 	t2k::Vector3 GetPosPlayer();
 	t2k::Vector3 GetPos_ChangedPlayer(int pos_x,int pos_y);
 	bool GetPla_pla_dir();
+	bool GetPla_triger_push_sift();
 	int GetPlaSize_W();
 	int GetPlaSize_H();
 	int GetPlaHp_now();
 	int GetAtachWall();
+	//Arrow
+	int GetArwTyp_arrow_type();
 	//STAGE
 	int GetBase_Backtype();
 	int GetBase_Changetype(int back_type);

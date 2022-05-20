@@ -11,13 +11,11 @@ GameManager::GameManager() {
 void GameManager::initialize() {
 	
 }
+
 //----------------------------------------------------------------------------------------
 /*ŠÖ”*/
 //----------------------------------------------------------------------------------------
-
-//------------------------------------------------------
 /*PLAYER*/
-//------------------------------------------------------
 //PLAYER_POSITION
 t2k::Vector3 GameManager::GetPosPlayer() {
 	return pla->pos;
@@ -31,6 +29,10 @@ t2k::Vector3 GameManager::GetPos_ChangedPlayer(int pos_x, int pos_y) {
 bool GameManager::GetPla_pla_dir() {
 	return pla->pla_dir;
 }
+//shift‚ð‰Ÿ‚µ‚½Žž
+bool GameManager::GetPla_triger_push_sift() {
+	return pla->triger_push_sift;
+}
 //PLAYER_SIZE
 int GameManager::GetPlaSize_W() {
 	return pla->pla_w;
@@ -43,27 +45,28 @@ int GameManager::GetPlaSize_H() {
 int GameManager::GetPlaHp_now() {
 	return pla->gezi_now_num;
 }
-//PLAYER_BULLET
+/*Arrow*/
+int GameManager::GetArwTyp_arrow_type() {
+	for (auto ar_ty : arw_typ)return ar_ty->arrow_type;
+	return true;
+}
 void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Bullet_Player(start, dir, radian, speed, pla->pla_dir);
 }
-
 //------------------------------------------------------
 /*ENEMY*/
-//------------------------------------------------------
 //EnemyB
 void GameManager::createEnemyB(t2k::Vector3 start, int speed) {
 	new Enemy_B(start, speed);
 }
-
 //------------------------------------------------------
 /*STAGE*/
-//------------------------------------------------------
 //WALL
 int GameManager::GetAtachWall() {
 	for (auto wal : m_wal) return wal->atach_wal;
 	return true;
 }
+//------------------------------------------------------
 /*BASE*/
 int GameManager::GetBase_Changetype(int back_type) {
 	for (auto ba : base) ba->stage_type = back_type;
@@ -73,10 +76,8 @@ int GameManager::GetBase_Backtype() {
 	for (auto ba : base) return ba->stage_type;
 	return true;
 }
-
 //------------------------------------------------------
 /*SCENE*/
-//------------------------------------------------------
 //Timer
 int GameManager::GetTime_M() {
 	for (auto t : time)return t->m;
@@ -88,13 +89,10 @@ int GameManager::GetTime_S() {
 }
 //------------------------------------------------------
 /*Vector*/
-//------------------------------------------------------
 t2k::Vector3 GameManager::FixVector(float pos_x, float pos_y) {
 	float sum = sqrt(pos_x * pos_x + pos_y * pos_y);
 	float dx = sum/pos_x;
 	float dy = sum/pos_y;
-
-
 }
 
 //----------------------------------------------------------------------------------------
@@ -128,6 +126,7 @@ void GameManager::render(float deltatime) {
 	/*Timer*/
 	for (auto t : time)t->render(deltatime);
 	/*ARROW*/
+	for (auto ar_ty : arw_typ)ar_ty->render(deltatime);
 	for (auto bp : blt_pla)bp->render(deltatime);
 	for (auto at_aw : atach_arw)at_aw->render(deltatime);
 #endif
@@ -136,6 +135,7 @@ void GameManager::render(float deltatime) {
 }
 //----------------------------------------------------------------------------------------
 /*Delete_Check*/
+//----------------------------------------------------------------------------------------
 void GameManager::eraceCheck() {
 	/*Stage*/
 	{
@@ -178,8 +178,18 @@ void GameManager::eraceCheck() {
 			it++;
 		}
 	}
-	//-----------------------------------------------------------------------------------------------
+	//------------------------------------------------------
 	/*Arrow*/
+	{
+		std::list<Arrow_Type*>::iterator it = arw_typ.begin();
+		while (it != arw_typ.end()) {
+			if (!(*it)->is_alive) {
+				it = arw_typ.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
 	{
 		std::list<Bullet_Player*>::iterator it = blt_pla.begin();
 		while (it != blt_pla.end()) {
@@ -200,7 +210,7 @@ void GameManager::eraceCheck() {
 			it++;
 		}
 	}
-	//-----------------------------------------------------------------------------------------------
+	//------------------------------------------------------
 	/*Enemy*/
 	{
 		std::list<Pop_EnemyB*>::iterator it = pop_stB.begin();

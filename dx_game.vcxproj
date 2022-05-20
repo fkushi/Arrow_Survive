@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program\game\Anim_Player.cpp" />
+    <ClCompile Include="program\game\Arrow_Type.cpp" />
     <ClCompile Include="program\game\Base.cpp" />
     <ClCompile Include="program\game\Bullet_Player.cpp" />
     <ClCompile Include="program\game\Create_Stage.cpp" />
@@ -50,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\game\Anim_Player.h" />
+    <ClInclude Include="program\game\Arrow_Type.h" />
     <ClInclude Include="program\game\Base.h" />
     <ClInclude Include="program\game\Bullet_Player.h" />
     <ClInclude Include="program\game\Create_Stage.h" />

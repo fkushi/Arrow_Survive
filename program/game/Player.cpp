@@ -14,6 +14,7 @@ Anim_Player anim_pla;
 Player::Player(t2k::Vector3 start,int speed) {
 	pos = start;
 	pla_speed = speed;
+	new Arrow_Type();
 }
 
 void Player::update(const float deltatime) {
@@ -21,24 +22,37 @@ void Player::update(const float deltatime) {
 	/*アニメーション*/
 	//--------------------------------------------------------------------------------------------------
 	anim_pla.anim_Player_Controll(deltatime);
+	
 	//--------------------------------------------------------------------------------------------------
 	/*当たり判定*/
+	//--------------------------------------------------------------------------------------------------
 	gamemanager->atach.Atach_Pla_Wall();
 	gamemanager->atach.Atach_Pla_Pop();
 	gamemanager->atach.Atach_Pla_Enemy();
 	preve_pos = pos;
+	
 	//--------------------------------------------------------------------------------------------------
 	/*操作*/
 	//--------------------------------------------------------------------------------------------------
-	if (gamemanager->atach.pla_up)if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP))pos.y -= pla_speed;
-	if (gamemanager->atach.pla_down)if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN))pos.y += pla_speed;
-	if (gamemanager->atach.pla_right) {
+	//shiftキーを押した場合
+	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) ||
+		t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT)) {
+		triger_push_sift = true;
+	}
+	else if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) ||
+		t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT)) {
+		triger_push_sift = false;
+	}
+	//矢印キーを押した場合
+	if (gamemanager->atach.pla_up && !triger_push_sift)if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP))pos.y -= pla_speed;
+	if (gamemanager->atach.pla_down && !triger_push_sift)if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN))pos.y += pla_speed;
+	if (gamemanager->atach.pla_right && !triger_push_sift) {
 		if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_RIGHT)) {
 			pla_dir = false;
 			pos.x += pla_speed;
 		}
 	}
-	if (gamemanager->atach.pla_left) {
+	if (gamemanager->atach.pla_left && !triger_push_sift) {
 		if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT)) {
 			pla_dir = true;
 			pos.x -= pla_speed;

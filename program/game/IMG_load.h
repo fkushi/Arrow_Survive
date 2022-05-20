@@ -9,6 +9,7 @@ private:
 	/*Player*/
 	bool init_img_pla = false;
 	bool init_img_hp = false;
+	/*Arrow*/
 	bool init_img_blt_player = false;
 	/*Stage*/
 	bool init_img_wall = false;
@@ -39,7 +40,15 @@ public:
 	int** anim_pla = nullptr;
 	//HP
 	int hp_red, hp_green,hp_cover;
-	//Bullet
+
+	/*Arrow*/
+	//type
+	bool init_img_arw_type = false;
+	int img_arrow_type;
+	enum {
+		arrow = 1, wing, fire
+	};
+	//Arrow
 	int img_blt_Player;
 
 	/*Enemy*/
@@ -63,6 +72,8 @@ public:
 	/*Player*/
 	void img_player();
 	void img_hp();
+	/*Arrow*/
 	void img_blt_player();
+	void img_arw_type();
 	
 };

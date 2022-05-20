@@ -62,19 +62,17 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 		//Player‚ÆEnemyB
 		pla_enemyB_check = t2k::isIntersectRectToCorrectPosition(gamemanager->pla->pos, gamemanager->pla->preve_pos,
 			gamemanager->GetPlaSize_W(), gamemanager->GetPlaSize_H(), eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
-
-		//PlayerBullet‚ÆEnemyB
-		for (auto bp : gamemanager->blt_pla) {
-			pla_blt_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,
-				bp->pos, bp->blt_pla_w, bp->blt_pla_h);
-			int check_blt = pla_blt_check;
-			if (check_blt > 0) {
+		
+		for (auto atar : gamemanager->atach_arw) {
+			bool arw_enm_chenk = t2k::isIntersectSphere(eb->pos, (float)eb->enm_B_SIZE / 2, atar->pos, (float)atar->atach_Arrow_radius);
+			if (arw_enm_chenk) {
 				eb->is_alive = false;
-				bp->is_alive = false;
+				atar->is_alive = false;
+				for (auto bp : gamemanager->blt_pla)bp->is_alive = false;
 			}
 		}
 	}
-}
+} 
 //---------------------------------------------------------------------------------------------------------------
 /*•Û—¯*/
 //---------------------------------------------------------------------------------------------------------------

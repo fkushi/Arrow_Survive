@@ -58,18 +58,27 @@ void IMG_load::img_player() {
 		init_img_pla = true;
 	}
 }
-void IMG_load::img_blt_player() {
-	if (!init_img_blt_player) {
-		img_blt_Player = LoadGraph("graphics/Player/Arrow.png");
-		init_img_blt_player = true;
-	}
-}
 void IMG_load::img_hp() {
 	if (!init_img_hp) {
 		hp_green = LoadGraph("graphics/Player/hp_green.png");
 		hp_red = LoadGraph("graphics/Player/hp_red.png");
 		hp_cover = LoadGraph("graphics/Player/hp_gold.png");
 		init_img_hp = true;
+	}
+}
+/*Arrowイメージ*/
+void IMG_load::img_blt_player() {
+	if (!init_img_blt_player) {
+		img_blt_Player = LoadGraph("graphics/Player/Arrow.png");
+		init_img_blt_player = true;
+	}
+}
+void IMG_load::img_arw_type() {
+	if (!init_img_arw_type) {
+		if (gamemanager->GetArwTyp_arrow_type() == arrow)img_arrow_type = LoadGraph("graphics/Orb/オーブ_Arrow.png");
+		if (gamemanager->GetArwTyp_arrow_type() == wing)img_arrow_type = LoadGraph("graphics/Orb/オーブ_風.png");
+		if (gamemanager->GetArwTyp_arrow_type() == fire)img_arrow_type = LoadGraph("graphics/Orb/オーブ_炎.png");
+		init_img_arw_type = true;
 	}
 }
 /*Enemyイメージ*/

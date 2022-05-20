@@ -8,6 +8,7 @@ public:
 
 	t2k::Vector3 preve_pos;
 	bool pla_dir = false;
+	bool triger_push_sift = false;
 	int pla_speed = 0;
 	int pla_w = 38;
 	int pla_h = 45;

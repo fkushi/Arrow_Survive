@@ -29,5 +29,6 @@ void Bullet_Player::update(const float deltatime) {
 } 
 void Bullet_Player::render(const float deltatime) {
 	img.img_blt_player();
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
 	DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, RAD, img.img_blt_Player, true, DIR);
 }

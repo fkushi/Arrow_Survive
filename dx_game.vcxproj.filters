@@ -32,6 +32,9 @@
     <Filter Include="program\game\Stage">
       <UniqueIdentifier>{7ce34ad2-65e0-4899-98a5-6256bd0b69dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="program\game\Arrow">
+      <UniqueIdentifier>{3a518d75-160b-4289-909b-d10f8a8eeb3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program\support\FrameRateController.cpp">
@@ -130,17 +133,20 @@
     <ClCompile Include="program\game\Anim_Enemy_B.cpp">
       <Filter>program\game\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\Bullet_Player.cpp">
-      <Filter>program\game\Player</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\End.cpp">
       <Filter>program\game\Scene</Filter>
     </ClCompile>
     <ClCompile Include="program\game\Timer.cpp">
       <Filter>program\game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\Bullet_Player.cpp">
+      <Filter>program\game\Arrow</Filter>
+    </ClCompile>
     <ClCompile Include="program\game\OnAtach_Arrow.cpp">
-      <Filter>program\game\Player</Filter>
+      <Filter>program\game\Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\Arrow_Type.cpp">
+      <Filter>program\game\Arrow</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -270,17 +276,20 @@
     <ClInclude Include="program\game\Anim_Enemy_B.h">
       <Filter>program\game\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\Bullet_Player.h">
-      <Filter>program\game\Player</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\End.h">
       <Filter>program\game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Timer.h">
       <Filter>program\game\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="program\game\Bullet_Player.h">
+      <Filter>program\game\Arrow</Filter>
+    </ClInclude>
     <ClInclude Include="program\game\OnAtach_Arrow.h">
-      <Filter>program\game\Player</Filter>
+      <Filter>program\game\Arrow</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Arrow_Type.h">
+      <Filter>program\game\Arrow</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
