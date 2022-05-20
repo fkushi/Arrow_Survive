@@ -21,7 +21,7 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*アニメーション*/
 	//--------------------------------------------------------------------------------------------------
-	if(!triger_push_sift)anim_pla.anim_Player_Controll(deltatime);
+	anim_pla.anim_Player_Controll(deltatime);
 	
 	//--------------------------------------------------------------------------------------------------
 	/*当たり判定*/
@@ -39,6 +39,7 @@ void Player::update(const float deltatime) {
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) ||
 		t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT)) {
 		triger_push_sift = true;
+		anim_pla.init_anim_pla = false;
 	}
 	else if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) ||
 		t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT)) {
