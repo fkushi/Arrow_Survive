@@ -1,16 +1,11 @@
 #pragma once
 #include"Base.h"
 #include"../library/t2klib.h"
-class Arrow_Type : public Base {
+class Arrow_Wing : public Base {
 private:
-	int arrow_type_max = 4;
-	int arrow_type_min = 0;
-	int arrow_type_blend_add = 255;
+
 public:
-
-	Arrow_Type();
-
-	int arrow_type = 1;
+	Arrow_Wing(t2k::Vector3 start);
 
 	void update(const float deltatime)override;
 	void render(const float deltatime)override;

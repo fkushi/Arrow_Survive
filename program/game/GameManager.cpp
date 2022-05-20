@@ -121,6 +121,7 @@ void GameManager::render(float deltatime) {
 	/*ARROW*/
 	for (auto ar_ty : arw_typ)ar_ty->render(deltatime);
 	for (auto bp : blt_pla)bp->render(deltatime);
+	for (auto ar_wi : arw_win)ar_wi->render(deltatime);
 	for (auto at_aw : atach_arw)at_aw->render(deltatime);
 #endif
 	/*PLAYER*/
@@ -188,6 +189,16 @@ void GameManager::eraceCheck() {
 		while (it != blt_pla.end()) {
 			if (!(*it)->is_alive) {
 				it = blt_pla.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
+	{
+		std::list<Arrow_Wing*>::iterator it = arw_win.begin();
+		while (it != arw_win.end()) {
+			if (!(*it)->is_alive) {
+				it = arw_win.erase(it);
 				continue;
 			}
 			it++;

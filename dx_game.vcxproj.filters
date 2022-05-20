@@ -148,6 +148,9 @@
     <ClCompile Include="program\game\Create_Stage.cpp">
       <Filter>program\game\Stage</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\Arrow_Wing.cpp">
+      <Filter>program\game\Arrow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\support\FrameRateController.h">
@@ -290,6 +293,9 @@
     </ClInclude>
     <ClInclude Include="program\game\Create_Stage.h">
       <Filter>program\game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Arrow_Wing.h">
+      <Filter>program\game\Arrow</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

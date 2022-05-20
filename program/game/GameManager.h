@@ -1,15 +1,21 @@
 #pragma once
 #include<list>
 #include"Base.h"
-#include"Timer.h"
+/*Player*/
 #include"Player.h"
+/*Arrow*/
 #include"Arrow_Type.h"
 #include"Bullet_Player.h"
+#include"Arrow_Wing.h"
+/*Stage*/
+#include"Timer.h"
 #include"map_StageA.h"
 #include"map_StageB.h"
+/*Enemy*/
 #include"Pop_EnemeyB.h"
 #include"Enemy_B.h"
 #include"map_Wall.h"
+/*“–‚½‚è”»’è*/
 #include"OnAtachEnter.h"
 #include"OnAtach_Arrow.h"
 
@@ -29,6 +35,7 @@ public:
 	/*Arrow*/
 	std::list<Arrow_Type*>		arw_typ;
 	std::list<Bullet_Player*>	blt_pla;
+	std::list<Arrow_Wing*>		arw_win;
 	std::list<OnAtach_Arrow*>	atach_arw;
 	/*Stage*/
 	std::list<Timer*>			time;
