@@ -38,7 +38,7 @@ void Arrow_Type::render(const float deltatime) {
 	else {
 		arrow_type_blend_add -= 3;
 	}
-	SetDrawBlendMode(DX_BLENDMODE_ADD, arrow_type_blend_add);
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, arrow_type_blend_add);
 	DrawRotaGraph((int)gamemanager->GetPosPlayer().x, (int)gamemanager->GetPosPlayer().y - 35, 0.5f, 0,
 		img.img_arrow_type, true);
 }

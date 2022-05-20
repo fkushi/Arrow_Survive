@@ -21,7 +21,7 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*アニメーション*/
 	//--------------------------------------------------------------------------------------------------
-	anim_pla.anim_Player_Controll(deltatime);
+	if(!triger_push_sift)anim_pla.anim_Player_Controll(deltatime);
 	
 	//--------------------------------------------------------------------------------------------------
 	/*当たり判定*/
@@ -29,6 +29,7 @@ void Player::update(const float deltatime) {
 	gamemanager->atach.Atach_Pla_Wall();
 	gamemanager->atach.Atach_Pla_Pop();
 	gamemanager->atach.Atach_Pla_Enemy();
+	int check = gamemanager->atach.pla_enemyB_check;
 	preve_pos = pos;
 	
 	//--------------------------------------------------------------------------------------------------
@@ -59,9 +60,9 @@ void Player::update(const float deltatime) {
 		}
 	}
 	//--------------------------------------------------------------------------------------------------
-	/*Bullet*/
+	/*Arrow*/
 	//--------------------------------------------------------------------------------------------------
-	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_N)) {
+	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE) && gamemanager->GetArwTyp_arrow_type() == 1) {
 		if (!pla_dir) {
 			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 0, 0), 0, 8);
 			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 1, 0), 45, 8);
@@ -76,7 +77,6 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*HP*/
 	//--------------------------------------------------------------------------------------------------
-	int check = gamemanager->atach.pla_enemyB_check;
 	if((check == 1 || check == 2 || check == 3 || check == 4) && hp_frame % 2 == 0 
 		&& gezi_now_num > gezi_min_num)gezi_now_num--;
 }
@@ -84,7 +84,9 @@ void Player::render(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*HP*/
 	//--------------------------------------------------------------------------------------------------
+	//HP画像_load
 	img.img_hp();
+
 	int gezi_min_x = (int)pos.x - (pla_w >> 1) - 5;
 	int gezi_min_y = (int)pos.y + (pla_h >> 1) + 5;
 	int gezi_max_x = (int)pos.x + (pla_w >> 1) + 5;
@@ -102,9 +104,10 @@ void Player::render(const float deltatime) {
 	/*描画処理*/
 	//--------------------------------------------------------------------------------------------------
 	int atach = gamemanager->atach.pla_enemyB_check;
+	//Player画像Load
 	img.img_player();
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	//-------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------
 	/*当たった時のPlayerの赤色に変わる処理*/
 	//-------------------------------------------------------------------------------
 	if(atach == 1 || atach == 2 || atach == 3 || atach == 4)SetDrawBright(255, 0, 0);
