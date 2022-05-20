@@ -65,14 +65,21 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE) && gamemanager->GetArwTyp_arrow_type() == 1) {
 		if (!pla_dir) {
-			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 0, 0), 0, 8);
+			gamemanager->createBullet_Player(pos, t2k::Vector3(1, 0, 0), 0, 8);
 			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 1, 0), 45, 8);
 			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, -1, 0), -45, 8);
 		}
 		else {
-			gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, 0, 0), 0, 8);
+			gamemanager->createBullet_Player(pos, t2k::Vector3(-1, 0, 0), 0, 8);
 			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, -1, 0), 45, 8);
 			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, 1, 0), -45, 8);
+		}
+	}if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE) && gamemanager->GetArwTyp_arrow_type() == 2) {
+		if (!pla_dir) {
+			gamemanager->createArrwo_Wing(pos, t2k::Vector3(1, 0, 0), 0, 8);
+		}
+		else {
+			gamemanager->createArrwo_Wing(pos, t2k::Vector3(-1, 0, 0), 0, 8);
 		}
 	}
 	//--------------------------------------------------------------------------------------------------

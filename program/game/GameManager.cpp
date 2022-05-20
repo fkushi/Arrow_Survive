@@ -45,6 +45,7 @@ int GameManager::GetPlaSize_H() {
 int GameManager::GetPlaHp_now() {
 	return pla->gezi_now_num;
 }
+//------------------------------------------------------
 /*Arrow*/
 int GameManager::GetArwTyp_arrow_type() {
 	for (auto ar_ty : arw_typ)return ar_ty->arrow_type;
@@ -52,6 +53,9 @@ int GameManager::GetArwTyp_arrow_type() {
 }
 void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Bullet_Player(start, dir, radian, speed, pla->pla_dir);
+}
+void GameManager::createArrwo_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
+	new Arrow_Wing(start, dir, radian, speed,pla->pla_dir);
 }
 //------------------------------------------------------
 /*ENEMY*/

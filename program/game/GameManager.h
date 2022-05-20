@@ -71,6 +71,7 @@ public:
 	/*CREATE_OBJECT*/
 	//---------------------------------------------------------------------------------------------------
 	void createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed);
+	void createArrwo_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed);
 	void createEnemyB(t2k::Vector3 start, int speed);
 	
 	//---------------------------------------------------------------------------------------------------
