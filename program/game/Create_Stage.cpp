@@ -20,10 +20,10 @@ void Create_Stage::create_Stage() {
 	}
 	//-----------------------------------------------------------------------------------------
 	/*BRIDGEフラグ*/
-	if (gamemanager->GetPosPlayer().y < 0)pla_next_pop = up;
-	else if (gamemanager->GetPosPlayer().y > 768)pla_next_pop = down;
-	else if (gamemanager->GetPosPlayer().x < 0)pla_next_pop = left;
-	else if (gamemanager->GetPosPlayer().x > 1024)pla_next_pop = right;
+	if (gamemanager->GetPosPlayer().y < 0 && !init_change)pla_next_pop = up;
+	else if (gamemanager->GetPosPlayer().y > 768 && !init_change)pla_next_pop = down;
+	else if (gamemanager->GetPosPlayer().x < 0 && !init_change)pla_next_pop = left;
+	else if (gamemanager->GetPosPlayer().x > 1024 && !init_change)pla_next_pop = right;
 	//else pla_next_pop = fast;
 	//-----------------------------------------------------------------------------------------
 	/*ステージ生成、プレイヤー移動*/

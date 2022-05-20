@@ -118,9 +118,6 @@
     <ClCompile Include="program\game\map_StageB.cpp">
       <Filter>program\game\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\Create_Stage.cpp">
-      <Filter>program\game\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\Fade.cpp">
       <Filter>program\game\Scene</Filter>
     </ClCompile>
@@ -147,6 +144,9 @@
     </ClCompile>
     <ClCompile Include="program\game\Arrow_Type.cpp">
       <Filter>program\game\Arrow</Filter>
+    </ClCompile>
+    <ClCompile Include="program\game\Create_Stage.cpp">
+      <Filter>program\game\Stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,9 +261,6 @@
     <ClInclude Include="program\game\map_StageB.h">
       <Filter>program\game\Stage</Filter>
     </ClInclude>
-    <ClInclude Include="program\game\Create_Stage.h">
-      <Filter>program\game\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="program\game\Fade.h">
       <Filter>program\game\Scene</Filter>
     </ClInclude>
@@ -290,6 +287,9 @@
     </ClInclude>
     <ClInclude Include="program\game\Arrow_Type.h">
       <Filter>program\game\Arrow</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Create_Stage.h">
+      <Filter>program\game\Stage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
