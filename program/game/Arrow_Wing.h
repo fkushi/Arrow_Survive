@@ -10,8 +10,6 @@ private:
 public:
 	Arrow_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed, bool pla_dir);
 
-	
-
 	void update(const float deltatime)override;
 	void render(const float deltatime)override;
 };
