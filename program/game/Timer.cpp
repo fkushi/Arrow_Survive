@@ -18,11 +18,14 @@ void Timer::update(const float deltatime) {
 	else alpha = 225;
 }
 void Timer::render(const float deltatime) {
-	if (s < 59.5) s += deltatime;
-	else {
-		m++;
-		s = 0;
+	if(gamemanager->GetCreSt_stage_type() > 0) {
+		if (s < 59.5) s += deltatime;
+		else {
+			m++;
+			s = 0;
+		}
 	}
+	
 	img.img_time_back();
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, alpha);
 	DrawExtendGraph((int)pos.x - 50, (int)pos.y - 20, (int)pos.x + 180 , (int)pos.y + 70, img.time_back, true);

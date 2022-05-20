@@ -54,8 +54,7 @@ public:
 	//Arrow
 	int GetArwTyp_arrow_type();
 	//STAGE
-	int GetBase_Backtype();
-	int GetBase_Changetype(int back_type);
+	int GetCreSt_stage_type();
 	int GetTime_S();
 	int GetTime_M();
 	//Vector

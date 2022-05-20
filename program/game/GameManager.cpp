@@ -62,18 +62,11 @@ void GameManager::createEnemyB(t2k::Vector3 start, int speed) {
 //------------------------------------------------------
 /*STAGE*/
 //WALL
+int GameManager::GetCreSt_stage_type() {
+	return c_st.stage_type;
+}
 int GameManager::GetAtachWall() {
 	for (auto wal : m_wal) return wal->atach_wal;
-	return true;
-}
-//------------------------------------------------------
-/*BASE*/
-int GameManager::GetBase_Changetype(int back_type) {
-	for (auto ba : base) ba->stage_type = back_type;
-	return true;
-}
-int GameManager::GetBase_Backtype() {
-	for (auto ba : base) return ba->stage_type;
 	return true;
 }
 //------------------------------------------------------
