@@ -64,4 +64,5 @@ void Create_Stage::Changed_Delete() {
 	/*Arrow*/
 	for (auto arw : gamemanager->blt_pla)arw->is_alive = false;
 	for (auto arw_w : gamemanager->arw_win)arw_w->is_alive = false;
+	for (auto arw_at : gamemanager->atach_arw)arw_at->is_alive = false;
 }

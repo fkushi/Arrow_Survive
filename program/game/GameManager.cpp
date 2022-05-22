@@ -55,7 +55,7 @@ void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, floa
 	new Bullet_Player(start, dir, radian, speed, pla->pla_dir);
 }
 void GameManager::createArrwo_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
-	new Arrow_Wing(start, dir, radian, speed,pla->pla_dir);
+	new Arrow_Wing(start, dir, radian, speed, pla->pla_dir);
 }
 //------------------------------------------------------
 /*ENEMY*/
