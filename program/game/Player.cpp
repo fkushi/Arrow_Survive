@@ -36,35 +36,31 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*操作*/
 	//--------------------------------------------------------------------------------------------------
-	//shiftキーを押した場合
-	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) ||
-		t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT)) {
+
+	gamemanager->Control_Keyboard();
+
+	if (gamemanager->down_sift) {
 		triger_push_sift = true;
 		anim_pla.init_anim_pla = false;
 	}
-	else if (t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) ||
-		t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT)) {
+	else if (gamemanager->relese_sift) {
 		triger_push_sift = false;
 	}
 	//矢印キーを押した場合
-	if (gamemanager->atach.pla_up && !triger_push_sift)if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP))pos.y -= pla_speed;
-	if (gamemanager->atach.pla_down && !triger_push_sift)if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN))pos.y += pla_speed;
-	if (gamemanager->atach.pla_right && !triger_push_sift) {
-		if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_RIGHT)) {
-			pla_dir = false;
+	if (gamemanager->atach.pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
+	if (gamemanager->atach.pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
+	if (gamemanager->atach.pla_right && !triger_push_sift && gamemanager->down_right) {
+			pla_dir= false;
 			pos.x += pla_speed;
-		}
 	}
-	if (gamemanager->atach.pla_left && !triger_push_sift) {
-		if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT)) {
+	if (gamemanager->atach.pla_left && !triger_push_sift && gamemanager->down_left) {
 			pla_dir = true;
 			pos.x -= pla_speed;
-		}
 	}
 	//--------------------------------------------------------------------------------------------------
 	/*Arrow*/
 	//--------------------------------------------------------------------------------------------------
-	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE) && gamemanager->GetArwTyp_arrow_type() == 1) {
+	if (gamemanager->triger_sapce && gamemanager->GetArwTyp_arrow_type() == 1) {
 		if (!pla_dir) {
 			gamemanager->createBullet_Player(pos, t2k::Vector3(1, 0, 0), 0, 8);
 			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 1, 0), 45, 8);
@@ -75,7 +71,8 @@ void Player::update(const float deltatime) {
 			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, -1, 0), 45, 8);
 			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, 1, 0), -45, 8);
 		}
-	}if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE) && gamemanager->GetArwTyp_arrow_type() == 2) {
+	}
+	else if (gamemanager->triger_sapce && gamemanager->GetArwTyp_arrow_type() == 2) {
 		if (!pla_dir) {
 			gamemanager->createArrwo_Wing(pos, t2k::Vector3(1, 0, 0), 0, 8);
 		}
@@ -86,8 +83,8 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*HP*/
 	//--------------------------------------------------------------------------------------------------
-	if((check == 1 || check == 2 || check == 3 || check == 4) && hp_frame % 2 == 0 
-		&& gezi_now_num > gezi_min_num)gezi_now_num--;
+	if((check == 1 || check == 2 || check == 3 || check == 4) && hp_frame % 2 == 0 && 
+		gezi_now_num > gezi_min_num)gezi_now_num--;
 }
 void Player::render(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------

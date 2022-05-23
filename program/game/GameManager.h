@@ -49,6 +49,16 @@ public:
 	//---------------------------------------------------------------------------------------------------
 	/*ä÷êî*/
 	//---------------------------------------------------------------------------------------------------
+	bool down_sift = false;
+	bool relese_sift = false;
+	bool down_up = false;
+	bool down_down = false;
+	bool down_right = false;
+	bool down_left = false;
+	bool triger_sapce = false;
+
+	void Control_Keyboard();
+
 	//PLAYER
 	t2k::Vector3 GetPosPlayer();
 	t2k::Vector3 GetPos_ChangedPlayer(int pos_x,int pos_y);

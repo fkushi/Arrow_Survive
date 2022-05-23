@@ -9,6 +9,7 @@ public:
 	t2k::Vector3 preve_pos;
 
 	bool is_alive = true;
+
 	//bool init_img = false;
 	int SPEED = 0;
 

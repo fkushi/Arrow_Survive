@@ -15,6 +15,16 @@ void GameManager::initialize() {
 //----------------------------------------------------------------------------------------
 /*ä÷êî*/
 //----------------------------------------------------------------------------------------
+void GameManager::Control_Keyboard() {
+	down_sift = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT);
+	relese_sift = t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT);
+	down_up = t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP);
+	down_down = t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN);
+	down_right = t2k::Input::isKeyDown(t2k::Input::KEYBORD_RIGHT);
+	down_left = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT);
+	triger_sapce = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE);
+}
+
 /*PLAYER*/
 //PLAYER_POSITION
 t2k::Vector3 GameManager::GetPosPlayer() {

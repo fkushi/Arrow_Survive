@@ -13,10 +13,10 @@ Arrow_Type::Arrow_Type() {
 }
 
 void Arrow_Type::update(const float deltatime) {
+	bool down_sift = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT);
+	bool trigger_left = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_LEFT);
 	//両shiftキー+左矢印キー
-	if ((t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) ||
-		t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT)) &&
-		t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_LEFT)) {
+	if (down_sift && trigger_left) {
 		arrow_type++;
 		if (arrow_type >= arrow_type_max)arrow_type = arrow_type_min + 1;
 		img.init_img_arw_type = false;
