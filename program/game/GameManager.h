@@ -55,6 +55,7 @@ public:
 	bool down_down = false;
 	bool down_right = false;
 	bool down_left = false;
+	bool triger_enter = false;
 	bool triger_sapce = false;
 
 	void Control_Keyboard();

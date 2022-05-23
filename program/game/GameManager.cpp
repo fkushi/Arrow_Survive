@@ -22,6 +22,7 @@ void GameManager::Control_Keyboard() {
 	down_down = t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN);
 	down_right = t2k::Input::isKeyDown(t2k::Input::KEYBORD_RIGHT);
 	down_left = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT);
+	triger_enter = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER);
 	triger_sapce = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE);
 }
 
@@ -109,6 +110,8 @@ void GameManager::update(float deltatime) {
 	for (auto ba : base)ba->update(deltatime);
 	/*シーン*/
 	scene.sequence_.update(deltatime);
+	/*キーボード*/
+	Control_Keyboard();
 	
 	std::list<Base*>::iterator it = base.begin();
 	while (it != base.end()) {

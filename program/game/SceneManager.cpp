@@ -17,7 +17,7 @@ Create_Stage	c_st;
 /*タイトル*/
 bool SceneManager::seqTitle(const float deltatime) {
 	taitle.render(deltatime);
-	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER))sequence_.change(&SceneManager::seqStage);
+	if (gamemanager->triger_enter)sequence_.change(&SceneManager::seqStage);
 	return true;
 }
 /*プレイステージ*/
@@ -36,8 +36,7 @@ bool SceneManager::seqStage(const float deltatime) {
 	/*GameEnd*/
 	//if (gamemanager->GetPlaHp_now() <= 0){
 	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) && 
-		(t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) ||
-		t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT))) {
+		gamemanager->down_sift) {
 		preve_m = gamemanager->GetTime_M();
 		preve_s = gamemanager->GetTime_S();
 		Del_END();

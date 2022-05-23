@@ -37,8 +37,6 @@ void Player::update(const float deltatime) {
 	/*‘€ì*/
 	//--------------------------------------------------------------------------------------------------
 
-	gamemanager->Control_Keyboard();
-
 	if (gamemanager->down_sift) {
 		triger_push_sift = true;
 		anim_pla.init_anim_pla = false;
