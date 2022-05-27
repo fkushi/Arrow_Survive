@@ -24,7 +24,7 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed, bo
 void OnAtach_Arrow::update(const float deltatime) {
 	/*Arrow*/
 	if (arrow_type == 1) {
-		//pos += atach_Arrow_dir * (float)atach_Arrow_speed;
+		pos += atach_Arrow_dir * (float)atach_Arrow_speed;
 		if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
 	}
 	/*Arrow_Wing*/

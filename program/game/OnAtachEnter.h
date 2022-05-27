@@ -11,6 +11,8 @@ public:
 	bool pla_down = true;
 	int pla_enemyB_check;
 
+	bool arw_enm_chenk = false;
+
 	int count_arw_wing = 0;
 	
 	/*Player“–‚½‚è”»’è*/
