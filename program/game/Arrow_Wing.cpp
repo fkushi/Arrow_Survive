@@ -15,14 +15,14 @@ Arrow_Wing::Arrow_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int s
 	SPEED = speed;
 	DIR = pla_dir;
 
-	sequence_rotate = false;
 	if (!DIR)preve_Center = {start.x + 100,start.y,0 };
 	else preve_Center = { start.x - 100,start.y,0 };
 	//–î‚Ì“–‚½‚è”»’è
-	if (!gamemanager->GetPla_pla_dir()) {
+	if (!pla_dir) {
 		new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 5, start.y, 0), dir, speed,2);
 	}
 	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1) + 5, start.y, 0), dir, speed,2);
+	sequence_rotate = false;
 	gamemanager->arw_win.emplace_back(this);
 }
 
@@ -33,7 +33,7 @@ void Arrow_Wing::update(const float deltatime) {
 
 	if ((!DIR && make_pos.x + 200 <= pos.x) || (DIR && make_pos.x - 200 >= pos.x))sequence_rotate = true;
 	if (!sequence_rotate) {
-		pos += SPEED * blt_dir;
+		pos += (float)SPEED * blt_dir;
 		arw_rad = 0;
 		init_arw_rad = false;
 	}
@@ -49,17 +49,17 @@ void Arrow_Wing::update(const float deltatime) {
 
 		//–î‚Ìü‰ñˆ—
 		if (!DIR) {
-			radius += 0.05f;
-			arw_rad += 0.05f;
 			pos.x = preve_Center.x + add_x;
 			pos.y = preve_Center.y + add_y;
 		}
 		else {
-			radius += 0.05f;
-			arw_rad += 0.05f;
 			pos.x = preve_Center.x - add_x;
 			pos.y = preve_Center.y - add_y;
 		}
+
+		radius += 0.05f;
+		arw_rad += 0.05f;
+
 	}
 
 	if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) is_alive = false;

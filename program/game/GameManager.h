@@ -70,11 +70,15 @@ public:
 	int GetPlaHp_now();
 	int GetAtachWall();
 	//Arrow
+	t2k::Vector3 GetArw_preve_Center();
 	int GetArwTyp_arrow_type();
+	bool GetArwWin_sequence_rotate();
 	//STAGE
 	int GetCreSt_stage_type();
 	int GetTime_S();
 	int GetTime_M();
+	//OnAtach
+	int GetOnAt_Arw_arrow_type();
 	//Vector
 	t2k::Vector3 FixVector(float pos_x, float pos_y);
 	

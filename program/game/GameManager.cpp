@@ -58,8 +58,17 @@ int GameManager::GetPlaHp_now() {
 }
 //------------------------------------------------------
 /*Arrow*/
+t2k::Vector3 GameManager::GetArw_preve_Center() {
+	for (auto ar_w : arw_win) {
+		if (ar_w != nullptr) return ar_w->preve_Center;
+	}
+}
 int GameManager::GetArwTyp_arrow_type() {
 	for (auto ar_ty : arw_typ)return ar_ty->arrow_type;
+	return true;
+}
+bool GameManager::GetArwWin_sequence_rotate() {
+	for (auto aw_w : arw_win)return aw_w->sequence_rotate;
 	return true;
 }
 void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
@@ -94,6 +103,11 @@ int GameManager::GetTime_M() {
 int GameManager::GetTime_S() {
 	for (auto t : time)return (int)t->s;
 	return true;
+}
+//------------------------------------------------------
+/*OnAtach_Arrow*/
+int GameManager::GetOnAt_Arw_arrow_type() {
+	for (auto at_arw : atach_arw)return at_arw->arrow_type;
 }
 //------------------------------------------------------
 /*Vector*/

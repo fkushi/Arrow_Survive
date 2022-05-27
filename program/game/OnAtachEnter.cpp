@@ -62,10 +62,11 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 		//Player‚ÆEnemyB
 		pla_enemyB_check = t2k::isIntersectRectToCorrectPosition(gamemanager->pla->pos, gamemanager->pla->preve_pos,
 			gamemanager->GetPlaSize_W(), gamemanager->GetPlaSize_H(), eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
-		
+		//Arrow‚ÆEnemyB
 		for (auto atar : gamemanager->atach_arw) {
 			bool arw_enm_chenk = t2k::isIntersectSphere(eb->pos, (float)eb->enm_B_SIZE / 2, atar->pos, (float)atar->atach_Arrow_radius);
-			if (arw_enm_chenk) {
+			//Arrow
+			if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 1) {
 				eb->is_alive = false;
 				atar->is_alive = false;
 				for (auto bp : gamemanager->blt_pla)bp->is_alive = false;

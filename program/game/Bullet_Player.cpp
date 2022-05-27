@@ -13,7 +13,7 @@ Bullet_Player::Bullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian,
 	RAD = (radian * 3.14f) / 180;
 	SPEED = speed;
 	DIR = pla_dir;
-	if (!gamemanager->GetPla_pla_dir()) {
+	if (!pla_dir) {
 		new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 5, start.y, 0), dir, speed,1);
 		//if(start.y >= 1)new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 10, start.y - 10 , 0), dir, speed);
 		//if(start.y <= 0)new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 10, start.y + 10 , 0), dir, speed);
@@ -23,7 +23,7 @@ Bullet_Player::Bullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian,
 }
 
 void Bullet_Player::update(const float deltatime) {
-	pos += SPEED * blt_dir;
+	pos += (float)SPEED * blt_dir;
 	if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
 } 
 void Bullet_Player::render(const float deltatime) {

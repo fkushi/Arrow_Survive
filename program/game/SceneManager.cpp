@@ -49,7 +49,7 @@ bool SceneManager::seqStage(const float deltatime) {
 /*ゲーム終了*/
 bool SceneManager::seqGameEnd(const float deltatime) {
 	end.render(deltatime);
-	if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER))sequence_.change(&SceneManager::seqTitle);
+	if (gamemanager->triger_enter)sequence_.change(&SceneManager::seqTitle);
 	return true;
 }
 /*全デリート*/
