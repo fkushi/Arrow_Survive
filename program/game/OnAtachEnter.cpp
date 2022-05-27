@@ -68,8 +68,15 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 			//Arrow
 			if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 1) {
 				eb->is_alive = false;
+				for (auto bp : gamemanager->blt_pla) {
+					bp->is_alive = false;
+				}
 				atar->is_alive = false;
-				for (auto bp : gamemanager->blt_pla)bp->is_alive = false;
+			}
+			else if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 2) {
+				eb->is_alive = false;
+				atar->is_alive = false;
+				for (auto arw_w : gamemanager->arw_win)arw_w->is_alive = false;
 			}
 		}
 	}

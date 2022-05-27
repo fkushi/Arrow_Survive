@@ -122,6 +122,9 @@ t2k::Vector3 GameManager::FixVector(float pos_x, float pos_y) {
 //----------------------------------------------------------------------------------------
 void GameManager::update(float deltatime) {
 	for (auto ba : base)ba->update(deltatime);
+
+	atach.Atach_Pla_Enemy();
+
 	/*シーン*/
 	scene.sequence_.update(deltatime);
 	/*キーボード*/

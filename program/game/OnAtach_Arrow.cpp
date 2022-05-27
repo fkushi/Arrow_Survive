@@ -9,11 +9,14 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed, bo
 	preve_pos = start;
 	atach_Arrow_dir = dir;
 	atach_Arrow_speed = speed;
+	preve_pla_dir = pla_dir;
 	arrow_type = type;
 	//---------------------------------------------------------
 	/*’lŽQÆ*/
 	preve_pla_dir = pla_dir;
-	//sequence_arw_win = false;
+	if(!preve_pla_dir)center_1 = { start.x + 85,start.y,0 };
+	else center_1 = { start.x - 85,start.y ,0 };
+	sequence_arw_win = false;
 	//---------------------------------------------------------
 	gamemanager->atach_arw.emplace_back(this);
 }
@@ -21,7 +24,7 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed, bo
 void OnAtach_Arrow::update(const float deltatime) {
 	/*Arrow*/
 	if (arrow_type == 1) {
-		pos += atach_Arrow_dir * (float)atach_Arrow_speed;
+		//pos += atach_Arrow_dir * (float)atach_Arrow_speed;
 		if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
 	}
 	/*Arrow_Wing*/
@@ -39,11 +42,9 @@ void OnAtach_Arrow::update(const float deltatime) {
 		if(!sequence_arw_win)pos.x += atach_Arrow_dir.x * atach_Arrow_speed;
 		/*Œ´ˆö*/
 		else {
-			
+			//Žü‰ñ”¼ŒaŠg‘å
 			light_blue_radius++;
 			
-			for (auto arw_w : gamemanager->arw_win) {
-				t2k::Vector3 center_1 = arw_w->preve_Center;
 				if (!preve_pla_dir) {
 					center_pos.x = center_1.x + add_center_x;
 					center_pos.y = center_1.y + add_center_y;
@@ -56,14 +57,12 @@ void OnAtach_Arrow::update(const float deltatime) {
 					pos.x = center_pos.x - add_x;
 					pos.y = center_pos.y - add_y;
 				}
-			}
 			
 			radius += 0.05f;
 		
 		}
 
 		if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) {
-			sequence_arw_win = false;
 			is_alive = false;
 		}
 
@@ -71,7 +70,9 @@ void OnAtach_Arrow::update(const float deltatime) {
 #endif
 }
 void OnAtach_Arrow::render(const float deltatime) {
-	
+
+	//SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, 0);
+
 	DrawCircle((int)pos.x, (int)pos.y, atach_Arrow_radius, GetColor(0, 0, 255), false);
 
 }

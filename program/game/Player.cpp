@@ -28,7 +28,7 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	gamemanager->atach.Atach_Pla_Wall();
 	gamemanager->atach.Atach_Pla_Pop();
-	gamemanager->atach.Atach_Pla_Enemy();
+	//gamemanager->atach.Atach_Pla_Enemy();
 	int check = gamemanager->atach.pla_enemyB_check;
 	preve_pos = pos;
 	preve_pos = pos;

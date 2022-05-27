@@ -4,12 +4,14 @@
 class OnAtachEnter {
 public:
 	OnAtachEnter();
-
+	//•Ç
 	bool pla_right = true;
 	bool pla_left = true;
 	bool pla_up = true;
 	bool pla_down = true;
 	int pla_enemyB_check;
+
+	int count_arw_wing = 0;
 	
 	/*Player“–‚½‚è”»’è*/
 	//•Ç

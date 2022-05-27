@@ -10,6 +10,7 @@ private:
 	t2k::Vector3 preve_pos;
 	t2k::Vector3 preve_arw_pos;
 	t2k::Vector3 center_pos;
+	t2k::Vector3 center_1;
 	int red_radius = 13;
 	int light_blue_radius = 100;
 	float angle = 0;
