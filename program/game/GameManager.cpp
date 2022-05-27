@@ -18,10 +18,10 @@ void GameManager::initialize() {
 void GameManager::Control_Keyboard() {
 	down_sift = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT);
 	relese_sift = t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT);
-	down_up = t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP);
-	down_down = t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN);
-	down_right = t2k::Input::isKeyDown(t2k::Input::KEYBORD_RIGHT);
-	down_left = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT);
+	down_up = t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_W);
+	down_down = t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_S);
+	down_right = t2k::Input::isKeyDown(t2k::Input::KEYBORD_RIGHT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_D);
+	down_left = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_A);
 	triger_enter = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER);
 	triger_sapce = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE);
 }

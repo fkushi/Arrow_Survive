@@ -19,9 +19,9 @@ Arrow_Wing::Arrow_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int s
 	else preve_Center = { start.x - 100,start.y,0 };
 	//–î‚Ì“–‚½‚è”»’è
 	if (!pla_dir) {
-		new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 5, start.y, 0), dir, speed,2);
+		new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 5, start.y, 0), dir, speed,pla_dir,2);
 	}
-	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1) + 5, start.y, 0), dir, speed,2);
+	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1) + 5, start.y, 0), dir, speed,pla_dir,2);
 	sequence_rotate = false;
 	gamemanager->arw_win.emplace_back(this);
 }

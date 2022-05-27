@@ -4,7 +4,7 @@
 
 extern GameManager* gamemanager;
 
-OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed,int type) {
+OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed, bool pla_dir,int type) {
 	pos = start;
 	preve_pos = start;
 	atach_Arrow_dir = dir;
@@ -12,15 +12,13 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed,int
 	arrow_type = type;
 	//---------------------------------------------------------
 	/*’lŽQÆ*/
-	preve_pla_dir = gamemanager->GetPla_pla_dir();
-	preve_p_pos = gamemanager->GetPosPlayer();
-	sequence_arw_win = false;
+	preve_pla_dir = pla_dir;
+	//sequence_arw_win = false;
 	//---------------------------------------------------------
 	gamemanager->atach_arw.emplace_back(this);
 }
 
 void OnAtach_Arrow::update(const float deltatime) {
-
 	/*Arrow*/
 	if (arrow_type == 1) {
 		pos += atach_Arrow_dir * (float)atach_Arrow_speed;
@@ -29,7 +27,6 @@ void OnAtach_Arrow::update(const float deltatime) {
 	/*Arrow_Wing*/
 #if true
 	if (arrow_type == 2) {
-		float fix_r = 0.5f;
 		float add_x = cos(radius + 1.57f) * red_radius;
 		float add_y = sin(radius + 1.57f) * red_radius;
 		float add_center_x = cos(radius) * light_blue_radius;
@@ -40,6 +37,7 @@ void OnAtach_Arrow::update(const float deltatime) {
 		}
 
 		if(!sequence_arw_win)pos.x += atach_Arrow_dir.x * atach_Arrow_speed;
+		/*Œ´ˆö*/
 		else {
 			
 			light_blue_radius++;
@@ -64,7 +62,10 @@ void OnAtach_Arrow::update(const float deltatime) {
 		
 		}
 
-		if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) is_alive = false;
+		if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) {
+			sequence_arw_win = false;
+			is_alive = false;
+		}
 
 	}
 #endif

@@ -1,8 +1,10 @@
 #include"Anim_Player.h"
 #include"IMG_load.h"
+#include"GameManager.h"
 #include"../library/t2klib.h"
 
 extern IMG_load img;
+extern GameManager* gamemanager;
 
 Anim_Player::Anim_Player() {
 	img.anim_pla = new int* [frame];
@@ -18,8 +20,8 @@ Anim_Player::~Anim_Player() {
 }
 
 void Anim_Player::anim_Player_Controll(const float deltatime) {
-	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN) ||
-		t2k::Input::isKeyDown(t2k::Input::KEYBORD_RIGHT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT)) {
+	if (gamemanager->down_up || gamemanager->down_down ||
+		gamemanager->down_right || gamemanager->down_left) {
 		init_anim_pla = true;
 		anim_move = 0;
 		anim_frame_count++;
