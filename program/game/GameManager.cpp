@@ -15,6 +15,8 @@ void GameManager::initialize() {
 //----------------------------------------------------------------------------------------
 /*ŠÖ”*/
 //----------------------------------------------------------------------------------------
+
+/*KEYBOARD*/
 void GameManager::Control_Keyboard() {
 	down_sift = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT);
 	relese_sift = t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT);
@@ -26,7 +28,9 @@ void GameManager::Control_Keyboard() {
 	triger_sapce = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE);
 }
 
+//------------------------------------------------------
 /*PLAYER*/
+//------------------------------------------------------
 //PLAYER_POSITION
 t2k::Vector3 GameManager::GetPosPlayer() {
 	return pla->pos;
@@ -56,8 +60,10 @@ int GameManager::GetPlaSize_H() {
 int GameManager::GetPlaHp_now() {
 	return pla->gezi_now_num;
 }
+
 //------------------------------------------------------
 /*Arrow*/
+//------------------------------------------------------
 t2k::Vector3 GameManager::GetArw_preve_Center() {
 	for (auto ar_w : arw_win) {
 		if (ar_w != nullptr) return ar_w->preve_Center;
@@ -71,20 +77,26 @@ bool GameManager::GetArwWin_sequence_rotate() {
 	for (auto aw_w : arw_win)return aw_w->sequence_rotate;
 	return true;
 }
+//Arrow‚Ì¶¬
 void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Bullet_Player(start, dir, radian, speed, pla->pla_dir);
 }
+//Arrow_wing‚Ì¶¬
 void GameManager::createArrwo_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Arrow_Wing(start, dir, radian, speed, pla->pla_dir);
 }
+
 //------------------------------------------------------
 /*ENEMY*/
+//------------------------------------------------------
 //EnemyB
 void GameManager::createEnemyB(t2k::Vector3 start, int speed) {
 	new Enemy_B(start, speed);
 }
+
 //------------------------------------------------------
 /*STAGE*/
+//------------------------------------------------------
 //WALL
 int GameManager::GetCreSt_stage_type() {
 	return c_st.stage_type;
@@ -93,8 +105,10 @@ int GameManager::GetAtachWall() {
 	for (auto wal : m_wal) return wal->atach_wal;
 	return true;
 }
+
 //------------------------------------------------------
 /*SCENE*/
+//------------------------------------------------------
 //Timer
 int GameManager::GetTime_M() {
 	for (auto t : time)return t->m;
@@ -104,17 +118,12 @@ int GameManager::GetTime_S() {
 	for (auto t : time)return (int)t->s;
 	return true;
 }
+
 //------------------------------------------------------
 /*OnAtach_Arrow*/
+//------------------------------------------------------
 int GameManager::GetOnAt_Arw_arrow_type() {
 	for (auto at_arw : atach_arw)return at_arw->arrow_type;
-}
-//------------------------------------------------------
-/*Vector*/
-t2k::Vector3 GameManager::FixVector(float pos_x, float pos_y) {
-	float sum = sqrt(pos_x * pos_x + pos_y * pos_y);
-	float dx = sum/pos_x;
-	float dy = sum/pos_y;
 }
 
 //----------------------------------------------------------------------------------------
@@ -206,8 +215,10 @@ void GameManager::eraceCheck() {
 			it++;
 		}
 	}
+
 	//------------------------------------------------------
 	/*Arrow*/
+	//------------------------------------------------------
 	{
 		std::list<Arrow_Type*>::iterator it = arw_typ.begin();
 		while (it != arw_typ.end()) {
@@ -248,8 +259,10 @@ void GameManager::eraceCheck() {
 			it++;
 		}
 	}
+
 	//------------------------------------------------------
 	/*Enemy*/
+	//------------------------------------------------------
 	{
 		std::list<Pop_EnemyB*>::iterator it = pop_stB.begin();
 		while (it != pop_stB.end()) {

@@ -49,6 +49,7 @@ public:
 	//---------------------------------------------------------------------------------------------------
 	/*ä÷êî*/
 	//---------------------------------------------------------------------------------------------------
+	/*KEYBOARD*/
 	bool down_sift = false;
 	bool relese_sift = false;
 	bool down_up = false;
@@ -57,10 +58,12 @@ public:
 	bool down_left = false;
 	bool triger_enter = false;
 	bool triger_sapce = false;
-
+	
 	void Control_Keyboard();
 
-	//PLAYER
+	//----------------------------------------------------------------
+	/*PLAYER*/
+	//----------------------------------------------------------------
 	t2k::Vector3 GetPosPlayer();
 	t2k::Vector3 GetPos_ChangedPlayer(int pos_x,int pos_y);
 	bool GetPla_pla_dir();
@@ -69,19 +72,26 @@ public:
 	int GetPlaSize_H();
 	int GetPlaHp_now();
 	int GetAtachWall();
-	//Arrow
+
+	//----------------------------------------------------------------
+	/*Arrow*/
+	//----------------------------------------------------------------
 	t2k::Vector3 GetArw_preve_Center();
 	int GetArwTyp_arrow_type();
 	bool GetArwWin_sequence_rotate();
-	//STAGE
+
+	//----------------------------------------------------------------
+	/*STAGE*/
+	//----------------------------------------------------------------
 	int GetCreSt_stage_type();
 	int GetTime_S();
 	int GetTime_M();
-	//OnAtach
+
+	//----------------------------------------------------------------
+	/*OnAtach*/
+	//----------------------------------------------------------------
 	int GetOnAt_Arw_arrow_type();
-	//Vector
-	t2k::Vector3 FixVector(float pos_x, float pos_y);
-	
+
 	//---------------------------------------------------------------------------------------------------
 	/*CREATE_OBJECT*/
 	//---------------------------------------------------------------------------------------------------
