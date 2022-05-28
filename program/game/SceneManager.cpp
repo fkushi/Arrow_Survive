@@ -34,9 +34,8 @@ bool SceneManager::seqStage(const float deltatime) {
 	c_st.create_Stage();
 	//------------------------------------------------------------------------------
 	/*GameEnd*/
-	if (gamemanager->GetPlaHp_now() <= 0){
-	/*if (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) && 
-		gamemanager->down_sift) {*/
+	if (gamemanager->GetPlaHp_now() <= 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&
+		gamemanager->down_sift)){
 		preve_m = gamemanager->GetTime_M();
 		preve_s = gamemanager->GetTime_S();
 		Del_END();

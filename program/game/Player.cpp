@@ -14,6 +14,7 @@ Anim_Player anim_pla;
 Player::Player(t2k::Vector3 start,int speed) {
 	pos = start;
 	pla_speed = speed;
+	gamemanager->atach.pla_enemyB_check = 0;
 	new Arrow_Type();
 }
 
@@ -30,7 +31,6 @@ void Player::update(const float deltatime) {
 	gamemanager->atach.Atach_Pla_Pop();
 	//gamemanager->atach.Atach_Pla_Enemy();
 	int check = gamemanager->atach.pla_enemyB_check;
-	preve_pos = pos;
 	preve_pos = pos;
 	
 	//--------------------------------------------------------------------------------------------------

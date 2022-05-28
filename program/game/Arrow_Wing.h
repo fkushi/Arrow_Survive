@@ -4,7 +4,6 @@
 class Arrow_Wing : public Base {
 private:
 	t2k::Vector3 blt_dir;
-	int blt_pla_w = 36;
 	bool DIR;
 	float RAD;
 
@@ -24,8 +23,10 @@ public:
 
 	Arrow_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed, bool pla_dir);
 	
-	bool sequence_rotate = false;
 	t2k::Vector3 preve_Center;
+	bool sequence_rotate = false;
+	int blt_pla_w = 36;
+	int blt_pla_h = 8;
 
 	void update(const float deltatime)override;
 	void render(const float deltatime)override;

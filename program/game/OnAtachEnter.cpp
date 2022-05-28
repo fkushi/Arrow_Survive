@@ -74,13 +74,17 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 				for (auto arw : gamemanager->blt_pla) {
 					int arw_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,
 						arw->pos, arw->blt_pla_w, arw->blt_pla_h);
-					if (arw_check > 0 && arw_enm_chenk)arw->is_alive = false;
+					if (arw_check > 0 )arw->is_alive = false;
 				}
 			}
 			else if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 2) {
 				eb->is_alive = false;
 				atar->is_alive = false;
-				for (auto arw_w : gamemanager->arw_win)arw_w->is_alive = false;
+				for (auto arw_w : gamemanager->arw_win) {
+					int arw_w_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,
+						arw_w->pos, arw_w->blt_pla_w, arw_w->blt_pla_h);
+					if (arw_w_check > 0)arw_w->is_alive = false;
+				}
 			}
 		}
 

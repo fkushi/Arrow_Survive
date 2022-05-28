@@ -39,8 +39,7 @@ void OnAtach_Arrow::update(const float deltatime) {
 			sequence_arw_win = true;
 		}
 
-		if(!sequence_arw_win)pos.x += atach_Arrow_dir.x * atach_Arrow_speed;
-		/*Œ´ˆö*/
+		if (!sequence_arw_win)pos.x += atach_Arrow_dir.x * atach_Arrow_speed;
 		else {
 			//Žü‰ñ”¼ŒaŠg‘å
 			light_blue_radius++;
