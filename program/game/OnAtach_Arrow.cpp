@@ -22,28 +22,35 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed, bo
 }
 
 void OnAtach_Arrow::update(const float deltatime) {
+	//--------------------------------------------------------------------------------------
 	/*Arrow*/
+	//--------------------------------------------------------------------------------------
 	if (arrow_type == 1) {
 		pos += atach_Arrow_dir * (float)atach_Arrow_speed;
 		if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
 	}
+
+	//--------------------------------------------------------------------------------------
 	/*Arrow_Wing*/
-#if true
+	//--------------------------------------------------------------------------------------
 	if (arrow_type == 2) {
 		float add_x = cos(radius + 1.57f) * red_radius;
 		float add_y = sin(radius + 1.57f) * red_radius;
 		float add_center_x = cos(radius) * light_blue_radius;
 		float add_center_y = sin(radius) * light_blue_radius;
 
+		//–î‚ªX•ûŒü‚É200i‚ñ‚¾‚çü‰ñ‚ÉˆÚs‚·‚éFLAGˆ—
 		if ((!preve_pla_dir && preve_pos.x + 200 <= pos.x) || (preve_pla_dir && preve_pos.x - 200 >= pos.x)) {
 			sequence_arw_win = true;
 		}
 
+		//–î‚ªX•ûŒü‚Éi‚Şˆ—
 		if (!sequence_arw_win)pos.x += atach_Arrow_dir.x * atach_Arrow_speed;
+		//–î‚ªü‰ñ‚·‚éˆ—
 		else {
-			//ü‰ñ”¼ŒaŠg‘å
+			//–î‚Ìü‰ñ”¼ŒaŠg‘å
 			light_blue_radius++;
-			
+		
 				if (!preve_pla_dir) {
 					center_pos.x = center_1.x + add_center_x;
 					center_pos.y = center_1.y + add_center_y;
@@ -61,17 +68,15 @@ void OnAtach_Arrow::update(const float deltatime) {
 		
 		}
 
-		if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) {
-			is_alive = false;
-		}
+		//‰æ–ÊŠO‚É‚Å‚½‚çÁ‹
+		if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) is_alive = false;
 
 	}
-#endif
 }
+
 void OnAtach_Arrow::render(const float deltatime) {
 
-	//SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, 0);
-
+	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, 0);
 	DrawCircle((int)pos.x, (int)pos.y, atach_Arrow_radius, GetColor(0, 0, 255), false);
 
 }

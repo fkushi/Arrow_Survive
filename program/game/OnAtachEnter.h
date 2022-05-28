@@ -4,26 +4,29 @@
 class OnAtachEnter {
 public:
 	OnAtachEnter();
-	//ï«
+	//----------------------------------------
+	/*ï«ÇÃìñÇΩÇËîªíË*/
+	//----------------------------------------
 	bool pla_right = true;
 	bool pla_left = true;
 	bool pla_up = true;
 	bool pla_down = true;
+
+	void Atach_Pla_Wall();
+
+	//----------------------------------------
+	/*PlayerìñÇΩÇËîªíË*/
+	//----------------------------------------
 	int pla_enemyB_check;
-
 	bool arw_enm_chenk = false;
-
 	int count_arw_wing = 0;
 	
-	/*PlayerìñÇΩÇËîªíË*/
-	//ï«
-	void Atach_Pla_Wall();
 	//Enemyê∂ê¨èÍèä
 	void Atach_Pla_Pop();
 
+	//----------------------------------------
 	/*EnemyìñÇΩÇËîªíË*/
+	//----------------------------------------
 	void Atach_Pla_Enemy();
 
-	/*ï€óØ*/
-	void Atach_Pla_Block(t2k::Vector3 pla_pos,int pla_w,int pla_h,t2k::Vector3 box_pos,int box_w,int box_h);
 };

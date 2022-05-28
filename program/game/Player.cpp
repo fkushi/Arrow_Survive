@@ -5,7 +5,7 @@
 #include"GameManager.h"
 #include "../support/Support.h"
 
-#define PLA_DEBUG 1
+#define PLA_DEBUG 0
 
 extern GameManager* gamemanager;
 extern IMG_load img;
@@ -15,6 +15,8 @@ Player::Player(t2k::Vector3 start,int speed) {
 	pos = start;
 	pla_speed = speed;
 	gamemanager->atach.pla_enemyB_check = 0;
+
+	//矢の属性選択クラス
 	new Arrow_Type();
 }
 
@@ -36,7 +38,6 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*操作*/
 	//--------------------------------------------------------------------------------------------------
-
 	if (gamemanager->down_sift) {
 		triger_push_sift = true;
 		anim_pla.init_anim_pla = false;
@@ -55,19 +56,16 @@ void Player::update(const float deltatime) {
 			pla_dir = true;
 			pos.x -= pla_speed;
 	}
+
 	//--------------------------------------------------------------------------------------------------
 	/*Arrow*/
 	//--------------------------------------------------------------------------------------------------
 	if (gamemanager->triger_sapce && gamemanager->GetArwTyp_arrow_type() == 1) {
 		if (!pla_dir) {
 			gamemanager->createBullet_Player(pos, t2k::Vector3(1, 0, 0), 0, 8);
-			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, 1, 0), 45, 8);
-			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(1, -1, 0), -45, 8);
 		}
 		else {
 			gamemanager->createBullet_Player(pos, t2k::Vector3(-1, 0, 0), 0, 8);
-			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, -1, 0), 45, 8);
-			//gamemanager->createBullet_Player(t2k::Vector3(pos.x, pos.y, 0), t2k::Vector3(-1, 1, 0), -45, 8);
 		}
 	}
 	else if (gamemanager->triger_sapce && gamemanager->GetArwTyp_arrow_type() == 2) {
@@ -78,12 +76,14 @@ void Player::update(const float deltatime) {
 			gamemanager->createArrwo_Wing(pos, t2k::Vector3(-1, 0, 0), 0, 8);
 		}
 	}
+
 	//--------------------------------------------------------------------------------------------------
 	/*HP*/
 	//--------------------------------------------------------------------------------------------------
 	if((check == 1 || check == 2 || check == 3 || check == 4) && hp_frame % 2 == 0 && 
 		gezi_now_num > gezi_min_num)gezi_now_num--;
 }
+
 void Player::render(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*HP*/
@@ -104,6 +104,7 @@ void Player::render(const float deltatime) {
 	DrawExtendGraph(gezi_min_x, gezi_min_y,
 		gezi_min_x + (gezi_max_x - gezi_min_x) * (gezi_now_num - gezi_min_num) / (gezi_max_num - gezi_min_num),
 		gezi_max_y, img.hp_green, true);
+
 	//--------------------------------------------------------------------------------------------------
 	/*描画処理*/
 	//--------------------------------------------------------------------------------------------------
@@ -111,11 +112,13 @@ void Player::render(const float deltatime) {
 	//Player画像Load
 	img.img_player();
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
 	//------------------------------------------------------------------------------
 	/*当たった時のPlayerの赤色に変わる処理*/
 	//-------------------------------------------------------------------------------
 	if(atach == 1 || atach == 2 || atach == 3 || atach == 4)SetDrawBright(255, 0, 0);
 	else SetDrawBright(255, 255, 255);
+
 	//-------------------------------------------------------------------------------
 	/*playerの描画*/
 	//-------------------------------------------------------------------------------
