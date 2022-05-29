@@ -14,9 +14,14 @@ map_StageB::map_StageB(int back, int wall) {
 }
 
 void map_StageB::update(const float deltatime) {
-	if (gamemanager->GetTime_M() >= 1) {
+	if (gamemanager->GetTime_M() >= 1 && gamemanager->GetTime_M() <= 2) {
 		if (!init_plus_pos_B) {
 			new Pop_EnemyB(t2k::Vector3(-500, -300, 0));
+			init_plus_pos_B = true;
+		}
+	}else if (gamemanager->GetTime_M() >= 3) {
+		if (!init_plus_pos_B) {
+			new Pop_EnemyB(t2k::Vector3(1520, -300, 0));
 			init_plus_pos_B = true;
 		}
 	}

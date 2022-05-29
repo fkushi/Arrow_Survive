@@ -7,6 +7,9 @@
 extern GameManager* gamemanager;
 extern IMG_load img;
 
+//--------------------------------------------------------------------------------------------------------------------------
+/*風属性の回る矢*/
+//--------------------------------------------------------------------------------------------------------------------------*
 Arrow_Wing::Arrow_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed, bool pla_dir) {
 	pos = start;
 	make_pos = start;
@@ -15,12 +18,16 @@ Arrow_Wing::Arrow_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int s
 	SPEED = speed;
 	DIR = pla_dir;
 
+	//回転時の中心座標
 	if (!DIR)preve_Center = {start.x + 100,start.y,0 };
 	else preve_Center = { start.x - 100,start.y,0 };
+
+	//矢先の当たり判定
 	if (!pla_dir) {
 		new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 5, start.y, 0), dir, speed,pla_dir,2);
 	}
 	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1) + 5, start.y, 0), dir, speed,pla_dir,2);
+
 	sequence_rotate = false;
 
 	gamemanager->arw_win.emplace_back(this);
@@ -31,7 +38,10 @@ void Arrow_Wing::update(const float deltatime) {
 	float add_x = cos(radius) * expand_speed;
 	float add_y = sin(radius) * expand_speed;
 
+	//真っ直ぐ飛ばし終えたら周回移動にするflah
 	if ((!DIR && make_pos.x + 200 <= pos.x) || (DIR && make_pos.x - 200 >= pos.x))sequence_rotate = true;
+
+	//回転させる処理
 	if (!sequence_rotate) {
 		pos += (float)SPEED * blt_dir;
 		arw_rad = 0;

@@ -33,8 +33,8 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	gamemanager->atach.Atach_Pla_Wall();
 	gamemanager->atach.Atach_Pla_Pop();
-	//gamemanager->atach.Atach_Pla_Enemy();
-	int check = gamemanager->atach.pla_enemyB_check;
+	gamemanager->atach.Atach_Pla_Enemy();
+	bool check = gamemanager->atach.pla_enemyB_check;
 	preve_pos = pos;
 	
 	//--------------------------------------------------------------------------------------------------
@@ -87,10 +87,9 @@ void Player::update(const float deltatime) {
 
 	//--------------------------------------------------------------------------------------------------
 	/*HP*/
-	//enemy‚ÌUŒ‚—Í:5
+	//enemy‚ÌUŒ‚—Í:3,enemy‚É“–‚½‚Á‚½ê‡AHP‚ª‚Ö‚é
 	//--------------------------------------------------------------------------------------------------
-	if((check == 1 || check == 2 || check == 3 || check == 4) && hp_frame % 2 == 0 && 
-		gezi_now_num > gezi_min_num)gezi_now_num -= 5;
+	if (check && hp_frame % 2 == 0 && gezi_now_num > gezi_min_num)gezi_now_num -= 3;
 }
 
 void Player::render(const float deltatime) {
@@ -119,14 +118,14 @@ void Player::render(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*•`‰æˆ—*/
 	//--------------------------------------------------------------------------------------------------
-	int atach = gamemanager->atach.pla_enemyB_check;
+	bool atach = gamemanager->atach.pla_enemyB_check;
 	//Player‰æ‘œLoad
 	img.img_player();
 	
 	//------------------------------------------------------------------------------
 	/*“–‚½‚Á‚½‚ÌPlayer‚ÌÔF‚É•Ï‚í‚éˆ—*/
 	//-------------------------------------------------------------------------------
-	if(atach == 1 || atach == 2 || atach == 3 || atach == 4)SetDrawBright(255, 0, 0);
+	if(atach)SetDrawBright(255, 0, 0);
 	else SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	//-------------------------------------------------------------------------------

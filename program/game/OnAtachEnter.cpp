@@ -65,8 +65,13 @@ void OnAtachEnter::Atach_Pla_Pop() {
 void OnAtachEnter::Atach_Pla_Enemy() {
 	for (auto eb : gamemanager->enm_B) {
 		/*Player‚ÆEnemyB‚Ì”»’è*/
-		pla_enemyB_check = t2k::isIntersectRectToCorrectPosition(gamemanager->pla->pos, gamemanager->pla->preve_pos,
+		/*pla_enemyB_check = t2k::isIntersectRectToCorrectPosition(gamemanager->pla->pos, gamemanager->pla->preve_pos,
+			gamemanager->GetPlaSize_W(), gamemanager->GetPlaSize_H(), eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);*/
+
+		int pla_enmB_atach = t2k::isIntersectRectToCorrectPosition(gamemanager->pla->pos, gamemanager->pla->preve_pos,
 			gamemanager->GetPlaSize_W(), gamemanager->GetPlaSize_H(), eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
+
+		pla_enemyB_check = t2k::isIntersectSphere(gamemanager->pla->pos, gamemanager->pla->pla_w>>1, eb->pos, eb->enm_B_SIZE);
 		
 		//-------------------------------------------------------------------------------------------
 		/*Arrow‚ÆEnemyB*/

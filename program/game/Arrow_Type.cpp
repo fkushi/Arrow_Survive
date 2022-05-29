@@ -33,7 +33,7 @@ void Arrow_Type::update(const float deltatime) {
 void Arrow_Type::render(const float deltatime) {
 	/*‰æ‘œload*/
 	img.img_arw_type();
-	//DrawStringEx(100, 100, 255, "%d", arrow_type);
+	
 	if (gamemanager->GetPla_triger_push_sift())arrow_type_blend_add = 255;
 	else {
 		arrow_type_blend_add -= 3;

@@ -10,7 +10,6 @@ extern IMG_load img;
 extern GameManager* gamemanager;
 
 /*Enemy_B‚ğ¶¬‚·‚éêŠ‚ÌƒNƒ‰ƒX*/
-
 Pop_EnemyB::Pop_EnemyB(t2k::Vector3 start) {
 	pos = start;
 	new Enemy_B(t2k::Vector3(pos.x, pos.y, 0), 3);

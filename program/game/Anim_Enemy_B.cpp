@@ -1,6 +1,7 @@
 #include"Anim_Enemy_B.h"
 #include"DxLib.h"
 
+/*Enemy_Bのアニメーションクラス*/
 Anim_Enemy_B::Anim_Enemy_B() {
 	img_enemy_B = new int* [frame_row];
 	for (int i = 0; i < frame_row; ++i) {
