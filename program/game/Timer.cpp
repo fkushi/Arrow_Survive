@@ -7,6 +7,7 @@
 extern GameManager* gamemanager;
 extern IMG_load img;
 
+/*¶‘¶ŽžŠÔŒv‘ª‚ð‚·‚éƒNƒ‰ƒX*/
 Timer::Timer(t2k::Vector3 start) {
 	pos = start;
 	gamemanager->time.emplace_back(this);

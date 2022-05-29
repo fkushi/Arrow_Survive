@@ -6,6 +6,8 @@
 extern GameManager* gamemanager;
 extern Create_Stage c_st;
 
+/*ステージ移動時のフェードの処理*/
+
 /*フェードイン*/ 
 bool Fade::FadeIn(int fade_speed, int r, int g, int b)
 {

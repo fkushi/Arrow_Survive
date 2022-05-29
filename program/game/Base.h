@@ -10,7 +10,6 @@ public:
 
 	bool is_alive = true;
 
-	//bool init_img = false;
 	int SPEED = 0;
 
 	int stage_type = 0;

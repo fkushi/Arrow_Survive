@@ -5,7 +5,7 @@
 
 extern IMG_load img;
 
-/*ステージ作成後タイトル作成予定*/
+
 Taitle::Taitle() {
 
 }

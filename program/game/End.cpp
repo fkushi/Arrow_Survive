@@ -9,6 +9,7 @@ extern GameManager* gamemanager;
 extern SceneManager scene;
 extern IMG_load img;
 
+//player‚ª¶‚«c‚Á‚½Œ‹‰Ê‚ğ‚İ‚¹‚éƒV[ƒ“
 GameEnd::GameEnd() {
 
 }

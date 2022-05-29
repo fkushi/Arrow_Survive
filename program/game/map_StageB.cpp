@@ -6,6 +6,7 @@
 extern GameManager* gamemanager;
 extern IMG_load img;
 
+/*敵がたくさんでてくるステージ*/
 map_StageB::map_StageB(int back, int wall) {
 
 	new Pop_EnemyB(t2k::Vector3(1024>>1,768>>1,0));

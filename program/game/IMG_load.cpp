@@ -6,11 +6,15 @@
 extern Create_Stage c_st;
 extern GameManager* gamemanager;
 
+//-------------------------------------------------------------------------------------------------------------------------
+/*すべての描画画像をまとめているクラス*/
+//-------------------------------------------------------------------------------------------------------------------------
+
 /*Sceneイメージ*/
 //Title
 void IMG_load::img_title() {
 	if (!init_img_title) {
-		title = LoadGraph("graphics/taitle.jpg");
+		title = LoadGraph("graphics/taitle.png");
 		init_img_title = true;
 	}
 }
