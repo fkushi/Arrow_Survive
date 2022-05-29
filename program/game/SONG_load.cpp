@@ -17,8 +17,8 @@ void SONG_load::SONG_stage() {
 
 void SONG_load::SONG_SE_Arrow() {
 	if (!init_se) {
-		se_atach = LoadSoundMem("sound/shot_2.mp3");
-		se_shot = LoadSoundMem("sound/arrow_Atach.mp3");
+		se_atach = LoadSoundMem("sound/arrow_Atach.mp3");
+		se_shot = LoadSoundMem("sound/shot_2.mp3");
 		init_se = true;
 	}
 }

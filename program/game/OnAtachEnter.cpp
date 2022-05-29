@@ -1,8 +1,11 @@
 #include"OnAtachEnter.h"
+#include"SONG_load.h"
 #include"GameManager.h"
 #include "../support/Support.h"
+#include"DxLib.h"
 
 extern GameManager* gamemanager;
+extern SONG_load		song;
 
 OnAtachEnter::OnAtachEnter() {
 
@@ -11,6 +14,7 @@ OnAtachEnter::OnAtachEnter() {
 /*wall“–‚½‚è”»’è*/
 //---------------------------------------------------------------------------------------------------------------
 void OnAtachEnter::Atach_Pla_Wall() {
+	/*•Ç‚É“–‚½‚Á‚½Žž‚Ìflagˆ—*/
 	//grand = -1,right = 0,left = 1,up = 2,down = 3
 	//couner_upR = 4,corner_upL = 5,corner_downR = 6,corner_downL = 7
 	if (gamemanager->GetAtachWall() == -1) {
@@ -75,8 +79,13 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 			/*Arrow*/
 			//------------------------------------------------------------------------------------------
 			if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 1) {
+				//ƒqƒbƒg‚µ‚½Žž‚ÌSE
+				PlaySoundMem(song.se_atach, DX_PLAYTYPE_BACK, true);
+
+				//*ƒqƒbƒg‚µ‚½‚ç•`‰æ‚ðÁ‚·
 				eb->is_alive = false;
 				atar->is_alive = false;
+
 				//Arrow•`‰æ•”•ª‚Ì”»’è
 				for (auto arw : gamemanager->blt_pla) {
 					int arw_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,
@@ -88,8 +97,10 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 			/*Arrow_Wing*/
 			//------------------------------------------------------------------------------------------
 			else if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 2) {
+				//–î‚Ì“–‚½‚è”»’è‚ªƒqƒbƒg‚µ‚½‚ç•`‰æ‚ðÁ‚·
 				eb->is_alive = false;
 				atar->is_alive = false;
+
 				//Arrow_Wing•`‰æ•”•ª‚Ì”»’è
 				for (auto arw_w : gamemanager->arw_win) {
 					int arw_w_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,

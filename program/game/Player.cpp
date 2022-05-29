@@ -1,14 +1,16 @@
 #include"Player.h"
-#include"IMG_load.h"
 #include"Anim_Player.h"
-#include"DxLib.h"
+#include"IMG_load.h"
+#include"SONG_load.h"
 #include"GameManager.h"
+#include"DxLib.h"
 #include "../support/Support.h"
 
 #define PLA_DEBUG 0
 
 extern GameManager* gamemanager;
 extern IMG_load img;
+extern SONG_load		song;
 Anim_Player anim_pla;
 
 Player::Player(t2k::Vector3 start,int speed) {
@@ -45,7 +47,8 @@ void Player::update(const float deltatime) {
 	else if (gamemanager->relese_sift) {
 		triger_push_sift = false;
 	}
-	//矢印キーを押した場合
+
+	//矢印キーを押した場合、座標を動く処理
 	if (gamemanager->atach.pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
 	if (gamemanager->atach.pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
 	if (gamemanager->atach.pla_right && !triger_push_sift && gamemanager->down_right) {
@@ -60,7 +63,9 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*Arrow*/
 	//--------------------------------------------------------------------------------------------------
+	//spaceを押したとき、その時の矢の属性を発射する
 	if (gamemanager->triger_sapce && gamemanager->GetArwTyp_arrow_type() == 1) {
+		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
 		if (!pla_dir) {
 			gamemanager->createBullet_Player(pos, t2k::Vector3(1, 0, 0), 0, 8);
 		}
@@ -69,6 +74,7 @@ void Player::update(const float deltatime) {
 		}
 	}
 	else if (gamemanager->triger_sapce && gamemanager->GetArwTyp_arrow_type() == 2) {
+		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
 		if (!pla_dir) {
 			gamemanager->createArrwo_Wing(pos, t2k::Vector3(1, 0, 0), 0, 8);
 		}

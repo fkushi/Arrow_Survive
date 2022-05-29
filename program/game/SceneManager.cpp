@@ -36,6 +36,8 @@ bool SceneManager::seqStage(const float deltatime) {
 		new map_StageA();
 		new map_Wall();
 		new Timer(t2k::Vector3(450, 90, 0));
+		
+		/*‰¹Œ¹‚Ìload*/
 		song.init_bgm = false;
 		song.init_se = false;
 		song.SONG_stage();
@@ -45,8 +47,8 @@ bool SceneManager::seqStage(const float deltatime) {
 	}
 
 	if (gamemanager->GetCreSt_stage_type() == 1) {
+		/*‰¹Œ¹ˆ—*/
 		if (!init_st1_sound) {
-			StopSoundMem(song.bgm_taitle);
 			DeleteSoundMem(song.bgm_taitle);
 			PlaySoundMem(song.bgm_stage, DX_PLAYTYPE_LOOP,false);
 			init_st1_sound = true;
@@ -73,8 +75,11 @@ bool SceneManager::seqStage(const float deltatime) {
 bool SceneManager::seqGameEnd(const float deltatime) {
 
 	if (sequence_.isStart()) {
-		StopSoundMem(song.bgm_stage);
-		DeleteSoundMem(song.bgm_taitle);
+		/*‰¹Œ¹ˆ—*/
+		/*load‚µ‚½‰¹Œ¹‚ğÁ‹‚·‚é*/
+		DeleteSoundMem(song.bgm_stage);
+		DeleteSoundMem(song.se_atach);
+		DeleteSoundMem(song.se_shot);
 	}
 
 	end.render(deltatime);
