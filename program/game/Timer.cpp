@@ -16,6 +16,9 @@ void Timer::update(const float deltatime) {
 	if (gamemanager->GetPosPlayer().y < pos.y + 70 && gamemanager->GetPosPlayer().x>pos.x - 50 &&
 		gamemanager->GetPosPlayer().x < pos.x + 180)alpha = 80;
 	else alpha = 225;
+
+	if (gamemanager->down_sift && t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_3))s = 30;
+
 }
 void Timer::render(const float deltatime) {
 	if(gamemanager->GetCreSt_stage_type() > 0) {

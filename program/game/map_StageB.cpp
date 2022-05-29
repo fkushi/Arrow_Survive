@@ -7,7 +7,8 @@ extern GameManager* gamemanager;
 extern IMG_load img;
 
 map_StageB::map_StageB(int back, int wall) {
-	new Pop_EnemyB();
+	new Pop_EnemyB(t2k::Vector3(1024>>1,768>>1,0));
+	
 	gamemanager->m_stB.emplace_back(this);
 }
 

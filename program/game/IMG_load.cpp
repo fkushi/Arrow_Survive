@@ -23,7 +23,7 @@ void IMG_load::img_end() {
 /*StageƒCƒ[ƒW*/
 void IMG_load::img_back() {
 	if (!init_img_back) {
-		if(c_st.stage_type == 0)back = LoadGraph("graphics/Back/Grass1.png");
+		if(c_st.stage_type == 0)back = LoadGraph("graphics/Back/Grass_1_sousa.png");
 		if(c_st.stage_type == 1)back = LoadGraph("graphics/Back/Grass2.png");
 		init_img_back = true;
 	}

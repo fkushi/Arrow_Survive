@@ -96,6 +96,7 @@ void Player::render(const float deltatime) {
 	int gezi_max_x = (int)pos.x + (pla_w >> 1) + 5;
 	int gezi_max_y = (int)pos.y + (pla_h >> 1) + 10;
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	SetDrawBright(255, 255, 255);
 	//HP_CORVER
 	DrawExtendGraph(gezi_min_x - 1, gezi_min_y - 2, gezi_max_x + 2, gezi_max_y + 2, img.hp_cover, true);
 	//HP_RED
@@ -111,13 +112,12 @@ void Player::render(const float deltatime) {
 	int atach = gamemanager->atach.pla_enemyB_check;
 	//Player‰æ‘œLoad
 	img.img_player();
-	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-
+	
 	//------------------------------------------------------------------------------
 	/*“–‚½‚Á‚½‚ÌPlayer‚ÌÔF‚É•Ï‚í‚éˆ—*/
 	//-------------------------------------------------------------------------------
 	if(atach == 1 || atach == 2 || atach == 3 || atach == 4)SetDrawBright(255, 0, 0);
-	else SetDrawBright(255, 255, 255);
+	else SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	//-------------------------------------------------------------------------------
 	/*player‚Ì•`‰æ*/

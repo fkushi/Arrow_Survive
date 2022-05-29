@@ -32,6 +32,7 @@
     <ClCompile Include="program\game\Player.cpp" />
     <ClCompile Include="program\game\Pop_EnemeyB.cpp" />
     <ClCompile Include="program\game\SceneManager.cpp" />
+    <ClCompile Include="program\game\SONG_load.cpp" />
     <ClCompile Include="program\game\Taitle.cpp" />
     <ClCompile Include="program\game\Timer.cpp" />
     <ClCompile Include="program\library\bounding.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="program\game\Player.h" />
     <ClInclude Include="program\game\Pop_EnemeyB.h" />
     <ClInclude Include="program\game\SceneManager.h" />
+    <ClInclude Include="program\game\SONG_load.h" />
     <ClInclude Include="program\game\Taitle.h" />
     <ClInclude Include="program\game\Timer.h" />
     <ClInclude Include="program\library\bounding.h" />

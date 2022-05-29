@@ -3,11 +3,14 @@
 #include"End.h"
 #include"../library/t2klib.h"
 #include"IMG_load.h"
+#include"SONG_load.h"
 #include"Create_Stage.h"
 #include"GameManager.h"
+#include"Dxlib.h"
 
 extern GameManager* gamemanager;
 extern IMG_load img;
+SONG_load		song;
 Taitle			taitle;
 GameEnd			end;
 Create_Stage	c_st;
@@ -16,6 +19,12 @@ Create_Stage	c_st;
 //----------------------------------------------------------------------------------------
 /*タイトル*/
 bool SceneManager::seqTitle(const float deltatime) {
+	if (sequence_.isStart()) {
+		song.init_bgm = false;
+		song.SONG_taitle();
+		ChangeVolumeSoundMem(100, song.bgm_taitle);
+		PlaySoundMem(song.bgm_taitle, DX_PLAYTYPE_LOOP, false);
+	}
 	taitle.render(deltatime);
 	if (gamemanager->triger_enter)sequence_.change(&SceneManager::seqStage);
 	return true;
@@ -29,6 +38,9 @@ bool SceneManager::seqStage(const float deltatime) {
 		new Timer(t2k::Vector3(450, 90, 0));
 		gamemanager->pla = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0),5);
 	}
+
+	if (gamemanager->GetCreSt_stage_type() == 1)StopSoundMem(song.bgm_taitle);
+
 	//------------------------------------------------------------------------------
 	/*player移動時のステージ生成*/
 	c_st.create_Stage();
