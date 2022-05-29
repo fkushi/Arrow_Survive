@@ -44,8 +44,9 @@ void Pop_EnemyB::update(const float deltatime) {
 void Pop_EnemyB::render(const float deltatime) {
 	img.img_pop();
 
-	SetFontSize(50);
-	DrawStringEx(100, 100, 255, "%d", count_create_enmB);
+	/*DEBUG*/
+	/*SetFontSize(50);
+	DrawStringEx(100, 100, 255, "%d", count_create_enmB);*/
 
 	DrawRotaGraph((int)pos.x, (int)pos.y, 1.0, 0, img.pop, true);
 }

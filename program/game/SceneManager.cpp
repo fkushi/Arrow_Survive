@@ -36,10 +36,22 @@ bool SceneManager::seqStage(const float deltatime) {
 		new map_StageA();
 		new map_Wall();
 		new Timer(t2k::Vector3(450, 90, 0));
+		song.init_bgm = false;
+		song.init_se = false;
+		song.SONG_stage();
+		song.SONG_SE_Arrow();
+		init_st1_sound = false;
 		gamemanager->pla = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0),5);
 	}
 
-	if (gamemanager->GetCreSt_stage_type() == 1)StopSoundMem(song.bgm_taitle);
+	if (gamemanager->GetCreSt_stage_type() == 1) {
+		if (!init_st1_sound) {
+			StopSoundMem(song.bgm_taitle);
+			DeleteSoundMem(song.bgm_taitle);
+			PlaySoundMem(song.bgm_stage, DX_PLAYTYPE_LOOP,false);
+			init_st1_sound = true;
+		}
+	}
 
 	//------------------------------------------------------------------------------
 	/*player移動時のステージ生成*/
@@ -59,6 +71,12 @@ bool SceneManager::seqStage(const float deltatime) {
 }
 /*ゲーム終了*/
 bool SceneManager::seqGameEnd(const float deltatime) {
+
+	if (sequence_.isStart()) {
+		StopSoundMem(song.bgm_stage);
+		DeleteSoundMem(song.bgm_taitle);
+	}
+
 	end.render(deltatime);
 	if (gamemanager->triger_enter)sequence_.change(&SceneManager::seqTitle);
 	return true;
