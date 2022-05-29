@@ -14,11 +14,13 @@ SONG_load		song;
 Taitle			taitle;
 GameEnd			end;
 Create_Stage	c_st;
+
 //----------------------------------------------------------------------------------------
 /*シーン制御*/
 //----------------------------------------------------------------------------------------
 /*タイトル*/
 bool SceneManager::seqTitle(const float deltatime) {
+
 	if (sequence_.isStart()) {
 		//音源_load
 		song.init_bgm = false;
@@ -35,10 +37,12 @@ bool SceneManager::seqTitle(const float deltatime) {
 
 	//ENTER押したら次のシーンへ
 	if (gamemanager->triger_enter)sequence_.change(&SceneManager::seqStage);
+
 	return true;
 }
 /*プレイステージ*/
 bool SceneManager::seqStage(const float deltatime) {
+
 	if (sequence_.isStart()) {
 		/*最初のステージ*/
 		new map_StageA();
@@ -89,6 +93,7 @@ bool SceneManager::seqStage(const float deltatime) {
 		//次のシーンに移動
 		sequence_.change(&SceneManager::seqGameEnd);
 	}
+
 	return true;
 }
 /*ゲーム終了*/
@@ -98,6 +103,7 @@ bool SceneManager::seqGameEnd(const float deltatime) {
 		/*音源処理*/
 		//loadした音源を消去する
 		DeleteSoundMem(song.bgm_stage);
+		DeleteSoundMem(song.bgm_taitle);
 		DeleteSoundMem(song.se_atach);
 		DeleteSoundMem(song.se_shot);
 
@@ -115,12 +121,16 @@ bool SceneManager::seqGameEnd(const float deltatime) {
 		DeleteSoundMem(song.bgm_end);
 		sequence_.change(&SceneManager::seqTitle);
 	}
+
 	return true;
 }
 /*全デリート*/
 void SceneManager::Del_END() {
+	/*player*/
 	gamemanager->pla = nullptr;
+	/*stage_type初期化*/
 	c_st.stage_type = 0;
+	/*背景変更*/
 	img.init_img_back = false;
 	/*arrow*/
 	for (auto bp : gamemanager->blt_pla)bp->is_alive = false;

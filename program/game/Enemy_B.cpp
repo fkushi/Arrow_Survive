@@ -16,9 +16,14 @@ Enemy_B::Enemy_B(t2k::Vector3 start, int speed) {
 }
 
 void Enemy_B::update(const float deltatime) {
+	/*pos‚ð•Û‘¶*/
 	preve_pos = pos;
+
+	//----------------------------------------------------------------
 	/*ƒAƒjƒ[ƒVƒ‡ƒ“*/
+	//----------------------------------------------------------------
 	anim_enmB.enemy_anim_Controll(deltatime);
+
 	#if DEBUG_ENM_B
 	//----------------------------------------------------------------
 	/*’Ç]*/
@@ -39,6 +44,7 @@ void Enemy_B::update(const float deltatime) {
 		pos.y += dy * SPEED;
 	}
 #endif
+	/*ŽÀ‘•—\’è*/
 	/*int check = gamemanager->atach.pla_enemyB_check;
 	if (check != 0)init_enmB_move = false;
 	else init_enmB_move = true;
