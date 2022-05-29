@@ -40,10 +40,12 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*‘€ì*/
 	//--------------------------------------------------------------------------------------------------
+	//sift‚ð‰Ÿ‚µ‚Ä‚¢‚éŠÔ“®‚«‚ðŽ~‚ß‚éflag
 	if (gamemanager->down_sift) {
 		triger_push_sift = true;
 		anim_pla.init_anim_pla = false;
 	}
+	//sift‚ð‰Ÿã‚½‚Æ‚«A“®‚¯‚éflag
 	else if (gamemanager->relese_sift) {
 		triger_push_sift = false;
 	}

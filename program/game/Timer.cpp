@@ -13,11 +13,15 @@ Timer::Timer(t2k::Vector3 start) {
 }
 
 void Timer::update(const float deltatime) {
+	/*Player‚ª‹ß‚Ã‚¢‚½‚çtimer‚ð“§‰ß‚·‚é*/
 	if (gamemanager->GetPosPlayer().y < pos.y + 70 && gamemanager->GetPosPlayer().x>pos.x - 50 &&
 		gamemanager->GetPosPlayer().x < pos.x + 180)alpha = 80;
 	else alpha = 225;
 
+	/*DEBUGƒRƒ}ƒ“ƒh*/
 	if (gamemanager->down_sift && t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_3))s = 30;
+	if (gamemanager->down_sift && t2k::Input::isKeyDown(t2k::Input::KEYBORD_1) && 
+		t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_0))m = 1;
 
 }
 void Timer::render(const float deltatime) {
@@ -25,6 +29,7 @@ void Timer::render(const float deltatime) {
 		if (s < 59.5) s += deltatime;
 		else {
 			m++;
+			for (auto pop_b : gamemanager->pop_stB)pop_b->add_speed++;
 			s = 0;
 		}
 	}

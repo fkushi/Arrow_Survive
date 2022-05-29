@@ -20,10 +20,14 @@ Pop_EnemyB::Pop_EnemyB(t2k::Vector3 start) {
 void Pop_EnemyB::update(const float deltatime) {
 	count_enmB_Create += deltatime;
 
+	//-------------------------------------------------
+	/*30•b‚²‚Æ‚É“G‚Ì¶¬”‚ð‘‚â‚·*/
+	//-------------------------------------------------
 	if (gamemanager->GetTime_S() > 30)init_count_time_cretate = true;
 	else if (gamemanager->GetTime_S() < 5)init_count_enB_Create = false;
 
 	if (init_count_time_cretate) {
+
 		if (!init_count_enB_Create) {
 			count_create_enmB++;
 			init_count_enB_Create = true;
@@ -32,11 +36,14 @@ void Pop_EnemyB::update(const float deltatime) {
 		init_count_time_cretate = false;
 	}
 
+	//-------------------------------------------------
 	/*2•b‚²‚Æ‚ÉEnemy_B‚ð¶¬‚·‚é*/
+	//-------------------------------------------------S
 	if (count_enmB_Create > 2.0f) {
-		speed = rand() % 3 + 2;
-		gamemanager->createEnemyB(t2k::Vector3(pos.x, pos.y, 0), speed);
 
+		speed = rand() % 3 + add_speed;
+		gamemanager->createEnemyB(t2k::Vector3(pos.x, pos.y, 0), speed);
+		
 		count_enmB_Create = 0;
 	}
 
