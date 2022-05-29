@@ -1,16 +1,11 @@
 #include"SONG_load.h"
 #include"DxLib.h"
 
-void SONG_load::SONG_taitle() {
+void SONG_load::SONG_bgm() {
 	if (!init_bgm) {
 		bgm_taitle = LoadSoundMem("sound/taitle.mp3");
-		init_bgm = true;
-	}
-}
-
-void SONG_load::SONG_stage() {
-	if (!init_bgm) {
 		bgm_stage = LoadSoundMem("sound/Stage_play.mp3");
+		bgm_end = LoadSoundMem("sound/game_end.mp3");
 		init_bgm = true;
 	}
 }
