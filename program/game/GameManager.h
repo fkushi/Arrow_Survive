@@ -36,7 +36,9 @@ public:
 	std::list<Base*>			base;
 	/*Arrow*/
 	std::list<Arrow_Type*>		arrow_type;
+	/*PlayerのArrowのリスト*/
 	std::list<Bullet_Player*>	bullet_player;
+	/*arrow_type = 1の矢のリスト*/
 	std::list<Arrow_Wing*>		arrow_wing;
 	std::list<OnAtach_Arrow*>	atach_arrow;
 	/*Stage*/
@@ -68,7 +70,9 @@ public:
 	bool down_up = false;
 	bool down_down = false;
 	bool down_right = false;
+	bool trigger_right = false;
 	bool down_left = false;
+	bool trigger_left = false;
 	bool triger_enter = false;
 	bool triger_sapce = false;
 

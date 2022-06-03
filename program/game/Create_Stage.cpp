@@ -11,7 +11,6 @@ extern GameManager* gamemanager;
 /*橋を渡ったあとのステージ生成のクラス*/
 //今後、ステージを複数増やす予定
 Create_Stage::Create_Stage() {
-
 }
 
 void Create_Stage::create_Stage() {
@@ -25,10 +24,16 @@ void Create_Stage::create_Stage() {
 	/*BRIDGEフラグ*/
 	//どの橋を渡ったかの確認
 	//-----------------------------------------------------------------------------------------
-	if (gamemanager->GetPosPlayer().y < 0 && !init_change)pla_next_pop = up;
-	else if (gamemanager->GetPosPlayer().y > 768 && !init_change)pla_next_pop = down;
-	else if (gamemanager->GetPosPlayer().x < 0 && !init_change)pla_next_pop = left;
-	else if (gamemanager->GetPosPlayer().x > 1024 && !init_change)pla_next_pop = right;
+
+	auto choose_right = static_cast<uint32_t>(CHOOSEWAY::RIGHT);
+	auto choose_left = static_cast<uint32_t>(CHOOSEWAY::LEFT);
+	auto choose_up = static_cast<uint32_t>(CHOOSEWAY::UP);
+	auto choose_down = static_cast<uint32_t>(CHOOSEWAY::DOWN);
+
+	if (gamemanager->GetPosPlayer().y < 0 && !init_change)pla_next_pop = choose_up;
+	else if (gamemanager->GetPosPlayer().y > 768 && !init_change)pla_next_pop = choose_down;
+	else if (gamemanager->GetPosPlayer().x < 0 && !init_change)pla_next_pop = choose_left;
+	else if (gamemanager->GetPosPlayer().x > 1024 && !init_change)pla_next_pop = choose_right;
 	//else pla_next_pop = fast;
 	
 	//-----------------------------------------------------------------------------------------
@@ -39,10 +44,10 @@ void Create_Stage::create_Stage() {
 		stage_type = 1;
 		img.init_img_back = false;
 		img.init_img_pop = false;
-		if (pla_next_pop == up)gamemanager->GetPos_ChangedPlayer(512, 679);
-		if (pla_next_pop == down)gamemanager->GetPos_ChangedPlayer(512, 89);
-		if (pla_next_pop == right)gamemanager->GetPos_ChangedPlayer(92, 384);
-		if (pla_next_pop == left)gamemanager->GetPos_ChangedPlayer(942, 384);
+		if (pla_next_pop == choose_up)gamemanager->GetPos_ChangedPlayer(512, 679);
+		if (pla_next_pop == choose_down)gamemanager->GetPos_ChangedPlayer(512, 89);
+		if (pla_next_pop == choose_right)gamemanager->GetPos_ChangedPlayer(92, 384);
+		if (pla_next_pop == choose_left)gamemanager->GetPos_ChangedPlayer(942, 384);
 		if (stage_type == 0)new map_StageA();
 		if(stage_type == 1)new map_StageB(0, 0);
 		init_change = true;

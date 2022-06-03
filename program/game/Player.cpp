@@ -6,7 +6,7 @@
 #include"DxLib.h"
 #include "../support/Support.h"
 
-#define PLA_DEBUG 0
+#define PLA_DEBUG 1
 
 extern GameManager* gamemanager;
 extern IMG_load		img;

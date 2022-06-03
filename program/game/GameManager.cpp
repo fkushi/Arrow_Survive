@@ -49,6 +49,8 @@ void GameManager::Control_Keyboard() {
 	down_left = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_A);
 	triger_enter = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER);
 	triger_sapce = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE);
+	trigger_left = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_LEFT) || t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_A);
+	trigger_right = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_RIGHT) || t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_D);
 }
 
 //------------------------------------------------------

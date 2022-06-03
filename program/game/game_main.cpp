@@ -13,6 +13,7 @@ GameManager* gamemanager;
 
 void gameMain(float deltatime) {
 
+	//‰æ‘œ‚ª
 	if (!init) {
 		gamemanager = new GameManager();
 		gamemanager->initialize();

@@ -6,6 +6,7 @@ private:
 	int arrow_type_max = 4;
 	int arrow_type_min = 0;
 	int arrow_type_blend_add = 255;
+	int img_Arrow_Type;
 public:
 
 	Arrow_Type();
