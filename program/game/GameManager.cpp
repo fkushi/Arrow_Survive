@@ -9,6 +9,16 @@ extern Create_Stage	c_st;
 GameManager::GameManager() {
 	player = nullptr;
 }
+
+void GameManager::initialize() {
+
+}
+
+//----------------------------------------------------------------------------------------
+/*関数*/
+//----------------------------------------------------------------------------------------
+
+/*画像ハンドルの読み込み*/
 int GameManager::LoadGraphEx(std::string ghPass)
 {
 	//ghPassの場所にある画像がmapに登録されているか確認
@@ -28,13 +38,6 @@ int GameManager::LoadGraphEx(std::string ghPass)
 
 	return 0;
 }
-void GameManager::initialize() {
-
-}
-
-//----------------------------------------------------------------------------------------
-/*関数*/
-//----------------------------------------------------------------------------------------
 
 /*KEYBOARD*/
 void GameManager::Control_Keyboard() {

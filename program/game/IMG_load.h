@@ -34,13 +34,10 @@ public:
 	int time_back;
 
 	/*PLAYER*/
-	int img_pla;
 	int anim_pla_W = 38;
 	int anim_pla_H = 45;
 	int** anim_pla = nullptr;
-	//HP
-	int hp_red, hp_green,hp_cover;
-
+	
 	/*Arrow*/
 	//type
 	bool init_img_arw_type = false;
@@ -71,7 +68,6 @@ public:
 	void img_enemy_B();
 	/*Player*/
 	void img_player();
-	void img_hp();
 	/*Arrow*/
 	void img_blt_player();
 	void img_arw_type();

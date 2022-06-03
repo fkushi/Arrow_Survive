@@ -57,17 +57,8 @@ void IMG_load::img_pop() {
 /*PLAYERイメージ*/
 void IMG_load::img_player() {
 	if (!init_img_pla) {
-		img_pla = LoadGraph("graphics/Player/player_Stand.png");
 		LoadDivGraph("graphics/Player/Player3_WALK.png", 3, 3, 1, anim_pla_W, anim_pla_H, anim_pla[0], true);
 		init_img_pla = true;
-	}
-}
-void IMG_load::img_hp() {
-	if (!init_img_hp) {
-		hp_green = LoadGraph("graphics/Player/hp_green.png");
-		hp_red = LoadGraph("graphics/Player/hp_red.png");
-		hp_cover = LoadGraph("graphics/Player/hp_gold.png");
-		init_img_hp = true;
 	}
 }
 /*Arrowイメージ*/

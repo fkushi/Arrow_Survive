@@ -9,9 +9,9 @@
 #define PLA_DEBUG 0
 
 extern GameManager* gamemanager;
-extern IMG_load img;
-extern SONG_load		song;
-Anim_Player anim_pla;
+extern IMG_load		img;
+extern SONG_load	song;
+Anim_Player			anim_pla;
 
 Player::Player(t2k::Vector3 start,int speed) {
 	pos = start;
@@ -19,9 +19,12 @@ Player::Player(t2k::Vector3 start,int speed) {
 	gamemanager->atach.pla_enemyB_check = 0;
 
 	//画像ハンドルの読み込み
-	gh = gamemanager->LoadGraphEx("graphics/Player/player_Stand.png");
+	img_player_stand = gamemanager->LoadGraphEx("graphics/Player/player_Stand.png");
+	hp_green = gamemanager->LoadGraphEx("graphics/Player/hp_green.png");
+	hp_red = gamemanager->LoadGraphEx("graphics/Player/hp_red.png");
+	hp_cover = gamemanager->LoadGraphEx("graphics/Player/hp_gold.png");
 
-	//矢の属性選択クラス
+	//矢の属性選択クラスの新規インスタンス生成
 	new Arrow_Type();
 }
 
@@ -97,7 +100,7 @@ void Player::update(const float deltatime) {
 	/*HP*/
 	//enemyの攻撃力:3,enemyに当たった場合、HPがへる
 	//--------------------------------------------------------------------------------------------------
-	if (check && hp_frame % 2 == 0 && gezi_now_num > gezi_min_num) {
+	if (check && hp_frame % 2 == 0 && gezi_now_num > hp_min_num) {
 		gezi_now_num -= 3;
 		t2k::debugTrace("\nダメージを受けた:[%d]\n", 3);
 	}
@@ -108,9 +111,7 @@ void Player::render(const float deltatime) {
 	/*HP*/
 	//HP_max:300
 	//--------------------------------------------------------------------------------------------------
-	//HP画像_load
-	img.img_hp();
-
+	
 	int gezi_min_x = (int)pos.x - (pla_w >> 1) - 5;
 	int gezi_min_y = (int)pos.y + (pla_h >> 1) + 5;
 	int gezi_max_x = (int)pos.x + (pla_w >> 1) + 5;
@@ -118,13 +119,13 @@ void Player::render(const float deltatime) {
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	SetDrawBright(255, 255, 255);
 	//HP_CORVER
-	DrawExtendGraph(gezi_min_x - 1, gezi_min_y - 2, gezi_max_x + 2, gezi_max_y + 2, img.hp_cover, true);
+	DrawExtendGraph(gezi_min_x - 1, gezi_min_y - 2, gezi_max_x + 2, gezi_max_y + 2, hp_cover, true);
 	//HP_RED
-	DrawExtendGraph(gezi_min_x, gezi_min_y, gezi_max_x, gezi_max_y, img.hp_red, true);
+	DrawExtendGraph(gezi_min_x, gezi_min_y, gezi_max_x, gezi_max_y, hp_red, true);
 	//HP
 	DrawExtendGraph(gezi_min_x, gezi_min_y,
-		gezi_min_x + (gezi_max_x - gezi_min_x) * (gezi_now_num - gezi_min_num) / (gezi_max_num - gezi_min_num),
-		gezi_max_y, img.hp_green, true);
+		gezi_min_x + (gezi_max_x - gezi_min_x) * (gezi_now_num - hp_min_num) / (hp_max_num - hp_min_num),
+		gezi_max_y, hp_green, true);
 
 	//--------------------------------------------------------------------------------------------------
 	/*描画処理*/
@@ -142,7 +143,7 @@ void Player::render(const float deltatime) {
 	//-------------------------------------------------------------------------------
 	/*playerの描画*/
 	//-------------------------------------------------------------------------------
-	if (!anim_pla.init_anim_pla) DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, 0, img.img_pla, true, pla_dir);
+	if (!anim_pla.init_anim_pla) DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img_player_stand, true, pla_dir);
 	else DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, 0, img.anim_pla[anim_pla.anim_move][anim_pla.anim_frame], true, pla_dir);
 
 #if PLA_DEBUG
