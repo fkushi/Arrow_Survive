@@ -18,12 +18,12 @@ void Arrow_Type::update(const float deltatime) {
 	
 	/*矢の属性変更*/
 	//両shiftキー+左矢印キー
-	if (gamemanager->down_sift && gamemanager->trigger_left) {
+	if (gamemanager->down_shift && gamemanager->trigger_left) {
 		arrow_type++;
 		if (arrow_type >= arrow_type_max)arrow_type = arrow_type_min + 1;
 	}
 	//両shiftキー+右矢印キー
-	else if (gamemanager->down_sift && gamemanager->trigger_right) {
+	else if (gamemanager->down_shift && gamemanager->trigger_right) {
 		arrow_type--;
 		if (arrow_type <= arrow_type_min)arrow_type = arrow_type_max - 1;
 	}

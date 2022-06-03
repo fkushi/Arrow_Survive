@@ -30,7 +30,7 @@ void Bullet_Player::update(const float deltatime) {
 	pos += (float)SPEED * blt_dir;
 
 	//‰æ–ÊŠO‚É‚Å‚½‚çDELETE
-	if (pos.x > 1024 >> 1 && gamemanager->down_sift)is_alive = false;
+	if (pos.x > 1024 >> 1 && gamemanager->down_shift)is_alive = false;
 	if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
 } 
 void Bullet_Player::render(const float deltatime) {

@@ -36,7 +36,7 @@ bool SceneManager::seqTitle(const float deltatime) {
 	taitle.render(deltatime);
 
 	//ENTER押したら次のシーンへ
-	if (gamemanager->triger_enter)sequence_.change(&SceneManager::seqStage);
+	if (gamemanager->trigger_enter)sequence_.change(&SceneManager::seqStage);
 
 	return true;
 }
@@ -78,7 +78,7 @@ bool SceneManager::seqStage(const float deltatime) {
 	//------------------------------------------------------------------------------
 	/*GameEnd*/
 	if (gamemanager->GetPlaHp_now() <= 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&
-		gamemanager->down_sift)){
+		gamemanager->down_shift)){
 		//生存時間記録
 		preve_m = gamemanager->GetTime_M();
 		preve_s = gamemanager->GetTime_S();
@@ -117,7 +117,7 @@ bool SceneManager::seqGameEnd(const float deltatime) {
 	end.render(deltatime);
 	
 	//ENTERを押したら次のシーンへ
-	if (gamemanager->triger_enter) {
+	if (gamemanager->trigger_enter) {
 		DeleteSoundMem(song.bgm_end);
 		sequence_.change(&SceneManager::seqTitle);
 	}

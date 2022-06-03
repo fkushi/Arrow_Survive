@@ -41,14 +41,14 @@ int GameManager::LoadGraphEx(std::string ghPass)
 
 /*KEYBOARD*/
 void GameManager::Control_Keyboard() {
-	down_sift = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT);
-	relese_sift = t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT);
+	down_shift = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT);
+	relese_shift = t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT);
 	down_up = t2k::Input::isKeyDown(t2k::Input::KEYBORD_UP) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_W);
 	down_down = t2k::Input::isKeyDown(t2k::Input::KEYBORD_DOWN) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_S);
 	down_right = t2k::Input::isKeyDown(t2k::Input::KEYBORD_RIGHT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_D);
 	down_left = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LEFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_A);
-	triger_enter = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER);
-	triger_sapce = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE);
+	trigger_enter = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_NUMPADENTER);
+	trigger_sapce = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE);
 	trigger_left = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_LEFT) || t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_A);
 	trigger_right = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_RIGHT) || t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_D);
 }

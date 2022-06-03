@@ -65,16 +65,16 @@ public:
 	//----------------------------------------------------------------
 	/*KEYBOARD*/
 	//----------------------------------------------------------------
-	bool down_sift = false;
-	bool relese_sift = false;
+	bool down_shift = false;
+	bool relese_shift = false;
 	bool down_up = false;
 	bool down_down = false;
 	bool down_right = false;
 	bool trigger_right = false;
 	bool down_left = false;
 	bool trigger_left = false;
-	bool triger_enter = false;
-	bool triger_sapce = false;
+	bool trigger_enter = false;
+	bool trigger_sapce = false;
 
 	
 	void Control_Keyboard();

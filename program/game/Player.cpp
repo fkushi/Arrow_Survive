@@ -47,12 +47,12 @@ void Player::update(const float deltatime) {
 	/*‘€ì*/
 	//--------------------------------------------------------------------------------------------------
 	//shift‚ð‰Ÿ‚µ‚Ä‚¢‚éŠÔ“®‚«‚ðŽ~‚ß‚éflag
-	if (gamemanager->down_sift) {
+	if (gamemanager->down_shift) {
 		triger_push_sift = true;
 		anim_pla.init_anim_pla = false;
 	}
 	//shift‚ð‰Ÿã‚½‚Æ‚«A“®‚¯‚éflag
-	else if (gamemanager->relese_sift) {
+	else if (gamemanager->relese_shift) {
 		triger_push_sift = false;
 	}
 
@@ -77,7 +77,7 @@ void Player::update(const float deltatime) {
 	//arrow_type = 1‚Í•’Ê‚Ì–îAarrow_type = 2‚Í•—‚Ì–î
 	//--------------------------------------------------------------------------------------------------
 	//space‚ð‰Ÿ‚µ‚½‚Æ‚«A‚»‚ÌŽž‚Ì–î‚Ì‘®«‚ð”­ŽË‚·‚é
-	if (gamemanager->triger_sapce && gamemanager->GetArwTyp_arrow_type() == 1) {
+	if (gamemanager->trigger_sapce && gamemanager->GetArwTyp_arrow_type() == 1) {
 		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
 		if (!pla_dir) {
 			gamemanager->createBullet_Player(pos, t2k::Vector3(1, 0, 0), 0, 8);
@@ -86,7 +86,7 @@ void Player::update(const float deltatime) {
 			gamemanager->createBullet_Player(pos, t2k::Vector3(-1, 0, 0), 0, 8);
 		}
 	}
-	else if (gamemanager->triger_sapce && gamemanager->GetArwTyp_arrow_type() == 2) {
+	else if (gamemanager->trigger_sapce && gamemanager->GetArwTyp_arrow_type() == 2) {
 		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
 		if (!pla_dir) {
 			gamemanager->createArrwo_Wing(pos, t2k::Vector3(1, 0, 0), 0, 8);

@@ -20,10 +20,10 @@ void Timer::update(const float deltatime) {
 	else alpha = 225;
 
 	/*DEBUGƒRƒ}ƒ“ƒh*/
-	if (gamemanager->down_sift && t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_3))s = 30;
-	if (gamemanager->down_sift && t2k::Input::isKeyDown(t2k::Input::KEYBORD_1) && 
+	if (gamemanager->down_shift && t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_3))s = 30;
+	if (gamemanager->down_shift && t2k::Input::isKeyDown(t2k::Input::KEYBORD_1) &&
 		t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_0))m = 1;
-	if (gamemanager->down_sift && t2k::Input::isKeyDown(t2k::Input::KEYBORD_3) &&
+	if (gamemanager->down_shift && t2k::Input::isKeyDown(t2k::Input::KEYBORD_3) &&
 		t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_0)) {
 		m = 3;
 		for (auto mb : gamemanager->map_stageB)mb->init_plus_pos_B = false;
