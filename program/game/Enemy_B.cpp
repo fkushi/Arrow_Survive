@@ -12,7 +12,7 @@ extern GameManager* gamemanager;
 Enemy_B::Enemy_B(t2k::Vector3 start, int speed) {
 	pos = start;
 	SPEED = speed;
-	gamemanager->enm_B.emplace_back(this);
+	gamemanager->enemy_B.emplace_back(this);
 }
 
 void Enemy_B::update(const float deltatime) {

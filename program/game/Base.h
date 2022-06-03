@@ -5,6 +5,7 @@ public:
 	Base();
 	virtual ~Base() {}
 
+	//•`‰æÀ•W
 	t2k::Vector3 pos;
 	t2k::Vector3 preve_pos;
 

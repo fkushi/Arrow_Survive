@@ -21,7 +21,7 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed, bo
 	else center_1 = { start.x - 85,start.y ,0 };
 	sequence_arw_win = false;
 	//---------------------------------------------------------
-	gamemanager->atach_arw.emplace_back(this);
+	gamemanager->atach_arrow.emplace_back(this);
 }
 
 void OnAtach_Arrow::update(const float deltatime) {
@@ -79,7 +79,8 @@ void OnAtach_Arrow::update(const float deltatime) {
 
 void OnAtach_Arrow::render(const float deltatime) {
 
-	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, 0);
-	DrawCircle((int)pos.x, (int)pos.y, atach_Arrow_radius, GetColor(0, 0, 255), false);
+	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_Q))img_alfha = 255;
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, img_alfha);
+	DrawCircle((int)pos.x, (int)pos.y, atach_Arrow_radius, GetColor(0, 0, 0), false);
 
 }

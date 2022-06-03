@@ -22,7 +22,7 @@ Bullet_Player::Bullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian,
 	}
 	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1) + 5, start.y, 0), dir, speed,pla_dir,1);
 
-	gamemanager->blt_pla.emplace_back(this);
+	gamemanager->bullet_player.emplace_back(this);
 }
 
 void Bullet_Player::update(const float deltatime) {

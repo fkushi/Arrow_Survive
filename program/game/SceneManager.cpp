@@ -48,7 +48,7 @@ bool SceneManager::seqStage(const float deltatime) {
 		new map_StageA();
 		new map_Wall();
 		new Timer(t2k::Vector3(450, 90, 0));
-		gamemanager->pla = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
+		gamemanager->player = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
 		
 		/*音源のload*/
 		song.init_bgm = false;
@@ -127,20 +127,20 @@ bool SceneManager::seqGameEnd(const float deltatime) {
 /*全デリート*/
 void SceneManager::Del_END() {
 	/*player*/
-	gamemanager->pla = nullptr;
+	gamemanager->player = nullptr;
 	/*stage_type初期化*/
 	c_st.stage_type = 0;
 	/*背景変更*/
 	img.init_img_back = false;
 	/*arrow*/
-	for (auto bp : gamemanager->blt_pla)bp->is_alive = false;
-	for (auto ataw : gamemanager->atach_arw)ataw->is_alive = false;
+	for (auto bp : gamemanager->bullet_player)bp->is_alive = false;
+	for (auto ataw : gamemanager->atach_arrow)ataw->is_alive = false;
 	/*stage*/
-	for (auto st_a : gamemanager->m_stA)st_a->is_alive = false;
-	for (auto st_b : gamemanager->m_stB)st_b->is_alive = false;
-	for (auto p_b : gamemanager->pop_stB)p_b->is_alive = false;
+	for (auto st_a : gamemanager->map_stageA)st_a->is_alive = false;
+	for (auto st_b : gamemanager->map_stageB)st_b->is_alive = false;
+	for (auto p_b : gamemanager->pop_enemyB)p_b->is_alive = false;
 	/*enemy*/
-	for (auto eb : gamemanager->enm_B)eb->is_alive = false;
+	for (auto eb : gamemanager->enemy_B)eb->is_alive = false;
 	/*base*/
 	for (auto ba : gamemanager->base)ba->is_alive = false;
 }

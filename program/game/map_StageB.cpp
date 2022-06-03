@@ -11,7 +11,7 @@ map_StageB::map_StageB(int back, int wall) {
 
 	new Pop_EnemyB(t2k::Vector3(1024>>1,768>>1,0));
 	
-	gamemanager->m_stB.emplace_back(this);
+	gamemanager->map_stageB.emplace_back(this);
 }
 
 void map_StageB::update(const float deltatime) {

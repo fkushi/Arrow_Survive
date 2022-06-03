@@ -18,6 +18,9 @@ Player::Player(t2k::Vector3 start,int speed) {
 	pla_speed = speed;
 	gamemanager->atach.pla_enemyB_check = 0;
 
+	//画像ハンドルの読み込み
+	gh = gamemanager->LoadGraphEx("graphics/Player/player_Stand.png");
+
 	//矢の属性選択クラス
 	new Arrow_Type();
 }
@@ -40,17 +43,21 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*操作*/
 	//--------------------------------------------------------------------------------------------------
-	//siftを押している間動きを止めるflag
+	//shiftを押している間動きを止めるflag
 	if (gamemanager->down_sift) {
 		triger_push_sift = true;
 		anim_pla.init_anim_pla = false;
 	}
-	//siftを押上たとき、動けるflag
+	//shiftを押上たとき、動けるflag
 	else if (gamemanager->relese_sift) {
 		triger_push_sift = false;
 	}
 
 	//矢印キーを押した場合、座標を動く処理
+	/*if (gamemanager->isAttach()) {
+
+	}*/
+
 	if (gamemanager->atach.pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
 	if (gamemanager->atach.pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
 	if (gamemanager->atach.pla_right && !triger_push_sift && gamemanager->down_right) {
@@ -90,7 +97,10 @@ void Player::update(const float deltatime) {
 	/*HP*/
 	//enemyの攻撃力:3,enemyに当たった場合、HPがへる
 	//--------------------------------------------------------------------------------------------------
-	if (check && hp_frame % 2 == 0 && gezi_now_num > gezi_min_num)gezi_now_num -= 3;
+	if (check && hp_frame % 2 == 0 && gezi_now_num > gezi_min_num) {
+		gezi_now_num -= 3;
+		t2k::debugTrace("\nダメージを受けた:[%d]\n", 3);
+	}
 }
 
 void Player::render(const float deltatime) {

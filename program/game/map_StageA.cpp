@@ -8,7 +8,7 @@ IMG_load img;
 
 /*操作を把握するための初期ステージ*/
 map_StageA::map_StageA() {
-	gamemanager->m_stA.emplace_back(this);
+	gamemanager->map_stageA.emplace_back(this);
 }
 
 void map_StageA::update(const float deltatime) {

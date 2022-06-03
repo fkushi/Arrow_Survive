@@ -10,7 +10,7 @@ extern Create_Stage	c_st;
 
 /*ステージ周りにある川の当たり判定*/
 map_Wall::map_Wall() {
-	gamemanager->m_wal.emplace_back(this);
+	gamemanager->map_wall.emplace_back(this);
 }
 
 /*Wall当たり判定*/

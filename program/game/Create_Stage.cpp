@@ -65,13 +65,13 @@ void Create_Stage::create_Stage() {
 void Create_Stage::Changed_Delete() {
 	init_change = false;
 	/*Stage*/
-	for (auto st_a : gamemanager->m_stA)st_a->is_alive = false;
-	for (auto st_b : gamemanager->m_stB)st_b->is_alive = false;
+	for (auto st_a : gamemanager->map_stageA)st_a->is_alive = false;
+	for (auto st_b : gamemanager->map_stageB)st_b->is_alive = false;
 	/*Enemy*/
-	for (auto p_b : gamemanager->pop_stB)p_b->is_alive = false;
-	for (auto eb : gamemanager->enm_B)eb->is_alive = false;
+	for (auto p_b : gamemanager->pop_enemyB)p_b->is_alive = false;
+	for (auto eb : gamemanager->enemy_B)eb->is_alive = false;
 	/*Arrow*/
-	for (auto arw : gamemanager->blt_pla)arw->is_alive = false;
-	for (auto arw_w : gamemanager->arw_win)arw_w->is_alive = false;
-	for (auto arw_at : gamemanager->atach_arw)arw_at->is_alive = false;
+	for (auto arw : gamemanager->bullet_player)arw->is_alive = false;
+	for (auto arw_w : gamemanager->arrow_wing)arw_w->is_alive = false;
+	for (auto arw_at : gamemanager->atach_arrow)arw_at->is_alive = false;
 }

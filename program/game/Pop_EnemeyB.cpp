@@ -13,7 +13,7 @@ extern GameManager* gamemanager;
 Pop_EnemyB::Pop_EnemyB(t2k::Vector3 start) {
 	pos = start;
 	new Enemy_B(t2k::Vector3(pos.x, pos.y, 0), 3);
-	gamemanager->pop_stB.emplace_back(this);
+	gamemanager->pop_enemyB.emplace_back(this);
 }
 
 void Pop_EnemyB::update(const float deltatime) {

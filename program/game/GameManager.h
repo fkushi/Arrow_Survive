@@ -1,5 +1,7 @@
 #pragma once
 #include<list>
+#include<unordered_map>
+#include<string>
 #include"Base.h"
 /*Player*/
 #include"Player.h"
@@ -23,28 +25,35 @@ class GameManager {
 public:
 	GameManager();
 
+	//読み込んだ画像ハンドルとパスを登録しておくマップ
+	std::unordered_map<std::string, int>loadGh;
+
+	//画像のロード,既ロードなら画像ハンドルを返す
+	int LoadGraphEx(std::string ghPass);
+
+
 	//---------------------------------------------------------------------------------------------------
 	/*クラスのリスト一覧*/
 	//---------------------------------------------------------------------------------------------------
 	/*Player*/
-	Player*						pla;
+	Player*						player;
 	/*当たり判定*/
 	OnAtachEnter				atach;
 	/*Base*/
 	std::list<Base*>			base;
 	/*Arrow*/
-	std::list<Arrow_Type*>		arw_typ;
-	std::list<Bullet_Player*>	blt_pla;
-	std::list<Arrow_Wing*>		arw_win;
-	std::list<OnAtach_Arrow*>	atach_arw;
+	std::list<Arrow_Type*>		arrow_type;
+	std::list<Bullet_Player*>	bullet_player;
+	std::list<Arrow_Wing*>		arrow_wing;
+	std::list<OnAtach_Arrow*>	atach_arrow;
 	/*Stage*/
 	std::list<Timer*>			time;
-	std::list<map_StageA*>		m_stA;
-	std::list<map_StageB*>		m_stB;
-	std::list<map_Wall*>		m_wal;
+	std::list<map_StageA*>		map_stageA;
+	std::list<map_StageB*>		map_stageB;
+	std::list<map_Wall*>		map_wall;
 	/*Enemy*/
-	std::list<Pop_EnemyB*>		pop_stB;
-	std::list<Enemy_B*>			enm_B;
+	std::list<Pop_EnemyB*>		pop_enemyB;
+	std::list<Enemy_B*>			enemy_B;
 	
 	//---------------------------------------------------------------------------------------------------
 	/*関数*/
@@ -58,14 +67,20 @@ public:
 	bool down_left = false;
 	bool triger_enter = false;
 	bool triger_sapce = false;
+
 	
 	void Control_Keyboard();
 
 	//----------------------------------------------------------------
 	/*PLAYER*/
 	//----------------------------------------------------------------
+	//playerの描画座標を取得する関数
 	t2k::Vector3 GetPosPlayer();
+	//
 	t2k::Vector3 GetPos_ChangedPlayer(int pos_x,int pos_y);
+
+	//bool GetPlayerDir();
+
 	bool GetPla_pla_dir();
 	bool GetPla_triger_push_sift();
 	int GetPlaSize_W();

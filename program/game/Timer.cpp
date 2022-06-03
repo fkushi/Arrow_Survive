@@ -26,7 +26,7 @@ void Timer::update(const float deltatime) {
 	if (gamemanager->down_sift && t2k::Input::isKeyDown(t2k::Input::KEYBORD_3) &&
 		t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_0)) {
 		m = 3;
-		for (auto mb : gamemanager->m_stB)mb->init_plus_pos_B = false;
+		for (auto mb : gamemanager->map_stageB)mb->init_plus_pos_B = false;
 	}
 
 }
@@ -35,8 +35,8 @@ void Timer::render(const float deltatime) {
 		if (s < 59.5) s += deltatime;
 		else {
 			m++;
-			for (auto pop_b : gamemanager->pop_stB)pop_b->add_speed++;
-			for (auto mb : gamemanager->m_stB)mb->init_plus_pos_B = false;
+			for (auto pop_b : gamemanager->pop_enemyB)pop_b->add_speed++;
+			for (auto mb : gamemanager->map_stageB)mb->init_plus_pos_B = false;
 			s = 0;
 		}
 	}

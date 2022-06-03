@@ -30,7 +30,7 @@ Arrow_Wing::Arrow_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int s
 
 	sequence_rotate = false;
 
-	gamemanager->arw_win.emplace_back(this);
+	gamemanager->arrow_wing.emplace_back(this);
 }
 
 void Arrow_Wing::update(const float deltatime) {

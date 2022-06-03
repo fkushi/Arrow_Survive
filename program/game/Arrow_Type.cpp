@@ -9,7 +9,7 @@ extern IMG_load img;
 
 
 Arrow_Type::Arrow_Type() {
-	gamemanager->arw_typ.emplace_back(this);
+	gamemanager->arrow_type.emplace_back(this);
 }
 
 void Arrow_Type::update(const float deltatime) {

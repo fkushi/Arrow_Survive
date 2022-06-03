@@ -13,6 +13,9 @@ public:
 	int pla_w = 38;
 	int pla_h = 45;
 
+	int gh = 0;
+
+
 	/*HP*/
 	int hp_frame = 0;
 	int gezi_min_num = 0;
