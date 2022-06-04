@@ -1,11 +1,9 @@
 #include"Arrow_Type.h"
-#include"IMG_load.h"
 #include"GameManager.h"
 #include "../support/Support.h"
 #include"DxLib.h"
 
 extern GameManager* gamemanager;
-//extern IMG_load img;
 
 
 Arrow_Type::Arrow_Type() {
@@ -27,6 +25,7 @@ void Arrow_Type::update(const float deltatime) {
 		arrow_type--;
 		if (arrow_type <= arrow_type_min)arrow_type = arrow_type_max - 1;
 	}
+
 }
 void Arrow_Type::render(const float deltatime) {
 	

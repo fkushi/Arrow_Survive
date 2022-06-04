@@ -38,16 +38,6 @@ public:
 	int anim_pla_H = 45;
 	int** anim_pla = nullptr;
 	
-	/*Arrow*/
-	//type
-	bool init_img_arw_type = false;
-	int img_arrow_type;
-	enum {
-		arrow = 1, wing, fire
-	};
-	//Arrow
-	int img_blt_Player;
-
 	/*Enemy*/
 	//•Û—¯
 	int anim_enm_B_Size = 32;
@@ -68,8 +58,4 @@ public:
 	void img_enemy_B();
 	/*Player*/
 	void img_player();
-	/*Arrow*/
-	void img_blt_player();
-	void img_arw_type();
-	
 };

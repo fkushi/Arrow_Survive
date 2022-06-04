@@ -15,6 +15,7 @@ private:
 	float radius = angle * 3.14f / 180.0f;
 	float arw_rad = 0;
 	int expand_speed = 100;
+	int img_arrow = 0;
 
 	
 	t2k::Vector3 make_pos;

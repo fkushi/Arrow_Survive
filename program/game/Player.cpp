@@ -60,7 +60,7 @@ void Player::update(const float deltatime) {
 	/*if (gamemanager->isAttach()) {
 
 	}*/
-
+	//右を向いたらpla_dir = false、左を向いたらpla_dir = true;
 	if (gamemanager->atach.pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
 	if (gamemanager->atach.pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
 	if (gamemanager->atach.pla_right && !triger_push_sift && gamemanager->down_right) {
@@ -112,10 +112,10 @@ void Player::render(const float deltatime) {
 	//HP_max:300
 	//--------------------------------------------------------------------------------------------------
 	
-	int gezi_min_x = (int)pos.x - (pla_w >> 1) - 5;
-	int gezi_min_y = (int)pos.y + (pla_h >> 1) + 5;
-	int gezi_max_x = (int)pos.x + (pla_w >> 1) + 5;
-	int gezi_max_y = (int)pos.y + (pla_h >> 1) + 10;
+	int gezi_min_x = static_cast<int>(pos.x) - (pla_w >> 1) - 5;
+	int gezi_min_y = static_cast<int>(pos.y) + (pla_h >> 1) + 5;
+	int gezi_max_x = static_cast<int>(pos.x) + (pla_w >> 1) + 5;
+	int gezi_max_y = static_cast<int>(pos.y) + (pla_h >> 1) + 10;
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	SetDrawBright(255, 255, 255);
 	//HP_CORVER
@@ -131,7 +131,7 @@ void Player::render(const float deltatime) {
 	/*描画処理*/
 	//--------------------------------------------------------------------------------------------------
 	bool atach = gamemanager->atach.pla_enemyB_check;
-	//Player画像Load
+	//Playerのアニメーションの画像ハンドルの読み込み
 	img.img_player();
 	
 	//------------------------------------------------------------------------------
@@ -144,7 +144,7 @@ void Player::render(const float deltatime) {
 	/*playerの描画*/
 	//-------------------------------------------------------------------------------
 	if (!anim_pla.init_anim_pla) DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img_player_stand, true, pla_dir);
-	else DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, 0, img.anim_pla[anim_pla.anim_move][anim_pla.anim_frame], true, pla_dir);
+	else DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img.anim_pla[anim_pla.anim_move][anim_pla.anim_frame], true, pla_dir);
 
 #if PLA_DEBUG
 	//-------------------------------------------------------------------------------

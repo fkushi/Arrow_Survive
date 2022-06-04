@@ -1,10 +1,8 @@
 #include"Bullet_Player.h"
-#include"IMG_load.h"
 #include"GameManager.h"
 #include"DxLib.h"
 
 extern GameManager* gamemanager;
-extern IMG_load img;
 
 //--------------------------------------------------------------------------------------------------------------------------
 /*矢の描画*/
@@ -16,16 +14,20 @@ Bullet_Player::Bullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian,
 	SPEED = speed;
 	DIR = pla_dir;
 
-	//矢先の当たり判定
+	//矢先の当たり判定の新規インスタンス生成
 	if (!pla_dir) {
 		new OnAtach_Arrow(t2k::Vector3(start.x + (blt_pla_w >> 1) - 5, start.y, 0), dir, speed, pla_dir,1);
 	}
 	else new OnAtach_Arrow(t2k::Vector3(start.x - (blt_pla_w >> 1) + 5, start.y, 0), dir, speed,pla_dir,1);
 
+	//画像ハンドルの読み込み
+	img_arrow = gamemanager->LoadGraphEx("graphics/Player/Arrow.png");
+
 	gamemanager->bullet_player.emplace_back(this);
 }
 
 void Bullet_Player::update(const float deltatime) {
+
 	//矢がX方向に進む処理
 	pos += (float)SPEED * blt_dir;
 
@@ -34,7 +36,9 @@ void Bullet_Player::update(const float deltatime) {
 	if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
 } 
 void Bullet_Player::render(const float deltatime) {
-	img.img_blt_player();
+	
+	//画像のブレンド処理を変更させないようにする
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 255);
-	DrawRotaGraph((int)pos.x, (int)pos.y, 1.0f, RAD, img.img_blt_Player, true, DIR);
+	
+	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, RAD, img_arrow, true, DIR);
 }

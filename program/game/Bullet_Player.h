@@ -6,6 +6,8 @@ private:
 	t2k::Vector3 blt_dir;
 	bool DIR;
 	float RAD;
+	int img_arrow = 0;
+
 public:
 	
 	Bullet_Player(t2k::Vector3 start,t2k::Vector3 dir,float radian,int speed,bool bul_dir);
