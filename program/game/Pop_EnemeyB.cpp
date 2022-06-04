@@ -1,27 +1,29 @@
 #include"Pop_EnemeyB.h"
-#include"IMG_load.h"
 #include"GameManager.h"
 #include"DxLib.h"
-#include<stdlib.h>
 #include"../library/t2klib.h"
 #include "../support/Support.h"
 
-extern IMG_load img;
 extern GameManager* gamemanager;
 
+//--------------------------------------------------------------------------------------------------------------------------
 /*Enemy_Bを生成する場所のクラス*/
+//--------------------------------------------------------------------------------------------------------------------------
 Pop_EnemyB::Pop_EnemyB(t2k::Vector3 start) {
 	pos = start;
+
+	//Enemy_Bの新規インスタンス生成
 	new Enemy_B(t2k::Vector3(pos.x, pos.y, 0), 3);
+
+	//画像ハンドルの読み込み
+	img_Pop_enemyB = gamemanager->LoadGraphEx("graphics/Enemy/Pop/pop_B.png");
+
 	gamemanager->pop_enemyB.emplace_back(this);
 }
 
 void Pop_EnemyB::update(const float deltatime) {
-	count_enmB_Create += deltatime;
-
-	//-------------------------------------------------
+	
 	/*30秒ごとに敵の生成数を増やす*/
-	//-------------------------------------------------
 	if (gamemanager->GetTime_S() > 30)init_count_time_cretate = true;
 	else if (gamemanager->GetTime_S() < 5)init_count_enB_Create = false;
 
@@ -37,7 +39,9 @@ void Pop_EnemyB::update(const float deltatime) {
 
 	//-------------------------------------------------
 	/*2秒ごとにEnemy_Bを生成する*/
-	//-------------------------------------------------S
+	//-------------------------------------------------
+	count_enmB_Create += deltatime;
+
 	if (count_enmB_Create > 2.0f) {
 
 		speed = rand() % 3 + add_speed;
@@ -48,11 +52,7 @@ void Pop_EnemyB::update(const float deltatime) {
 
 }
 void Pop_EnemyB::render(const float deltatime) {
-	img.img_pop();
+	
+	DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0, 0, img_Pop_enemyB, true);
 
-	/*DEBUG*/
-	/*SetFontSize(50);
-	DrawStringEx(100, 100, 255, "%d", count_create_enmB);*/
-
-	DrawRotaGraph((int)pos.x, (int)pos.y, 1.0, 0, img.pop, true);
 }

@@ -27,7 +27,6 @@ public:
 	bool init_img_pop = false;
 	
 	/*STAGE*/
-	int pop;
 	int back;
 	int img_wall_nomal;
 	int img_wall_Bridge;
@@ -54,7 +53,6 @@ public:
 	void img_wall();
 	void img_time_back();
 	/*Enemy*/
-	void img_pop();
 	void img_enemy_B();
 	/*Player*/
 	void img_player();

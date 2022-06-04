@@ -47,13 +47,6 @@ void IMG_load::img_time_back() {
 		init_img_time_back = true;
 	}
 }
-/*Enemy_Popイメージ*/
-void IMG_load::img_pop() {
-	if (!init_img_pop) {
-		if (c_st.stage_type == 1)pop = LoadGraph("graphics/Enemy/Pop/pop_B.png");
-		init_img_pop = true;
-	}
-}
 /*PLAYERイメージ*/
 void IMG_load::img_player() {
 	if (!init_img_pla) {
