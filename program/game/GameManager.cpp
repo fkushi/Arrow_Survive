@@ -1,9 +1,11 @@
 #include"GameManager.h"
 #include"SceneManager.h"
 #include"Create_Stage.h"
+#include"IMG_load.h"
 #include"DxLib.h"
 
 SceneManager scene;
+IMG_load img;
 extern Create_Stage	c_st;
 
 GameManager::GameManager() {

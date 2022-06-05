@@ -8,13 +8,18 @@ Fade fade;
 extern IMG_load img;
 extern GameManager* gamemanager;
 
-/*橋を渡ったあとのステージ生成のクラス*/
-//今後、ステージを複数増やす予定
+//--------------------------------------------------------------------------------------------------------------------------
+/*StageManagerクラス*/
+//橋を渡ったあとのステージ生成のクラス
+//--------------------------------------------------------------------------------------------------------------------------
+
 Create_Stage::Create_Stage() {
 }
 
 void Create_Stage::create_Stage() {
+	//-----------------------------------------------------------------------------------------
 	/*フェードアウトフラグ*/
+	//-----------------------------------------------------------------------------------------
 	if (gamemanager->GetPosPlayer().y < 0 || gamemanager->GetPosPlayer().x < 0 ||
 		gamemanager->GetPosPlayer().y > 768 || gamemanager->GetPosPlayer().x > 1024) {
 		init_fade = true;
@@ -24,7 +29,6 @@ void Create_Stage::create_Stage() {
 	/*BRIDGEフラグ*/
 	//どの橋を渡ったかの確認
 	//-----------------------------------------------------------------------------------------
-
 	auto choose_right = static_cast<uint32_t>(CHOOSEWAY::RIGHT);
 	auto choose_left = static_cast<uint32_t>(CHOOSEWAY::LEFT);
 	auto choose_up = static_cast<uint32_t>(CHOOSEWAY::UP);
@@ -42,8 +46,6 @@ void Create_Stage::create_Stage() {
 	//-----------------------------------------------------------------------------------------
 	if (!init_change) {
 		stage_type = 1;
-		img.init_img_back = false;
-		img.init_img_pop = false;
 		if (pla_next_pop == choose_up)gamemanager->GetPos_ChangedPlayer(512, 679);
 		if (pla_next_pop == choose_down)gamemanager->GetPos_ChangedPlayer(512, 89);
 		if (pla_next_pop == choose_right)gamemanager->GetPos_ChangedPlayer(92, 384);

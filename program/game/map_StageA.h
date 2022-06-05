@@ -3,7 +3,10 @@
 #include"../library/t2klib.h"
 class map_StageA : public Base {
 private:
+
+	/*•`‰æƒnƒ“ƒhƒ‹*/
 	int img_stageA = 0;
+
 public:
 
 	map_StageA();

@@ -1,18 +1,15 @@
 #pragma once
 class Create_Stage {
 private:
-	//int stage_type = 0;
-	/*void Changed_Delete();*/
 
 public:
 	Create_Stage();
 
+	/*現在のステージ種類*/
 	int stage_type = 0;
-	int pla_next_pop = fast;
 
-	enum {
-		fast,up,down,left,right
-	};
+	/*playerが渡った橋がどの橋かの判定*/
+	int pla_next_pop = 0;
 
 	//enum class CHOOSEWAY:uint32_t {
 	enum class CHOOSEWAY : int {
@@ -24,8 +21,11 @@ public:
 		MAX
 	};
 	
-
+	/*フェードイン、フェードアウトをするflag*/
 	bool init_fade = false;
+
+	/*playerが移動したらステージ変更するflag*/
+	//falseになったらステージ変更
 	bool init_change = true;
 	
 	void Changed_Delete();

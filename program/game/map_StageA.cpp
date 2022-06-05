@@ -1,13 +1,20 @@
 #include"map_StageA.h"
 #include"GameManager.h"
 #include"DxLib.h"
-#include"IMG_load.h"
 
 extern GameManager* gamemanager;
-IMG_load img;
 
+//-------------------------------------------------------------------------------------------------------------------
 /*操作を把握するための初期ステージ*/
+//-------------------------------------------------------------------------------------------------------------------
+
 map_StageA::map_StageA() {
+
+	//------------------------------------------------------------------
+	/*描画ハンドルの読み込み*/
+	//------------------------------------------------------------------
+	img_stageA = gamemanager->LoadGraphEx("graphics/Back/Grass_1_sousa.png");
+
 	gamemanager->map_stageA.emplace_back(this);
 }
 
@@ -15,7 +22,14 @@ void map_StageA::update(const float deltatime) {
 
 }
 void map_StageA::render(const float deltatime) {
-	img.img_back();
+	
+	//------------------------------------------------------------------
+	/*描画ハンドルのブレンドを変更しない*/
+	//------------------------------------------------------------------
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	DrawRotaGraph(1024 >> 1, 768 >> 1, 1.0, 0, img.back, true);
+
+	//------------------------------------------------------------------
+	/*描画*/
+	//------------------------------------------------------------------
+	DrawRotaGraph(1024 >> 1, 768 >> 1, 1.0, 0, img_stageA, true);
 }

@@ -18,13 +18,17 @@ Player::Player(t2k::Vector3 start,int speed) {
 	pla_speed = speed;
 	gamemanager->atach.pla_enemyB_check = 0;
 
-	//画像ハンドルの読み込み
+	//--------------------------------------------------------------------------------------------------
+	/*画像ハンドルの読み込み*/
+	//--------------------------------------------------------------------------------------------------
 	img_player_stand = gamemanager->LoadGraphEx("graphics/Player/player_Stand.png");
 	hp_green = gamemanager->LoadGraphEx("graphics/Player/hp_green.png");
 	hp_red = gamemanager->LoadGraphEx("graphics/Player/hp_red.png");
 	hp_cover = gamemanager->LoadGraphEx("graphics/Player/hp_gold.png");
 
-	//矢の属性選択クラスの新規インスタンス生成
+	//--------------------------------------------------------------------------------------------------
+	/*矢の属性選択クラスの新規インスタンス生成*/
+	//--------------------------------------------------------------------------------------------------
 	new Arrow_Type();
 }
 
