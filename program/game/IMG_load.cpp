@@ -10,20 +10,6 @@ extern GameManager* gamemanager;
 /*すべての描画画像をまとめているクラス*/
 //-------------------------------------------------------------------------------------------------------------------------
 
-/*Sceneイメージ*/
-//Title
-void IMG_load::img_title() {
-	if (!init_img_title) {
-		title = LoadGraph("graphics/taitle.png");
-		init_img_title = true;
-	}
-}
-void IMG_load::img_end() {
-	if (!init_img_end) {
-		end = LoadGraph("graphics/End.jpg");
-	}
-}
-
 /*Stageイメージ*/
 void IMG_load::img_back() {
 	if (!init_img_back) {
@@ -38,13 +24,6 @@ void IMG_load::img_wall() {
 		img_wall_nomal = LoadGraph("graphics/Wall/wall2_ALL.png");
 		img_wall_Bridge = LoadGraph("graphics/Wall/river2_Li.png");
 		init_img_wall = true;
-	}
-}
-//Time背景イメージ
-void IMG_load::img_time_back() {
-	if (!init_img_time_back) {
-		time_back = LoadGraph("graphics/Timer_cover.png");
-		init_img_time_back = true;
 	}
 }
 /*PLAYERイメージ*/

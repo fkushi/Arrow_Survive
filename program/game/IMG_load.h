@@ -4,8 +4,6 @@ private:
 	/*SCENE*/
 	//tatitle
 	bool init_img_title = false;
-	//End
-	bool init_img_end = false;
 	/*Player*/
 	bool init_img_pla = false;
 	bool init_img_hp = false;
@@ -17,11 +15,6 @@ private:
 	/*Enemy*/
 	bool init_img_enmB = false;
 public:
-	/*SCENE*/
-	//taitle
-	int title;
-	int end;
-
 	/*Stage*/
 	bool init_img_back = false;
 	bool init_img_pop = false;
@@ -43,15 +36,9 @@ public:
 	int** anim_enm_B = nullptr;
 	int** img_enm_B = nullptr;
 	
-	/*SCENE*/
-	//taitle
-	void img_title();
-	//end
-	void img_end();
 	/*Stage*/
 	void img_back();
 	void img_wall();
-	void img_time_back();
 	/*Enemy*/
 	void img_enemy_B();
 	/*Player*/

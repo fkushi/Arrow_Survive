@@ -97,7 +97,7 @@ void Player::update(const float deltatime) {
 	}
 
 	//--------------------------------------------------------------------------------------------------
-	/*HP*/
+	/*HPÉQÅ[ÉWÇÃÇ†Ç¡ÇΩèÍçáÅAHPÇ™å∏ÇÈèàóù*/
 	//enemyÇÃçUåÇóÕ:3,enemyÇ…ìñÇΩÇ¡ÇΩèÍçáÅAHPÇ™Ç÷ÇÈ
 	//--------------------------------------------------------------------------------------------------
 	if (check && hp_frame % 2 == 0 && gezi_now_num > hp_min_num) {
@@ -108,10 +108,9 @@ void Player::update(const float deltatime) {
 
 void Player::render(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
-	/*HP*/
-	//HP_max:300
+	/*HPÉQÅ[ÉWÇÃï`âÊ*/
+	//HP_maxíl:300
 	//--------------------------------------------------------------------------------------------------
-	
 	int gezi_min_x = static_cast<int>(pos.x) - (pla_w >> 1) - 5;
 	int gezi_min_y = static_cast<int>(pos.y) + (pla_h >> 1) + 5;
 	int gezi_max_x = static_cast<int>(pos.x) + (pla_w >> 1) + 5;

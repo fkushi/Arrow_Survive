@@ -109,7 +109,6 @@ bool SceneManager::seqGameEnd(const float deltatime) {
 
 		//‰¹_PLAY
 		song.init_bgm = false;
-		
 		PlaySoundMem(song.bgm_end, DX_PLAYTYPE_LOOP, true);
 	}
 
