@@ -6,6 +6,7 @@
 /*Player*/
 #include"Player.h"
 /*Arrow*/
+#include"Arrow_Manager.h"
 #include"Arrow_Type.h"
 #include"Bullet_Player.h"
 #include"Arrow_Wing.h"
@@ -26,12 +27,19 @@ public:
 	GameManager();
 
 	//---------------------------------------------------------------------------------------------------
-	/*クラスのリスト一覧*/
+	/*クラス　&　クラスのリスト一覧*/
 	//---------------------------------------------------------------------------------------------------
 	/*Player*/
 	Player*						player;
 	/*当たり判定*/
 	OnAtachEnter				atach;
+
+	//----------------------------------------------------------------
+	/*基底クラス*/
+	//----------------------------------------------------------------
+	/*Arrow_Manager*/
+	std::list<Arrow_Manager*>	arrow_manager;
+
 	/*Base*/
 	std::list<Base*>			base;
 	/*Arrow*/
@@ -75,7 +83,6 @@ public:
 	bool trigger_left = false;
 	bool trigger_enter = false;
 	bool trigger_sapce = false;
-
 	
 	void Control_Keyboard();
 
@@ -131,6 +138,7 @@ public:
 	/*DELETE_CHECK*/
 	//---------------------------------------------------------------------------------------------------
 	void eraceCheck();
+	void eraceCheck_Base();
 
 	//---------------------------------------------------------------------------------------------------
 	/*updata,render*/

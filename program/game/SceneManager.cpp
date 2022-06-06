@@ -2,14 +2,12 @@
 #include"Taitle.h"
 #include"End.h"
 #include"../library/t2klib.h"
-#include"IMG_load.h"
 #include"SONG_load.h"
 #include"Create_Stage.h"
 #include"GameManager.h"
 #include"Dxlib.h"
 
 extern GameManager* gamemanager;
-extern IMG_load img;
 SONG_load		song;
 Taitle			taitle;
 GameEnd			end;

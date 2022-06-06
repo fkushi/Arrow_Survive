@@ -1,6 +1,5 @@
 #include"Player.h"
 #include"Anim_Player.h"
-#include"IMG_load.h"
 #include"SONG_load.h"
 #include"GameManager.h"
 #include"DxLib.h"
@@ -9,7 +8,6 @@
 #define PLA_DEBUG 1
 
 extern GameManager* gamemanager;
-extern IMG_load		img;
 extern SONG_load	song;
 Anim_Player			anim_pla;
 
@@ -121,25 +119,41 @@ void Player::render(const float deltatime) {
 	int gezi_max_y = static_cast<int>(pos.y) + (pla_h >> 1) + 10;
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	SetDrawBright(255, 255, 255);
-	//HP_CORVER
+
+	//------------------------------------------------------------------------------
+	/*HP_CORVERの描画*/
+	//------------------------------------------------------------------------------
 	DrawExtendGraph(gezi_min_x - 1, gezi_min_y - 2, gezi_max_x + 2, gezi_max_y + 2, hp_cover, true);
-	//HP_RED
+	
+	//------------------------------------------------------------------------------
+	/*HP_REDの描画*/
+	//------------------------------------------------------------------------------
 	DrawExtendGraph(gezi_min_x, gezi_min_y, gezi_max_x, gezi_max_y, hp_red, true);
-	//HP
+	
+	//------------------------------------------------------------------------------
+	/*HPの描画*/
+	//------------------------------------------------------------------------------
 	DrawExtendGraph(gezi_min_x, gezi_min_y,
 		gezi_min_x + (gezi_max_x - gezi_min_x) * (gezi_now_num - hp_min_num) / (hp_max_num - hp_min_num),
 		gezi_max_y, hp_green, true);
 
 	//--------------------------------------------------------------------------------------------------
-	/*描画処理*/
+	/*playerの描画処理*/
 	//--------------------------------------------------------------------------------------------------
-	bool atach = gamemanager->atach.pla_enemyB_check;
-	//Playerのアニメーションの画像ハンドルの読み込み
-	img.img_player();
 	
 	//------------------------------------------------------------------------------
+	/*playerとEnemy_Bの当たり判定*/
+	//------------------------------------------------------------------------------
+	bool atach = gamemanager->atach.pla_enemyB_check;
+
+	//------------------------------------------------------------------------------
+	/*Playerのアニメーションの画像ハンドルの読み込み*/
+	//------------------------------------------------------------------------------
+	anim_pla.anim_Player_render(deltatime);
+
+	//------------------------------------------------------------------------------
 	/*当たった時のPlayerの赤色に変わる処理*/
-	//-------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------
 	if(atach)SetDrawBright(255, 0, 0);
 	else SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
@@ -147,7 +161,7 @@ void Player::render(const float deltatime) {
 	/*playerの描画*/
 	//-------------------------------------------------------------------------------
 	if (!anim_pla.init_anim_pla) DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img_player_stand, true, pla_dir);
-	else DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img.anim_pla[anim_pla.anim_move][anim_pla.anim_frame], true, pla_dir);
+	else DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, anim_pla.img_anim_pla[anim_pla.anim_move][anim_pla.anim_frame], true, pla_dir);
 
 #if PLA_DEBUG
 	//-------------------------------------------------------------------------------
