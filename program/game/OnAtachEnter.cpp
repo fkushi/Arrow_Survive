@@ -69,7 +69,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 			gamemanager->GetPlaSize_W(), gamemanager->GetPlaSize_H(), eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);*/
 
 		int pla_enmB_atach = t2k::isIntersectRectToCorrectPosition(gamemanager->player->pos, gamemanager->player->preve_pos,
-			gamemanager->GetPlaSize_W(), gamemanager->GetPlaSize_H(), eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
+			gamemanager->GetPlaSize_W() - 2, gamemanager->GetPlaSize_H() - 5, eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
 
 		pla_enemyB_check = t2k::isIntersectSphere(gamemanager->player->pos, gamemanager->player->pla_w>>1, eb->pos, eb->enm_B_SIZE);
 		
@@ -89,13 +89,13 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 
 				//*ƒqƒbƒg‚µ‚½‚ç•`‰æ‚ðÁ‚·
 				eb->is_alive = false;
-				atar->is_alive = false;
+				atar->arrow_alive = false;
 
 				//Arrow•`‰æ•”•ª‚Ì”»’è
 				for (auto arw : gamemanager->bullet_player) {
 					int arw_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,
 						arw->pos, arw->blt_pla_w, arw->blt_pla_h);
-					if (arw_check > 0 )arw->is_alive = false;
+					if (arw_check > 0 )arw->arrow_alive = false;
 				}
 			}
 			//------------------------------------------------------------------------------------------
@@ -104,13 +104,13 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 			else if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 2) {
 				//–î‚Ì“–‚½‚è”»’è‚ªƒqƒbƒg‚µ‚½‚ç•`‰æ‚ðÁ‚·
 				eb->is_alive = false;
-				atar->is_alive = false;
+				atar->arrow_alive = false;
 
 				//Arrow_Wing•`‰æ•”•ª‚Ì”»’è
 				for (auto arw_w : gamemanager->arrow_wing) {
 					int arw_w_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,
 						arw_w->pos, arw_w->blt_pla_w, arw_w->blt_pla_h);
-					if (arw_w_check > 0)arw_w->is_alive = false;
+					if (arw_w_check > 0)arw_w->arrow_alive = false;
 				}
 			}
 		}

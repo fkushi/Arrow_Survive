@@ -1,9 +1,11 @@
 #include"GameManager.h"
+#include"Arrow_Manager.h"
 #include"SceneManager.h"
 #include"Create_Stage.h"
 #include"DxLib.h"
 
 SceneManager scene;
+Arrow_Manager arrowmanager;
 extern Create_Stage	c_st;
 
 GameManager::GameManager() {
@@ -184,9 +186,6 @@ int GameManager::GetOnAt_Arw_arrow_type() {
 void GameManager::update(float deltatime) {
 
 	for (auto ba : base)ba->update(deltatime);
-	for (auto aw_ba : arrow_manager)aw_ba->update_arrow(deltatime);
-	
-	atach.Atach_Pla_Enemy();
 
 	/*ƒV[ƒ“*/
 	scene.sequence_.update(deltatime);
@@ -209,10 +208,7 @@ void GameManager::render(float deltatime) {
 	/*Timer*/
 	for (auto t : time)t->render(deltatime);
 	/*ARROW*/
-	for (auto ar_ty : arrow_type)ar_ty->render(deltatime);
-	for (auto bp : bullet_player)bp->render(deltatime);
-	for (auto ar_wi : arrow_wing)ar_wi->render(deltatime);
-	for (auto at_aw : atach_arrow)at_aw->render(deltatime);
+	for (auto arw_m : arrow_manager)arw_m->render(deltatime);
 	/*PLAYER*/
 	if (player != nullptr)player->render(deltatime);
 }
@@ -234,11 +230,11 @@ void GameManager::eraceCheck_Base() {
 		}
 	}
 	{
-		std::list<Arrow_Manager*>::iterator it = arrow_manager.begin();
-		while (it != arrow_manager.end()) {
+		std::list<Arrow_Base*>::iterator it = arrow_base.begin();
+		while (it != arrow_base.end()) {
 			if (!(*it)->arrow_alive) {
 				delete(*it);
-				it = arrow_manager.erase(it);
+				it = arrow_base.erase(it);
 				continue;
 			}
 			it++;
@@ -296,9 +292,19 @@ void GameManager::eraceCheck() {
 	/*Arrow*/
 	//------------------------------------------------------
 	{
+		std::list<Arrow_Manager*>::iterator it = arrow_manager.begin();
+		while (it != arrow_manager.end()) {
+			if (!(*it)->is_alive) {
+				it = arrow_manager.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
+	{
 		std::list<Arrow_Type*>::iterator it = arrow_type.begin();
 		while (it != arrow_type.end()) {
-			if (!(*it)->is_alive) {
+			if (!(*it)->arrow_alive) {
 				it = arrow_type.erase(it);
 				continue;
 			}
@@ -308,7 +314,7 @@ void GameManager::eraceCheck() {
 	{
 		std::list<Bullet_Player*>::iterator it = bullet_player.begin();
 		while (it != bullet_player.end()) {
-			if (!(*it)->is_alive) {
+			if (!(*it)->arrow_alive) {
 				it = bullet_player.erase(it);
 				continue;
 			}
@@ -318,7 +324,7 @@ void GameManager::eraceCheck() {
 	{
 		std::list<Arrow_Wing*>::iterator it = arrow_wing.begin();
 		while (it != arrow_wing.end()) {
-			if (!(*it)->is_alive) {
+			if (!(*it)->arrow_alive) {
 				it = arrow_wing.erase(it);
 				continue;
 			}
@@ -328,7 +334,7 @@ void GameManager::eraceCheck() {
 	{
 		std::list<OnAtach_Arrow*>::iterator it = atach_arrow.begin();
 		while (it != atach_arrow.end()) {
-			if (!(*it)->is_alive) {
+			if (!(*it)->arrow_alive) {
 				it = atach_arrow.erase(it);
 				continue;
 			}

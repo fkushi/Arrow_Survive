@@ -25,13 +25,13 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed, bo
 	gamemanager->atach_arrow.emplace_back(this);
 }
 
-void OnAtach_Arrow::update(const float deltatime) {
+void OnAtach_Arrow::update_arrow(const float deltatime) {
 	//--------------------------------------------------------------------------------------
 	/*Arrow*/
 	//--------------------------------------------------------------------------------------
 	if (arrow_type == 1) {
 		pos += atach_Arrow_dir * (float)atach_Arrow_speed;
-		if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) is_alive = false;
+		if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) arrow_alive = false;
 	}
 
 	//--------------------------------------------------------------------------------------
@@ -73,12 +73,12 @@ void OnAtach_Arrow::update(const float deltatime) {
 		}
 
 		//âÊñ äOÇ…Ç≈ÇΩÇÁè¡ãé
-		if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) is_alive = false;
+		if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) arrow_alive = false;
 
 	}
 }
 
-void OnAtach_Arrow::render(const float deltatime) {
+void OnAtach_Arrow::render_arrow(const float deltatime) {
 
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_Q))img_alfha = 255;
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, img_alfha);

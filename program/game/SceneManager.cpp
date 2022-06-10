@@ -67,6 +67,7 @@ bool SceneManager::seqStage(const float deltatime) {
 		new map_Wall();
 		new Timer(t2k::Vector3(450, 90, 0));
 		gamemanager->player = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
+		new Arrow_Manager();
 		
 		//------------------------------------------------------------------
 		/*音源のload*/
@@ -79,6 +80,12 @@ bool SceneManager::seqStage(const float deltatime) {
 	}
 
 	if (gamemanager->GetCreSt_stage_type() == 1) {
+
+		//------------------------------------------------------------------
+		/*EnemyとPlayerの当たり判定*/
+		//------------------------------------------------------------------
+		gamemanager->atach.Atach_Pla_Enemy();
+
 		//------------------------------------------------------------------
 		/*音源処理*/
 		//------------------------------------------------------------------
@@ -104,6 +111,8 @@ bool SceneManager::seqStage(const float deltatime) {
 
 	//----------------------------------------------------------------------------------------
 	/*GameEnd*/
+	//PlayerのHPが０になれば終了
+	// debugとしてshiftキー+Zキーをおすと強制終了
 	//----------------------------------------------------------------------------------------
 	if (gamemanager->GetPlaHp_now() <= 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&
 		gamemanager->down_shift)){
@@ -187,14 +196,18 @@ void SceneManager::Del_END() {
 	//------------------------------------------------------------------
 	/*arrow*/
 	//------------------------------------------------------------------
-	for (auto bp : gamemanager->bullet_player)bp->is_alive = false;
-	for (auto ataw : gamemanager->atach_arrow)ataw->is_alive = false;
+	for (auto bp : gamemanager->bullet_player)bp->arrow_alive = false;
+	for (auto arw_w : gamemanager->arrow_wing)arw_w->arrow_alive = false;
+	for (auto ataw : gamemanager->atach_arrow)ataw->arrow_alive = false;
+	for (auto arw_t : gamemanager->arrow_type)arw_t->arrow_alive = false;
+	for (auto arw_m : gamemanager->arrow_manager)arw_m->is_alive = false;
 
 	//------------------------------------------------------------------
 	/*stage*/
 	//------------------------------------------------------------------
 	for (auto st_a : gamemanager->map_stageA)st_a->is_alive = false;
 	for (auto st_b : gamemanager->map_stageB)st_b->is_alive = false;
+	for (auto t : gamemanager->time)t->is_alive = false;
 	for (auto p_b : gamemanager->pop_enemyB)p_b->is_alive = false;
 
 	//------------------------------------------------------------------

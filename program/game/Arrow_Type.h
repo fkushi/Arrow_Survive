@@ -1,7 +1,8 @@
 #pragma once
 #include"Base.h"
+#include"Arrow_Base.h"
 #include"../library/t2klib.h"
-class Arrow_Type : public Base {
+class Arrow_Type : public Arrow_Base {
 private:
 	int arrow_type_max = 4;
 	int arrow_type_min = 0;
@@ -11,8 +12,8 @@ public:
 
 	Arrow_Type();
 
-	int arrow_type = 1;
+	//int arrow_type = 1;
 
-	void update(const float deltatime)override;
-	void render(const float deltatime)override;
+	void update_arrow(const float deltatime)override;
+	void render_arrow(const float deltatime)override;
 };

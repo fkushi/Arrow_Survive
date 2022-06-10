@@ -5,6 +5,9 @@
 
 extern GameManager* gamemanager;
 
+//--------------------------------------------------------------------------------------------------------------------------
+/*矢の属性を生成するクラス*/
+//--------------------------------------------------------------------------------------------------------------------------
 
 Arrow_Type::Arrow_Type() {
 
@@ -12,32 +15,52 @@ Arrow_Type::Arrow_Type() {
 
 }
 
-void Arrow_Type::update(const float deltatime) {
+void Arrow_Type::update_arrow(const float deltatime) {
+
+	auto choose_type_max = static_cast<uint32_t>(ARROW_TYPE::MAX);
+	auto choose_type_min = static_cast<uint32_t>(ARROW_TYPE::MIN);
+	auto choose_type_arrow = static_cast<uint32_t>(ARROW_TYPE::ARROW);
+	auto choose_type_wing = static_cast<uint32_t>(ARROW_TYPE::WING);
+	auto choose_type_fire = static_cast<uint32_t>(ARROW_TYPE::FIRE);
 	
+	//------------------------------------------------------------------
 	/*矢の属性変更*/
-	//両shiftキー+左矢印キー
+	//両shiftキー+左矢印キーを押すと属性を変える
+	//------------------------------------------------------------------
 	if (gamemanager->down_shift && gamemanager->trigger_left) {
 		arrow_type++;
-		if (arrow_type >= arrow_type_max)arrow_type = arrow_type_min + 1;
+		if (arrow_type == choose_type_max)arrow_type = choose_type_arrow;
 	}
-	//両shiftキー+右矢印キー
+
+	//------------------------------------------------------------------
+	//両shiftキー+右矢印キーを押すと属性を変える
+	//------------------------------------------------------------------
 	else if (gamemanager->down_shift && gamemanager->trigger_right) {
 		arrow_type--;
-		if (arrow_type <= arrow_type_min)arrow_type = arrow_type_max - 1;
+		if (arrow_type == choose_type_min)arrow_type = choose_type_fire;
 	}
 
-}
-void Arrow_Type::render(const float deltatime) {
-	
-	if (arrow_type == 1)img_Arrow_Type = gamemanager->LoadGraphEx("graphics/Orb/オーブ_Arrow.png");
-	if (arrow_type == 2)img_Arrow_Type = gamemanager->LoadGraphEx("graphics/Orb/オーブ_風.png");
-	if (arrow_type == 3)img_Arrow_Type = gamemanager->LoadGraphEx("graphics/Orb/オーブ_炎.png");
-
+	//------------------------------------------------------------------
+	/*描画したものを徐々に透過する*/
+	//shiftキーを押すと再描画する
+	//------------------------------------------------------------------
 	if (gamemanager->GetPla_triger_push_sift())arrow_type_blend_add = 255;
 	else {
 		arrow_type_blend_add -= 3;
 	}
+
+}
+void Arrow_Type::render_arrow(const float deltatime) {
+
+	auto choose_type_arrow = static_cast<uint32_t>(ARROW_TYPE::ARROW);
+	auto choose_type_wing = static_cast<uint32_t>(ARROW_TYPE::WING);
+	auto choose_type_fire = static_cast<uint32_t>(ARROW_TYPE::FIRE);
+	
+	if (arrow_type == choose_type_arrow)img_Arrow_Type = gamemanager->LoadGraphEx("graphics/Orb/オーブ_Arrow.png");
+	if (arrow_type == choose_type_wing)img_Arrow_Type = gamemanager->LoadGraphEx("graphics/Orb/オーブ_風.png");
+	if (arrow_type == choose_type_fire)img_Arrow_Type = gamemanager->LoadGraphEx("graphics/Orb/オーブ_炎.png");
+
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, arrow_type_blend_add);
-	DrawRotaGraph((int)gamemanager->GetPosPlayer().x, (int)gamemanager->GetPosPlayer().y - 35, 0.5f, 0,
+	DrawRotaGraph(static_cast<int>(gamemanager->GetPosPlayer().x), static_cast<int>(gamemanager->GetPosPlayer().y) - 35, 0.5f, 0,
 		img_Arrow_Type, true);
 }

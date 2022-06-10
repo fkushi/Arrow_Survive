@@ -45,7 +45,7 @@ void Enemy_B::update(const float deltatime) {
 	//----------------------------------------------------------------
 	/*player‚É“–‚½‚Á‚½‚çuŠÔˆêŽž“I‚ÉŽ~‚Ü‚é*/
 	//----------------------------------------------------------------
-	if (gamemanager->atach.pla_enemyB_check != 0)init_enmB_move = false;
+	if (gamemanager->atach.pla_enemyB_check)init_enmB_move = false;
 	else init_enmB_move = true;
 
 	if (init_enmB_move) {

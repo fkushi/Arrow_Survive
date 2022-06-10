@@ -1,30 +1,18 @@
 #pragma once
+#include"Base.h"
 #include"../library/t2klib.h"
 
-class Arrow_Manager {
+class Arrow_Manager : public Base{
 private:
 
 public:
 
 	Arrow_Manager();
-	~Arrow_Manager() {}
 
-	t2k::Vector3 pos;
-	t2k::Vector3 preve_pos;
-	t2k::Vector3 dir;
+	/*ä÷êî*/
+	void Create_Arrow(t2k::Vector3 start, bool player_dir);
 
-	bool arrow_alive = true;
-	bool DIR = false;
-	int SPEED = 0;
-
-	int arrow_type = 0;
-	enum class ARROW_TYPE : UINT32 {
-		ARROW,
-		WING,
-		FIRE
-	};
-
-	virtual void update_arrow(const float deltatime) {}
-	virtual void render_arrow(const float deltatime) {}
+	void update(const float deltatime) override;
+	void render(const float deltatime) override;
 	
 };

@@ -8,8 +8,13 @@
 #define PLA_DEBUG 1
 
 extern GameManager* gamemanager;
+//extern Arrow_Manager arrowmanager;
 extern SONG_load	song;
 Anim_Player			anim_pla;
+
+//------------------------------------------------------------------------------------------------------------------
+/*PLAYERのクラス*/
+//------------------------------------------------------------------------------------------------------------------
 
 Player::Player(t2k::Vector3 start,int speed) {
 	pos = start;
@@ -27,7 +32,8 @@ Player::Player(t2k::Vector3 start,int speed) {
 	//--------------------------------------------------------------------------------------------------
 	/*矢の属性選択クラスの新規インスタンス生成*/
 	//--------------------------------------------------------------------------------------------------
-	new Arrow_Type();
+	//new Arrow_Type();
+	
 }
 
 void Player::update(const float deltatime) {
@@ -48,12 +54,14 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*操作*/
 	//--------------------------------------------------------------------------------------------------
-	//shiftを押している間動きを止めるflag
+	
+	//---------------------------------------------------
+	/*shiftを押している間動きを止めるflag,shiftを押上たとき、動けるflag*/
+	//---------------------------------------------------
 	if (gamemanager->down_shift) {
 		triger_push_sift = true;
 		anim_pla.init_anim_pla = false;
 	}
-	//shiftを押上たとき、動けるflag
 	else if (gamemanager->relese_shift) {
 		triger_push_sift = false;
 	}
@@ -62,7 +70,10 @@ void Player::update(const float deltatime) {
 	/*if (gamemanager->isAttach()) {
 
 	}*/
-	//右を向いたらpla_dir = false、左を向いたらpla_dir = true;
+
+	//---------------------------------------------------
+	/*右を向いたらpla_dir = false、左を向いたらpla_dir = true;*/
+	//---------------------------------------------------
 	if (gamemanager->atach.pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
 	if (gamemanager->atach.pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
 	if (gamemanager->atach.pla_right && !triger_push_sift && gamemanager->down_right) {
@@ -78,8 +89,15 @@ void Player::update(const float deltatime) {
 	/*Arrow*/
 	//arrow_type = 1は普通の矢、arrow_type = 2は風の矢
 	//--------------------------------------------------------------------------------------------------
-	//spaceを押したとき、その時の矢の属性を発射する
-	if (gamemanager->trigger_sapce && gamemanager->GetArwTyp_arrow_type() == 1) {
+	
+	//---------------------------------------------------
+	/*spaceを押したとき、その時の矢の属性を発射する*/
+	//---------------------------------------------------
+	//if (gamemanager->trigger_sapce)arrowmanager.Create_Arrow(pos,pla_dir);
+
+
+
+	/*if (gamemanager->trigger_sapce && gamemanager->GetArwTyp_arrow_type() == 1) {
 		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
 		if (!pla_dir) {
 			gamemanager->createBullet_Player(pos, t2k::Vector3(1, 0, 0), 0, 8);
@@ -96,7 +114,7 @@ void Player::update(const float deltatime) {
 		else {
 			gamemanager->createArrwo_Wing(pos, t2k::Vector3(-1, 0, 0), 0, 8);
 		}
-	}
+	}*/
 
 	//--------------------------------------------------------------------------------------------------
 	/*HPゲージのあった場合、HPが減る処理*/

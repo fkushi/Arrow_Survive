@@ -1,7 +1,7 @@
 #pragma once
-#include"Base.h"
+#include"Arrow_Base.h"
 #include"../library/t2klib.h"
-class OnAtach_Arrow : public Base {
+class OnAtach_Arrow : public Arrow_Base {
 private:
 	int atach_Arrow_speed = 0;
 
@@ -23,6 +23,6 @@ public:
 	int arrow_type = 1;
 	int atach_Arrow_radius = 5;
 
-	void update(const float deltatime)override;
-	void render(const float deltatime)override;
+	void update_arrow(const float deltatime)override;
+	void render_arrow(const float deltatime)override;
 };

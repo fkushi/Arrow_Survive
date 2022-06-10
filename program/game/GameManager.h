@@ -7,6 +7,7 @@
 #include"Player.h"
 /*Arrow*/
 #include"Arrow_Manager.h"
+#include"Arrow_Base.h"
 #include"Arrow_Type.h"
 #include"Bullet_Player.h"
 #include"Arrow_Wing.h"
@@ -26,34 +27,38 @@ class GameManager {
 public:
 	GameManager();
 
-	//---------------------------------------------------------------------------------------------------
-	/*クラス　&　クラスのリスト一覧*/
-	//---------------------------------------------------------------------------------------------------
-	/*Player*/
-	Player*						player;
-	/*当たり判定*/
-	OnAtachEnter				atach;
+	bool init_arrow_manager = false;
 
 	//----------------------------------------------------------------
 	/*基底クラス*/
 	//----------------------------------------------------------------
-	/*Arrow_Manager*/
-	std::list<Arrow_Manager*>	arrow_manager;
-
 	/*Base*/
 	std::list<Base*>			base;
+	std::list<Arrow_Base*>		arrow_base;
+
+
+	//---------------------------------------------------------------------------------------------------
+	/*クラス　&　クラスのリスト一覧*/
+	//---------------------------------------------------------------------------------------------------
+	/*Player*/
+	Player* player;
+
+	/*当たり判定*/
+	OnAtachEnter				atach;
+
 	/*Arrow*/
+	std::list<Arrow_Manager*>	arrow_manager;
 	std::list<Arrow_Type*>		arrow_type;
-	/*PlayerのArrowのリスト*/
 	std::list<Bullet_Player*>	bullet_player;
-	/*arrow_type = 1の矢のリスト*/
 	std::list<Arrow_Wing*>		arrow_wing;
 	std::list<OnAtach_Arrow*>	atach_arrow;
+	
 	/*Stage*/
 	std::list<Timer*>			time;
 	std::list<map_StageA*>		map_stageA;
 	std::list<map_StageB*>		map_stageB;
 	std::list<map_Wall*>		map_wall;
+	
 	/*Enemy*/
 	std::list<Pop_EnemyB*>		pop_enemyB;
 	std::list<Enemy_B*>			enemy_B;

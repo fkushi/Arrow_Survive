@@ -1,7 +1,7 @@
 #pragma once
-#include"Base.h"
+#include"Arrow_Base.h"
 #include"../library/t2klib.h"
-class Arrow_Wing : public Base {
+class Arrow_Wing : public Arrow_Base {
 private:
 	t2k::Vector3 blt_dir;
 	bool DIR;
@@ -29,6 +29,6 @@ public:
 	int blt_pla_w = 36;
 	int blt_pla_h = 8;
 
-	void update(const float deltatime)override;
-	void render(const float deltatime)override;
+	void update_arrow(const float deltatime)override;
+	void render_arrow(const float deltatime)override;
 };
