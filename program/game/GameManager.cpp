@@ -20,7 +20,9 @@ void GameManager::initialize() {
 /*関数*/
 //----------------------------------------------------------------------------------------
 
+//------------------------------------------------------
 /*画像ハンドルの読み込み*/
+//------------------------------------------------------
 int GameManager::LoadGraphEx(std::string ghPass)
 {
 	//ghPassの場所にある画像がmapに登録されているか確認
@@ -41,7 +43,9 @@ int GameManager::LoadGraphEx(std::string ghPass)
 	return 0;
 }
 
+//------------------------------------------------------
 /*KEYBOARD*/
+//------------------------------------------------------
 void GameManager::Control_Keyboard() {
 	down_shift = t2k::Input::isKeyDown(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyDown(t2k::Input::KEYBORD_RSHIFT);
 	relese_shift = t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_LSHIFT) || t2k::Input::isKeyReleaseTrigger(t2k::Input::KEYBORD_RSHIFT);
@@ -104,20 +108,25 @@ bool GameManager::GetArwWin_sequence_rotate() {
 	for (auto aw_w : arrow_wing)return aw_w->sequence_rotate;
 	return true;
 }
+
+//------------------------------
 //Arrowの生成
+//------------------------------
 void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Bullet_Player(start, dir, radian, speed, player->pla_dir);
 }
+
+//------------------------------
 //Arrow_wingの生成
+//------------------------------
 void GameManager::createArrwo_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
 	new Arrow_Wing(start, dir, radian, speed, player->pla_dir);
 }
 
 //------------------------------------------------------
 /*ENEMY*/
+//EnemyBのインスタンスを新規生成
 //------------------------------------------------------
-//EnemyB
-//enemyBのインスタンスを新規生成
 void GameManager::createEnemyB(t2k::Vector3 start, int speed) {
 	new Enemy_B(start, speed);
 }
@@ -125,10 +134,17 @@ void GameManager::createEnemyB(t2k::Vector3 start, int speed) {
 //------------------------------------------------------
 /*STAGE*/
 //------------------------------------------------------
-//WALL
+
+//------------------------------
+//Stage_Typeの取得関数
+//------------------------------
 int GameManager::GetCreSt_stage_type() {
 	return c_st.stage_type;
 }
+
+//------------------------------
+//WALLの当たり判定取得
+//------------------------------
 int GameManager::GetAtachWall() {
 	for (auto wal : map_wall) return wal->atach_wal;
 	return true;
@@ -136,12 +152,20 @@ int GameManager::GetAtachWall() {
 
 //------------------------------------------------------
 /*SCENE*/
+//Timerクラスの取得関数
 //------------------------------------------------------
-//Timer
+
+//------------------------------
+//分カウントの取得関数
+//------------------------------
 int GameManager::GetTime_M() {
 	for (auto t : time)return t->m;
 	return true;
 }
+
+//------------------------------
+//秒カウントの取得関数
+//------------------------------
 int GameManager::GetTime_S() {
 	for (auto t : time)return (int)t->s;
 	return true;
@@ -200,6 +224,7 @@ void GameManager::render(float deltatime) {
 
 //----------------------------------------------------------------------------------------
 /*Delete_Check*/
+//eraceCheck_Base():基底クラスのDELETE、eraceCheck():リスト内のDELETE
 //----------------------------------------------------------------------------------------
 void GameManager::eraceCheck() {
 	/*Stage*/
