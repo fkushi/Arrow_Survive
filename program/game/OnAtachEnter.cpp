@@ -89,7 +89,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 
 				//*ƒqƒbƒg‚µ‚½‚ç•`‰æ‚ðÁ‚·
 				eb->is_alive = false;
-				atar->arrow_alive = false;
+				atar->is_alive = false;
 
 				//Arrow•`‰æ•”•ª‚Ì”»’è
 				for (auto arw : gamemanager->bullet_player) {
@@ -104,7 +104,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 			else if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 2) {
 				//–î‚Ì“–‚½‚è”»’è‚ªƒqƒbƒg‚µ‚½‚ç•`‰æ‚ðÁ‚·
 				eb->is_alive = false;
-				atar->arrow_alive = false;
+				atar->is_alive = false;
 
 				//Arrow_Wing•`‰æ•”•ª‚Ì”»’è
 				for (auto arw_w : gamemanager->arrow_wing) {

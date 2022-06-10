@@ -209,6 +209,7 @@ void GameManager::render(float deltatime) {
 	for (auto t : time)t->render(deltatime);
 	/*ARROW*/
 	for (auto arw_m : arrow_manager)arw_m->render(deltatime);
+	for (auto arw_atach : atach_arrow)arw_atach->render(deltatime);
 	/*PLAYER*/
 	if (player != nullptr)player->render(deltatime);
 }
@@ -334,7 +335,7 @@ void GameManager::eraceCheck() {
 	{
 		std::list<OnAtach_Arrow*>::iterator it = atach_arrow.begin();
 		while (it != atach_arrow.end()) {
-			if (!(*it)->arrow_alive) {
+			if (!(*it)->is_alive) {
 				it = atach_arrow.erase(it);
 				continue;
 			}
