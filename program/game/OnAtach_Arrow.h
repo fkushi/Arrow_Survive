@@ -1,5 +1,4 @@
 #pragma once
-#include"Arrow_Base.h"
 #include"Base.h"
 #include"../library/t2klib.h"
 class OnAtach_Arrow : public Base {
@@ -15,7 +14,6 @@ private:
 	t2k::Vector3 center_1;
 	int red_radius = 13;
 	int light_blue_radius = 100;
-	int img_alfha = 0;
 	float radius = 0;
 public:
 
