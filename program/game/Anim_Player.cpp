@@ -1,25 +1,23 @@
 #include"Anim_Player.h"
+#include"IMG_load.h"
 #include"GameManager.h"
-#include"DxLib.h"
 #include"../library/t2klib.h"
 
+extern IMG_load img;
 extern GameManager* gamemanager;
 
-//--------------------------------------------------------------------------------------------------------------------------
 /*PLAYERのアニメーションクラス*/
-//--------------------------------------------------------------------------------------------------------------------------
-
 Anim_Player::Anim_Player() {
-	img_anim_pla = new int* [frame];
+	img.anim_pla = new int* [frame];
 	for (int i = 0; i < frame; i++) {
-		img_anim_pla[i] = new int[frame];
+		img.anim_pla[i] = new int[frame];
 	}
 }
 Anim_Player::~Anim_Player() {
 	for (int i = 0; i < frame; i++) {
-		delete[] img_anim_pla[i];
+		delete[] img.anim_pla[i];
 	}
-	delete[] img_anim_pla;
+	delete[] img.anim_pla;
 }
 
 void Anim_Player::anim_Player_Controll(const float deltatime) {
@@ -35,11 +33,4 @@ void Anim_Player::anim_Player_Controll(const float deltatime) {
 		anim_frame %= anim_frame_Player;
 	}
 	else init_anim_pla = false;
-}
-
-void Anim_Player::anim_Player_render(const float deltatime) {
-	if (!init_img_pla) {
-		LoadDivGraph("graphics/Player/Player3_WALK.png", 3, 3, 1, anim_pla_W, anim_pla_H, img_anim_pla[0], true);
-		init_img_pla = true;
-	}
 }

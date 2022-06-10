@@ -13,6 +13,13 @@ public:
 
 	int SPEED = 0;
 
+	int stage_type = 0;
+	enum {
+		stage_A = 0,
+		stage_B,
+		stage_C,
+	};
+
 	virtual void update(const float deltatime) {}
 	virtual void render(const float deltatime) {}
 };

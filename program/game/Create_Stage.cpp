@@ -1,9 +1,11 @@
 #include"Create_Stage.h"
 #include"GameManager.h"
 #include"Fade.h"
+#include"IMG_load.h"
 #include"DxLib.h"
 
 Fade fade;
+extern IMG_load img;
 extern GameManager* gamemanager;
 
 //--------------------------------------------------------------------------------------------------------------------------
