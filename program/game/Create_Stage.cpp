@@ -78,5 +78,5 @@ void Create_Stage::Changed_Delete() {
 	/*Arrow*/
 	for (auto arw : gamemanager->bullet_player)arw->arrow_alive = false;
 	for (auto arw_w : gamemanager->arrow_wing)arw_w->arrow_alive = false;
-	for (auto arw_at : gamemanager->atach_arrow)arw_at->arrow_alive = false;
+	for (auto arw_at : gamemanager->atach_arrow)arw_at->is_alive = false;
 }
