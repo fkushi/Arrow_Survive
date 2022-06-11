@@ -95,7 +95,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 				for (auto arw : gamemanager->bullet_player) {
 					int arw_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,
 						arw->pos, arw->blt_pla_w, arw->blt_pla_h);
-					if (arw_check > 0 )arw->is_alive = false;
+					if (arw_check > 0 )arw->arrow_alive = false;
 				}
 			}
 			//------------------------------------------------------------------------------------------

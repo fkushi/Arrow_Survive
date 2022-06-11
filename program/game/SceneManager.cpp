@@ -191,7 +191,7 @@ void SceneManager::Del_END() {
 	//------------------------------------------------------------------
 	/*arrow*/
 	//------------------------------------------------------------------
-	for (auto bp : gamemanager->bullet_player)bp->is_alive = false;
+	for (auto bp : gamemanager->bullet_player)bp->arrow_alive = false;
 	for (auto arw_w : gamemanager->arrow_wing)arw_w->arrow_alive = false;
 	for (auto ataw : gamemanager->atach_arrow)ataw->is_alive = false;
 	for (auto arw_t : gamemanager->arrow_type)arw_t->arrow_alive = false;
