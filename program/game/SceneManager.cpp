@@ -122,6 +122,7 @@ bool SceneManager::seqStage(const float deltatime) {
 		//------------------------------------------------------------------
 		Del_END();
 		gamemanager->eraceCheck();
+		gamemanager->eraceCheck_Base();
 
 		//------------------------------------------------------------------
 		/*STAGETYPE‚ð‰Šú‰»*/
@@ -192,6 +193,7 @@ void SceneManager::Del_END() {
 	//------------------------------------------------------------------
 	for (auto bp : gamemanager->bullet_player)bp->is_alive = false;
 	for (auto ataw : gamemanager->atach_arrow)ataw->is_alive = false;
+	for (auto arw_t : gamemanager->arrow_type)arw_t->arrow_alive = false;
 	for (auto arw_b : gamemanager->arrow_base)arw_b->arrow_alive = false;
 	for (auto arw_m : gamemanager->arrow_manager)arw_m->is_alive = false;
 
