@@ -218,7 +218,7 @@ void GameManager::render(float deltatime) {
 	//for (auto ar_ty : arrow_type)ar_ty->render(deltatime);
 	//for (auto bp : bullet_player)bp->render(deltatime);
 	//for (auto ar_wi : arrow_wing)ar_wi->render_arrow(deltatime);
-	for (auto at_aw : atach_arrow)at_aw->render(deltatime);
+	//for (auto at_aw : atach_arrow)at_aw->render(deltatime);
 	/*PLAYER*/
 	if (player != nullptr)player->render(deltatime);
 }
@@ -332,7 +332,7 @@ void GameManager::eraceCheck() {
 	{
 		std::list<OnAtach_Arrow*>::iterator it = atach_arrow.begin();
 		while (it != atach_arrow.end()) {
-			if (!(*it)->is_alive) {
+			if (!(*it)->arrow_alive) {
 				it = atach_arrow.erase(it);
 				continue;
 			}

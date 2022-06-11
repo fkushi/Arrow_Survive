@@ -78,7 +78,8 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 		//-------------------------------------------------------------------------------------------
 		for (auto atar : gamemanager->atach_arrow) {
 			/*Arrow‚Ì”»’è•”•ª‚Ì”»’è*/
-			arw_enm_chenk = t2k::isIntersectSphere(eb->pos, (float)eb->enm_B_SIZE / 2, atar->pos, (float)atar->atach_Arrow_radius);
+			arw_enm_chenk = t2k::isIntersectSphere(eb->pos, static_cast<float>(eb->enm_B_SIZE / 2),
+				atar->pos, static_cast<float>(atar->atach_Arrow_radius));
 			
 			//------------------------------------------------------------------------------------------
 			/*Arrow*/
@@ -89,7 +90,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 
 				//*ƒqƒbƒg‚µ‚½‚ç•`‰æ‚ðÁ‚·
 				eb->is_alive = false;
-				atar->is_alive = false;
+				atar->arrow_alive = false;
 
 				//Arrow•`‰æ•”•ª‚Ì”»’è
 				for (auto arw : gamemanager->bullet_player) {
@@ -104,7 +105,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 			else if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 2) {
 				//–î‚Ì“–‚½‚è”»’è‚ªƒqƒbƒg‚µ‚½‚ç•`‰æ‚ðÁ‚·
 				eb->is_alive = false;
-				atar->is_alive = false;
+				atar->arrow_alive = false;
 
 				//Arrow_Wing•`‰æ•”•ª‚Ì”»’è
 				for (auto arw_w : gamemanager->arrow_wing) {
