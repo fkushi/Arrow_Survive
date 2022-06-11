@@ -12,6 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="program\game\Anim_Player.cpp" />
+    <ClCompile Include="program\game\Arrow_Base.cpp" />
+    <ClCompile Include="program\game\Arrow_Manager.cpp" />
     <ClCompile Include="program\game\Arrow_Type.cpp" />
     <ClCompile Include="program\game\Arrow_Wing.cpp" />
     <ClCompile Include="program\game\Base.cpp" />
@@ -53,6 +55,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\game\Anim_Player.h" />
+    <ClInclude Include="program\game\Arrow_Base.h" />
+    <ClInclude Include="program\game\Arrow_Manager.h" />
     <ClInclude Include="program\game\Arrow_Type.h" />
     <ClInclude Include="program\game\Arrow_Wing.h" />
     <ClInclude Include="program\game\Base.h" />

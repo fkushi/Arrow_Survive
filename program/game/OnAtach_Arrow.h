@@ -21,6 +21,7 @@ public:
 
 	int arrow_type = 1;
 	int atach_Arrow_radius = 5;
+	int img_alpha = 0;
 
 	void update(const float deltatime)override;
 	void render(const float deltatime)override;

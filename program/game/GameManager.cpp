@@ -16,9 +16,9 @@ void GameManager::initialize() {
 
 }
 
-//----------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 /*関数*/
-//----------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 
 //------------------------------------------------------
 /*画像ハンドルの読み込み*/
@@ -179,9 +179,9 @@ int GameManager::GetOnAt_Arw_arrow_type() {
 	return 0;
 }
 
-//----------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 /*update,render*/
-//----------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 void GameManager::update(float deltatime) {
 	for (auto ba : base)ba->update(deltatime);
 
@@ -214,6 +214,7 @@ void GameManager::render(float deltatime) {
 	/*Timer*/
 	for (auto t : time)t->render(deltatime);
 	/*ARROW*/
+	for (auto arw_m : arrow_manager)arw_m->render(deltatime);
 	for (auto ar_ty : arrow_type)ar_ty->render(deltatime);
 	for (auto bp : bullet_player)bp->render(deltatime);
 	for (auto ar_wi : arrow_wing)ar_wi->render(deltatime);
@@ -222,10 +223,36 @@ void GameManager::render(float deltatime) {
 	if (player != nullptr)player->render(deltatime);
 }
 
-//----------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
 /*Delete_Check*/
 //eraceCheck_Base():基底クラスのDELETE、eraceCheck():リスト内のDELETE
-//----------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------
+
+void GameManager::eraceCheck_Base() {
+	{
+		std::list<Base*>::iterator it = base.begin();
+		while (it != base.end()) {
+			if (!(*it)->is_alive) {
+				delete(*it);
+				it = base.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
+	{
+		std::list<Arrow_Base*>::iterator it = arrow_base.begin();
+		while (it != arrow_base.end()) {
+			if (!(*it)->arrow_alive) {
+				delete(*it);
+				it = arrow_base.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
+}
+
 void GameManager::eraceCheck() {
 	/*Stage*/
 	{

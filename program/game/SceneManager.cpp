@@ -69,7 +69,8 @@ bool SceneManager::seqStage(const float deltatime) {
 		new map_Wall();
 		new Timer(t2k::Vector3(450, 90, 0));
 		gamemanager->player = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
-		
+		new Arrow_Manager();
+
 		//------------------------------------------------------------------
 		/*‰¹Œ¹‚Ìload*/
 		//------------------------------------------------------------------
@@ -191,6 +192,8 @@ void SceneManager::Del_END() {
 	//------------------------------------------------------------------
 	for (auto bp : gamemanager->bullet_player)bp->is_alive = false;
 	for (auto ataw : gamemanager->atach_arrow)ataw->is_alive = false;
+	for (auto arw_b : gamemanager->arrow_base)arw_b->arrow_alive = false;
+	for (auto arw_m : gamemanager->arrow_manager)arw_m->is_alive = false;
 
 	//------------------------------------------------------------------
 	/*stage*/

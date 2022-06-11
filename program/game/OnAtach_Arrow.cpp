@@ -80,7 +80,8 @@ void OnAtach_Arrow::update(const float deltatime) {
 
 void OnAtach_Arrow::render(const float deltatime) {
 
-	SetDrawBlendMode(DX_BLENDGRAPHTYPE_ALPHA, 0);
+	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_Q))img_alpha = 255;
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, img_alpha);
 	DrawCircle((int)pos.x, (int)pos.y, atach_Arrow_radius, GetColor(0, 0, 255), false);
 
 }
