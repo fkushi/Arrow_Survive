@@ -110,7 +110,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 				for (auto arw_w : gamemanager->arrow_wing) {
 					int arw_w_check = t2k::isIntersectRectToCorrectPosition(eb->pos, eb->preve_pos, eb->enm_B_SIZE, eb->enm_B_SIZE,
 						arw_w->pos, arw_w->blt_pla_w, arw_w->blt_pla_h);
-					if (arw_w_check > 0)arw_w->is_alive = false;
+					if (arw_w_check > 0)arw_w->arrow_alive = false;
 				}
 			}
 		}

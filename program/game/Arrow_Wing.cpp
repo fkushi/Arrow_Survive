@@ -43,7 +43,7 @@ Arrow_Wing::Arrow_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int s
 	gamemanager->arrow_wing.emplace_back(this);
 }
 
-void Arrow_Wing::update(const float deltatime) {
+void Arrow_Wing::update_arrow(const float deltatime) {
 
 	//------------------------------------------------------------------
 	/*真っ直ぐ飛ばし終えたら周回移動に移行するflag*/
@@ -105,10 +105,10 @@ void Arrow_Wing::update(const float deltatime) {
 	//------------------------------------------------------------------
 	/*画面外にでたら消去*/
 	//------------------------------------------------------------------
-	if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) is_alive = false;
+	if (pos.x < -150 || pos.x > 1124 || pos.y < -100 || pos.y > 1000) arrow_alive = false;
 
 }
-void Arrow_Wing::render(const float deltatime) {
+void Arrow_Wing::render_arrow(const float deltatime) {
 	
 	//------------------------------------------------------------------
 	/*画像のブレンド処理を変更させないようにする*/
