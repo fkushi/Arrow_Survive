@@ -14,6 +14,7 @@ extern GameManager* gamemanager;
 //--------------------------------------------------------------------------------------------------------------------------
 
 Create_Stage::Create_Stage() {
+
 }
 
 void Create_Stage::create_Stage() {
@@ -38,7 +39,6 @@ void Create_Stage::create_Stage() {
 	else if (gamemanager->GetPosPlayer().y > 768 && !init_change)pla_next_pop = choose_down;
 	else if (gamemanager->GetPosPlayer().x < 0 && !init_change)pla_next_pop = choose_left;
 	else if (gamemanager->GetPosPlayer().x > 1024 && !init_change)pla_next_pop = choose_right;
-	//else pla_next_pop = fast;
 	
 	//-----------------------------------------------------------------------------------------
 	/*ステージ生成、プレイヤー移動*/

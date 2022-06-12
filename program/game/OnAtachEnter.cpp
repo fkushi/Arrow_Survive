@@ -88,6 +88,8 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 				//ヒットした時のSE
 				PlaySoundMem(song.se_atach, DX_PLAYTYPE_BACK, true);
 
+				t2k::debugTrace("\nARROW_HIT:[%d]\n", 2);
+
 				//-------------------------------------------
 				/*矢の当たり判定がヒットしたら消す*/
 				//-------------------------------------------
