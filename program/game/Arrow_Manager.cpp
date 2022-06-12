@@ -34,30 +34,30 @@ void Arrow_Manager::render(const float deltatime) {
 
 }
 
-//void Arrow_Manager::Create_Arrow(t2k::Vector3 start, bool player_dir) {
-//	//-----------------------------------------------------------
-//	/*Player‚ªspace‚ð‰Ÿ‚µ‚½‚Æ‚«A‚»‚ÌŽž‚Ì–î‚Ì‘®«‚ð”­ŽË‚·‚é*/
-//	//-----------------------------------------------------------
-//
-//	int speed = 8;
-//	int radian = 0;
-//
-//	if (gamemanager->GetArwTyp_arrow_type() == 1) {
-//		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
-//		if (!player_dir) {
-//			new Bullet_Player(start, t2k::Vector3(1,0,0), radian, speed, player_dir);
-//		}
-//		else {
-//			new Bullet_Player(start, t2k::Vector3(-1, 0, 0), radian, speed, player_dir);
-//		}
-//	}
-//	else if (gamemanager->GetArwTyp_arrow_type() == 2) {
-//		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
-//		if (!player_dir) {
-//			new Arrow_Wing(start, t2k::Vector3(1, 0, 0), radian, speed, player_dir);
-//		}
-//		else {
-//			new Arrow_Wing(start, t2k::Vector3(-1, 0, 0), radian, speed, player_dir);
-//		}
-//	}
-//}
+void Arrow_Manager::Create_Arrow(t2k::Vector3 start, bool player_dir) {
+	//-----------------------------------------------------------
+	/*Player‚ªspace‚ð‰Ÿ‚µ‚½‚Æ‚«A‚»‚ÌŽž‚Ì–î‚Ì‘®«‚ð”­ŽË‚·‚é*/
+	//-----------------------------------------------------------
+
+	int speed = 8;
+	int radian = 0;
+
+	if (gamemanager->GetArwTyp_arrow_type() == 1) {
+		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
+		if (!player_dir) {
+			new Bullet_Player(start, t2k::Vector3(1,0,0), radian, speed, player_dir);
+		}
+		else {
+			new Bullet_Player(start, t2k::Vector3(-1, 0, 0), radian, speed, player_dir);
+		}
+	}
+	else if (gamemanager->GetArwTyp_arrow_type() == 2) {
+		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
+		if (!player_dir) {
+			new Arrow_Wing(start, t2k::Vector3(1, 0, 0), radian, speed, player_dir);
+		}
+		else {
+			new Arrow_Wing(start, t2k::Vector3(-1, 0, 0), radian, speed, player_dir);
+		}
+	}
+}

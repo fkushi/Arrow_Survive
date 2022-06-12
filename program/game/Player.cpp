@@ -6,7 +6,7 @@
 #include"DxLib.h"
 #include "../support/Support.h"
 
-#define PLA_DEBUG 1
+#define PLA_DEBUG 0
 
 extern GameManager* gamemanager;
 extern IMG_load		img;
@@ -79,24 +79,10 @@ void Player::update(const float deltatime) {
 	/*Arrow*/
 	//arrow_type = 1‚Í•’Ê‚Ì–îAarrow_type = 2‚Í•—‚Ì–î
 	//--------------------------------------------------------------------------------------------------
+	
 	//space‚ð‰Ÿ‚µ‚½‚Æ‚«A‚»‚ÌŽž‚Ì–î‚Ì‘®«‚ð”­ŽË‚·‚é
-	if (gamemanager->trigger_sapce && gamemanager->GetArwTyp_arrow_type() == 1) {
-		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
-		if (!pla_dir) {
-			gamemanager->createBullet_Player(pos, t2k::Vector3(1, 0, 0), 0, 8);
-		}
-		else {
-			gamemanager->createBullet_Player(pos, t2k::Vector3(-1, 0, 0), 0, 8);
-		}
-	}
-	else if (gamemanager->trigger_sapce && gamemanager->GetArwTyp_arrow_type() == 2) {
-		PlaySoundMem(song.se_shot, DX_PLAYTYPE_BACK, true);
-		if (!pla_dir) {
-			gamemanager->createArrwo_Wing(pos, t2k::Vector3(1, 0, 0), 0, 8);
-		}
-		else {
-			gamemanager->createArrwo_Wing(pos, t2k::Vector3(-1, 0, 0), 0, 8);
-		}
+	if (gamemanager->trigger_sapce) {
+		for (auto arw_m : gamemanager->arrow_manager)arw_m->Create_Arrow(pos,pla_dir);
 	}
 
 	//--------------------------------------------------------------------------------------------------

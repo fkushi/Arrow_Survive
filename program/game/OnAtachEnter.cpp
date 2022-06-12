@@ -66,11 +66,12 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 	for (auto eb : gamemanager->enemy_B) {
 		/*Player‚ÆEnemyB‚Ì”»’è*/
 		
-		/*int pla_enmB_atach = t2k::isIntersectRectToCorrectPosition(gamemanager->player->pos, gamemanager->player->preve_pos,
-			gamemanager->GetPlaSize_W(), gamemanager->GetPlaSize_H(), eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
-		*/
+		int pla_enmB_atach = t2k::isIntersectRectToCorrectPosition(gamemanager->player->pos, gamemanager->player->preve_pos,
+			gamemanager->GetPlaSize_W() - 10, gamemanager->GetPlaSize_W() - 10, eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
+		
 
-		pla_enemyB_check = t2k::isIntersectSphere(gamemanager->player->pos, gamemanager->player->pla_w>>1, eb->pos, eb->enm_B_SIZE);
+		pla_enemyB_check = t2k::isIntersectSphere(gamemanager->player->pos, gamemanager->player->pla_w>>1, 
+			eb->pos, static_cast<float>(eb->enm_B_SIZE));
 		
 		//-------------------------------------------------------------------------------------------
 		/*Arrow‚ÆEnemyB*/
