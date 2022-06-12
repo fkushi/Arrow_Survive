@@ -13,6 +13,9 @@ extern SONG_load		song;
 
 Arrow_Manager::Arrow_Manager() {
 
+	//--------------------------------------------------------------------------------------------------
+	/*矢の属性選択クラスの新規インスタンス生成*/
+	//--------------------------------------------------------------------------------------------------
 	new Arrow_Type();
 
 	gamemanager->arrow_manager.emplace_back(this);
@@ -37,6 +40,7 @@ void Arrow_Manager::render(const float deltatime) {
 void Arrow_Manager::Create_Arrow(t2k::Vector3 start, bool player_dir) {
 	//-----------------------------------------------------------
 	/*Playerがspaceを押したとき、その時の矢の属性を発射する*/
+	//arrow_type = 1は普通の矢、arrow_type = 2は風の矢
 	//-----------------------------------------------------------
 
 	int speed = 8;

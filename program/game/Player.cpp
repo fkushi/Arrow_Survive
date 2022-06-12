@@ -25,11 +25,6 @@ Player::Player(t2k::Vector3 start,int speed) {
 	hp_green = gamemanager->LoadGraphEx("graphics/Player/hp_green.png");
 	hp_red = gamemanager->LoadGraphEx("graphics/Player/hp_red.png");
 	hp_cover = gamemanager->LoadGraphEx("graphics/Player/hp_gold.png");
-
-	//--------------------------------------------------------------------------------------------------
-	/*矢の属性選択クラスの新規インスタンス生成*/
-	//--------------------------------------------------------------------------------------------------
-	//new Arrow_Type();
 }
 
 void Player::update(const float deltatime) {
@@ -77,7 +72,6 @@ void Player::update(const float deltatime) {
 
 	//--------------------------------------------------------------------------------------------------
 	/*Arrow*/
-	//arrow_type = 1は普通の矢、arrow_type = 2は風の矢
 	//--------------------------------------------------------------------------------------------------
 	
 	//spaceを押したとき、その時の矢の属性を発射する
