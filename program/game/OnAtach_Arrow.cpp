@@ -26,18 +26,22 @@ OnAtach_Arrow::OnAtach_Arrow(t2k::Vector3 start, t2k::Vector3 dir, int speed, bo
 }
 
 void OnAtach_Arrow::update_arrow(const float deltatime) {
+
+	auto choose_arrow = static_cast<uint32_t>(ARROW_TYPE::ARROW);
+	auto choose_wing = static_cast<uint32_t>(ARROW_TYPE::WING);
+
 	//--------------------------------------------------------------------------------------
-	/*Arrow*/
+	/*Arrow‚Ì‚Ì–î‚¶‚è“–‚½‚è”»’è*/
 	//--------------------------------------------------------------------------------------
-	if (arrow_type == 1) {
+	if (arrow_type == choose_arrow) {
 		pos += atach_Arrow_dir * (float)atach_Arrow_speed;
 		if (pos.x < 0 || pos.x > 1024 || pos.y < 0 || pos.y > 768) arrow_alive = false;
 	}
 
 	//--------------------------------------------------------------------------------------
-	/*Arrow_Wing*/
+	/*Arrow_Wing‚Ì‚Ì–î‚¶‚è“–‚½‚è”»’è*/
 	//--------------------------------------------------------------------------------------
-	if (arrow_type == 2) {
+	if (arrow_type == choose_wing) {
 		float add_x = cos(radius + 1.57f) * red_radius;
 		float add_y = sin(radius + 1.57f) * red_radius;
 		float add_center_x = cos(radius) * light_blue_radius;
@@ -50,8 +54,10 @@ void OnAtach_Arrow::update_arrow(const float deltatime) {
 
 		//–î‚ªX•ûŒü‚Éi‚Şˆ—
 		if (!sequence_arw_win)pos.x += atach_Arrow_dir.x * atach_Arrow_speed;
+
 		//–î‚ªü‰ñ‚·‚éˆ—
 		else {
+
 			//–î‚Ìü‰ñ”¼ŒaŠg‘å
 			light_blue_radius++;
 
@@ -80,7 +86,10 @@ void OnAtach_Arrow::update_arrow(const float deltatime) {
 
 void OnAtach_Arrow::render_arrow(const float deltatime) {
 
+	/*QƒL[‚ğ‰Ÿ‚·‚Æ–î‚¶‚è‚Ì•`‰æ‚ªŒ©‚¦‚é*/
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_Q))img_alpha = 255;
+	
+	/*•`‰æ*/
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, img_alpha);
 	DrawCircle((int)pos.x, (int)pos.y, atach_Arrow_radius, GetColor(0, 0, 255), false);
 

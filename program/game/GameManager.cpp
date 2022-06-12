@@ -27,15 +27,19 @@ int GameManager::LoadGraphEx(std::string ghPass)
 {
 	//ghPassの場所にある画像がmapに登録されているか確認
 	auto itr = loadGh.find(ghPass);
+
 	//mapの最後まで検索しなくても一致した場合->すでに読み込んでいる
 	if (itr != loadGh.end()) {
 		return loadGh[ghPass];
 	}
+
 	//読み込んでいなかったら登録して画像ハンドルを返す
 	else {
 		int gh = LoadGraph(ghPass.c_str());
+
 		//mapにパスと画像ハンドルを登録
 		loadGh.insert(std::make_pair(ghPass, gh));
+
 		//画像ハンドルを返す
 		return gh;
 	}
@@ -71,14 +75,17 @@ t2k::Vector3 GameManager::GetPos_ChangedPlayer(int pos_x, int pos_y) {
 	player->pos.y = static_cast<float>(pos_y);
 	return player->pos;
 }
+
 //PLYERの向き、falseは右、tureは左
 bool GameManager::GetPla_pla_dir() {
 	return player->pla_dir;
 }
+
 //shiftを押した時
 bool GameManager::GetPla_triger_push_sift() {
 	return player->triger_push_sift;
 }
+
 //PLAYER_SIZE
 int GameManager::GetPlaSize_W() {
 	return player->pla_w;
@@ -87,6 +94,7 @@ int GameManager::GetPlaSize_H() {
 	return player->pla_h;
 
 }
+
 //PLAYER_HP
 int GameManager::GetPlaHp_now() {
 	return player->gezi_now_num;
@@ -109,20 +117,6 @@ bool GameManager::GetArwWin_sequence_rotate() {
 	return true;
 }
 
-//------------------------------
-//Arrowの生成
-//------------------------------
-void GameManager::createBullet_Player(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
-	new Bullet_Player(start, dir, radian, speed, player->pla_dir);
-}
-
-//------------------------------
-//Arrow_wingの生成
-//------------------------------
-void GameManager::createArrwo_Wing(t2k::Vector3 start, t2k::Vector3 dir, float radian, int speed) {
-	new Arrow_Wing(start, dir, radian, speed, player->pla_dir);
-}
-
 //------------------------------------------------------
 /*ENEMY*/
 //EnemyBのインスタンスを新規生成
@@ -133,11 +127,8 @@ void GameManager::createEnemyB(t2k::Vector3 start, int speed) {
 
 //------------------------------------------------------
 /*STAGE*/
-//------------------------------------------------------
-
-//------------------------------
 //Stage_Typeの取得関数
-//------------------------------
+//------------------------------------------------------
 int GameManager::GetCreSt_stage_type() {
 	return c_st.stage_type;
 }
@@ -185,23 +176,20 @@ int GameManager::GetOnAt_Arw_arrow_type() {
 void GameManager::update(float deltatime) {
 	for (auto ba : base)ba->update(deltatime);
 
-	atach.Atach_Pla_Enemy();
-
 	/*シーン*/
 	scene.sequence_.update(deltatime);
+	
 	/*キーボード*/
 	Control_Keyboard();
 
-	std::list<Base*>::iterator it = base.begin();
-	while (it != base.end()) {
-		if (!(*it)->is_alive) {
-			delete(*it);
-			it = base.erase(it);
-			continue;
-		}
-		it++;
-	}
+	/*DELETE*/
+	eraceCheck_Base();
+
 }
+
+//------------------------------------------------------
+/*描画順序*/
+//------------------------------------------------------
 void GameManager::render(float deltatime) {
 	/*STAGE*/
 	for (auto m_b : map_stageB)m_b->render(deltatime);
@@ -215,10 +203,6 @@ void GameManager::render(float deltatime) {
 	for (auto t : time)t->render(deltatime);
 	/*ARROW*/
 	for (auto arw_m : arrow_manager)arw_m->render(deltatime);
-	//for (auto ar_ty : arrow_type)ar_ty->render(deltatime);
-	//for (auto bp : bullet_player)bp->render(deltatime);
-	//for (auto ar_wi : arrow_wing)ar_wi->render_arrow(deltatime);
-	//for (auto at_aw : atach_arrow)at_aw->render(deltatime);
 	/*PLAYER*/
 	if (player != nullptr)player->render(deltatime);
 }
@@ -254,7 +238,9 @@ void GameManager::eraceCheck_Base() {
 }
 
 void GameManager::eraceCheck() {
+	//------------------------------------------------------
 	/*Stage*/
+	//------------------------------------------------------
 	{
 		std::list<map_Wall*>::iterator it = map_wall.begin();
 		while (it != map_wall.end()) {
