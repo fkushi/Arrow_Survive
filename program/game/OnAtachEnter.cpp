@@ -79,17 +79,16 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 		/*Arrow‚ÆEnemyB‚ÌHIT”»’è*/
 		//-------------------------------------------------------------------------------------------
 		for (auto atar : gamemanager->atach_arrow) {
-			/*Arrow‚Ì”»’è•”•ª‚Ì”»’è*/
-			arw_enm_chenk = t2k::isIntersectSphere(eb->pos, static_cast<float>(eb->enm_B_SIZE / 2),
+			
+			/*–î‚¶‚è‚Ì”»’è•”•ª‚Ì”»’è*/
+			arw_enm_check = t2k::isIntersectSphere(eb->pos, static_cast<float>(eb->enm_B_SIZE / 2),
 				atar->pos, static_cast<float>(atar->atach_Arrow_radius));
 
-			
-			
 			//------------------------------------------------------------------------------------------
 			/*Arrow*/
 			//------------------------------------------------------------------------------------------
 
-			if (arw_enm_chenk) {
+			if (arw_enm_check) {
 				//ƒqƒbƒg‚µ‚½Žž‚ÌSE
 				PlaySoundMem(song.se_atach, DX_PLAYTYPE_BACK, true);
 
@@ -103,10 +102,25 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 				atar->arrow_alive = false;
 
 				//Arrow•`‰æ•”•ª
-				for (auto arw : gamemanager->bullet_player)arw->arrow_alive = false;
+				for (auto arw : gamemanager->bullet_player) {
+					
+					//–î‚¶‚è‚ª“–‚½‚è‚©‚Â–î‚Ì•`‰æ‚ª“–‚½‚Á‚½ê‡A•`‰æ‚ðÁ‚·
+					bool img_arw_enm = t2k::isIntersectSphere(eb->pos, static_cast<float>(eb->enm_B_SIZE / 2), 
+						arw->pos, static_cast<float>(arw->blt_pla_w >> 1));
+					
+					if(img_arw_enm)arw->arrow_alive = false;
+				}
 
 				//Arrow_Wing•`‰æ•”•ª
-				for (auto arw_w : gamemanager->arrow_wing)arw_w->arrow_alive = false;
+				for (auto arw_w : gamemanager->arrow_wing) {
+					
+					//–î‚¶‚è‚ª“–‚½‚è‚©‚Â–î‚Ì•`‰æ‚ª“–‚½‚Á‚½ê‡A•`‰æ‚ðÁ‚·
+					bool img_win_enm = t2k::isIntersectSphere(eb->pos, static_cast<float>(eb->enm_B_SIZE / 2),
+						arw_w->pos, static_cast<float>(arw_w->blt_pla_w >> 1));
+					
+					if(img_win_enm)arw_w->arrow_alive = false;
+
+				}
 			}
 		}
 

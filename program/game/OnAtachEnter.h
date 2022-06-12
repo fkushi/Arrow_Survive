@@ -18,7 +18,7 @@ public:
 	/*Player“–‚½‚è”»’è*/
 	//----------------------------------------
 	int pla_enemyB_check;
-	bool arw_enm_chenk = false;
+	bool arw_enm_check = false;
 	int count_arw_wing = 0;
 	
 	//Enemy¶¬êŠ
