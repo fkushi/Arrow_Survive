@@ -48,6 +48,9 @@ void Enemy_B::update(const float deltatime) {
 	if (gamemanager->atach.pla_enemyB_check != 0)init_enmB_move = false;
 	else init_enmB_move = true;
 
+	/*DEBUG*/
+	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_F))init_enmB_move = false;
+
 	if (init_enmB_move) {
 		pos.x += dx * SPEED;
 		pos.y += dy * SPEED;

@@ -7,6 +7,9 @@ private:
 	int pla_speed = 0;
 
 	/*HP*/
+	bool flag_atack_EnemyB = false;
+	float count_interval = 0;
+	float count_atack_Enemy_interval = 0;
 	int hp_frame = 0;
 	int hp_min_num = 0;
 	int hp_max_num = 300;

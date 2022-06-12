@@ -44,7 +44,6 @@ void Player::update(const float deltatime) {
 	gamemanager->atach.Atach_Pla_Wall();
 	gamemanager->atach.Atach_Pla_Pop();
 	gamemanager->atach.Atach_Pla_Enemy();
-	bool check = gamemanager->atach.pla_enemyB_check;
 	preve_pos = pos;
 	
 	//--------------------------------------------------------------------------------------------------
@@ -104,9 +103,29 @@ void Player::update(const float deltatime) {
 	/*HPゲージのあった場合、HPが減る処理*/
 	//enemyの攻撃力:3,enemyに当たった場合、HPがへる
 	//--------------------------------------------------------------------------------------------------
-	if (check && hp_frame % 2 == 0 && gezi_now_num > hp_min_num) {
-		gezi_now_num -= 3;
-		t2k::debugTrace("\nダメージを受けた:[%d]\n", 3);
+	bool check = gamemanager->atach.pla_enemyB_check;
+
+	if (check && count_interval == 0) {
+		flag_atack_EnemyB = true;
+		count_interval = 1.0f;
+		count_atack_Enemy_interval = 0.5f;
+	}
+
+	if (flag_atack_EnemyB) {
+		count_atack_Enemy_interval -= deltatime;
+		if (count_atack_Enemy_interval >= 0 && hp_frame % 2 == 0 && gezi_now_num > hp_min_num) {
+			gezi_now_num -= 3;
+			t2k::debugTrace("\nダメージを受けた:[%d]\n", 3);
+		}
+		else {
+			flag_atack_EnemyB = false;
+		}
+	}
+	else {
+		count_interval -= deltatime;
+		if (count_interval <= 0) {
+			count_interval = 0;
+		}
 	}
 }
 
@@ -156,5 +175,7 @@ void Player::render(const float deltatime) {
 	SetFontSize(20);
 	DrawStringEx(100, 100, 255, "posX:%1.0f,posY:%1.0f", pos.x, pos.y);
 	DrawStringEx(100, 120, 255, "grand_atach = %d", gamemanager->GetAtachWall());
+	DrawStringEx(100, 140, 255, "count_atack_Enemy_interval = %.1f", count_atack_Enemy_interval);
+	DrawStringEx(100, 160, 255, "count_interval = %.1f", count_interval);
 #endif
 }
