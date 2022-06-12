@@ -97,9 +97,6 @@
     <ClCompile Include="program\game\Taitle.cpp">
       <Filter>program\game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\IMG_load.cpp">
-      <Filter>program\game</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\Player.cpp">
       <Filter>program\game\Player</Filter>
     </ClCompile>
@@ -251,9 +248,6 @@
     </ClInclude>
     <ClInclude Include="program\game\Taitle.h">
       <Filter>program\game\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\IMG_load.h">
-      <Filter>program\game</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Player.h">
       <Filter>program\game\Player</Filter>

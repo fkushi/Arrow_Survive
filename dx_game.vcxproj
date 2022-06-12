@@ -25,7 +25,6 @@
     <ClCompile Include="program\game\GameManager.cpp" />
     <ClCompile Include="program\game\game_main.cpp" />
     <ClCompile Include="program\game\Anim_Enemy_B.cpp" />
-    <ClCompile Include="program\game\IMG_load.cpp" />
     <ClCompile Include="program\game\map_StageA.cpp" />
     <ClCompile Include="program\game\map_StageB.cpp" />
     <ClCompile Include="program\game\map_Wall.cpp" />
@@ -68,7 +67,6 @@
     <ClInclude Include="program\game\GameManager.h" />
     <ClInclude Include="program\game\game_main.h" />
     <ClInclude Include="program\game\Anim_Enemy_B.h" />
-    <ClInclude Include="program\game\IMG_load.h" />
     <ClInclude Include="program\game\map_StageA.h" />
     <ClInclude Include="program\game\map_StageB.h" />
     <ClInclude Include="program\game\map_Wall.h" />

@@ -8,10 +8,11 @@
 #include"Dxlib.h"
 
 extern GameManager* gamemanager;
+extern Create_Stage	c_st;
 SONG_load		song;
 Taitle			taitle;
 GameEnd			end;
-Create_Stage	c_st;
+
 
 //-------------------------------------------------------------------------------------------------------------------
 /*ƒV[ƒ“§Œä*/
