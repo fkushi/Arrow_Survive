@@ -1,6 +1,5 @@
 #include"Player.h"
 #include"Anim_Player.h"
-#include"IMG_load.h"
 #include"SONG_load.h"
 #include"GameManager.h"
 #include"DxLib.h"
@@ -9,9 +8,8 @@
 #define PLA_DEBUG 0
 
 extern GameManager* gamemanager;
-extern IMG_load		img;
 extern SONG_load	song;
-Anim_Player			anim_pla;
+Anim_Player*		anim_player;
 
 Player::Player(t2k::Vector3 start,int speed) {
 	pos = start;
@@ -25,13 +23,15 @@ Player::Player(t2k::Vector3 start,int speed) {
 	hp_green = gamemanager->LoadGraphEx("graphics/Player/hp_green.png");
 	hp_red = gamemanager->LoadGraphEx("graphics/Player/hp_red.png");
 	hp_cover = gamemanager->LoadGraphEx("graphics/Player/hp_gold.png");
+
+	anim_player = new Anim_Player();
 }
 
 void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*アニメーション*/
 	//--------------------------------------------------------------------------------------------------
-	anim_pla.anim_Player_Controll(deltatime);
+	anim_player->anim_Player_Controll(deltatime);
 	
 	//--------------------------------------------------------------------------------------------------
 	/*当たり判定*/
@@ -46,7 +46,7 @@ void Player::update(const float deltatime) {
 	//shiftを押している間動きを止めるflag
 	if (gamemanager->down_shift) {
 		triger_push_sift = true;
-		anim_pla.init_anim_pla = false;
+		anim_player->init_anim_pla = false;
 	}
 	//shiftを押上たとき、動けるflag
 	else if (gamemanager->relese_shift) {
@@ -132,7 +132,7 @@ void Player::render(const float deltatime) {
 	/*描画処理*/
 	//Playerのアニメーションの画像ハンドルの読み込み
 	//--------------------------------------------------------------------------------------------------
-	img.img_player();
+	anim_player->anim_Player_render();
 	
 	//------------------------------------------------------------------------------
 	/*当たった時のPlayerの赤色に変わる処理*/
@@ -144,8 +144,8 @@ void Player::render(const float deltatime) {
 	//-------------------------------------------------------------------------------
 	/*playerの描画*/
 	//-------------------------------------------------------------------------------
-	if (!anim_pla.init_anim_pla) DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img_player_stand, true, pla_dir);
-	else DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img.anim_pla[anim_pla.anim_move][anim_pla.anim_frame], true, pla_dir);
+	if (!anim_player->init_anim_pla) DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img_player_stand, true, pla_dir);
+	else DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, anim_player->anim_pla[anim_player->anim_move][anim_player->anim_frame], true, pla_dir);
 
 #if PLA_DEBUG
 	//-------------------------------------------------------------------------------

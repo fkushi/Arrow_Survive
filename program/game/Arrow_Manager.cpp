@@ -1,4 +1,5 @@
 #include"Arrow_Manager.h"
+#include"Arrow_Base.h"
 #include"SONG_load.h"
 #include"GameManager.h"
 #include"DxLib.h"

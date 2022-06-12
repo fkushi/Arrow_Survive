@@ -7,19 +7,18 @@ public:
 	t2k::Sequence<SceneManager*> sequence_ =
 		t2k::Sequence<SceneManager*>(this, &SceneManager::seqTitle);
 
-	//title関数
+	//titleシーン
 	bool seqTitle(const float deltatime);
+	//プレイシーン
 	bool seqStage(const float deltatime);
+	//結果発表シーン
 	bool seqGameEnd(const float deltatime);
 
-	bool init_bgm = false;
 	bool init_st1_sound = false;
-	int bgm_stage = 0;
-
+	
 	int preve_m = 0;
 	int preve_s = 0;
 
-	void Init_Stage();
 	void Del_END();
 
 };
