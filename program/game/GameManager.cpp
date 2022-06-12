@@ -177,7 +177,7 @@ void GameManager::update(float deltatime) {
 	for (auto ba : base)ba->update(deltatime);
 
 	/*–î‚¶‚è‚ÆEnemyB‚Ì“–‚½‚è”»’è*/
-	atach.Atach_Pla_Enemy();
+	atach->Atach_Pla_Enemy();
 
 	/*ƒV[ƒ“*/
 	scene.sequence_.update(deltatime);

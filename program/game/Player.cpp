@@ -16,7 +16,7 @@ Anim_Player			anim_pla;
 Player::Player(t2k::Vector3 start,int speed) {
 	pos = start;
 	pla_speed = speed;
-	gamemanager->atach.pla_enemyB_check = 0;
+	gamemanager->atach->pla_enemyB_check = false;
 
 	//--------------------------------------------------------------------------------------------------
 	/*画像ハンドルの読み込み*/
@@ -36,8 +36,8 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 	/*当たり判定*/
 	//--------------------------------------------------------------------------------------------------
-	gamemanager->atach.Atach_Pla_Wall();
-	gamemanager->atach.Atach_Pla_Pop();
+	gamemanager->atach->Atach_Pla_Wall();
+	gamemanager->atach->Atach_Pla_Pop();
 	preve_pos = pos;
 	
 	//--------------------------------------------------------------------------------------------------
@@ -58,13 +58,13 @@ void Player::update(const float deltatime) {
 
 	}*/
 	//右を向いたらpla_dir = false、左を向いたらpla_dir = true;
-	if (gamemanager->atach.pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
-	if (gamemanager->atach.pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
-	if (gamemanager->atach.pla_right && !triger_push_sift && gamemanager->down_right) {
+	if (gamemanager->atach->pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
+	if (gamemanager->atach->pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
+	if (gamemanager->atach->pla_right && !triger_push_sift && gamemanager->down_right) {
 			pla_dir= false;
 			pos.x += pla_speed;
 	}
-	if (gamemanager->atach.pla_left && !triger_push_sift && gamemanager->down_left) {
+	if (gamemanager->atach->pla_left && !triger_push_sift && gamemanager->down_left) {
 			pla_dir = true;
 			pos.x -= pla_speed;
 	}
@@ -82,7 +82,7 @@ void Player::update(const float deltatime) {
 	/*HPゲージのあった場合、HPが減る処理*/
 	//enemyの攻撃力:3,enemyに当たった場合、HPがへる
 	//--------------------------------------------------------------------------------------------------
-	bool check = gamemanager->atach.pla_enemyB_check;
+	bool check = gamemanager->atach->pla_enemyB_check;
 
 	if (check && count_interval == 0) {
 		flag_atack_EnemyB = true;
@@ -130,14 +130,14 @@ void Player::render(const float deltatime) {
 
 	//--------------------------------------------------------------------------------------------------
 	/*描画処理*/
-	//--------------------------------------------------------------------------------------------------
-	bool atach = gamemanager->atach.pla_enemyB_check;
 	//Playerのアニメーションの画像ハンドルの読み込み
+	//--------------------------------------------------------------------------------------------------
 	img.img_player();
 	
 	//------------------------------------------------------------------------------
 	/*当たった時のPlayerの赤色に変わる処理*/
 	//-------------------------------------------------------------------------------
+	bool atach = gamemanager->atach->pla_enemyB_check;
 	if(atach)SetDrawBright(255, 0, 0);
 	else SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 

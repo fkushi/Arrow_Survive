@@ -44,7 +44,7 @@ public:
 	Player* player;
 
 	/*“–‚½‚è”»’è*/
-	OnAtachEnter				atach;
+	OnAtachEnter*				atach;
 
 	/*Arrow*/
 	std::list<Arrow_Manager*>	arrow_manager;

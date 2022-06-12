@@ -65,58 +65,46 @@ void OnAtachEnter::Atach_Pla_Pop() {
 void OnAtachEnter::Atach_Pla_Enemy() {
 	for (auto eb : gamemanager->enemy_B) {
 		
-		/*Player‚ÆEnemyB‚Ì”»’è*/
+		//-------------------------------------------------------------------------------------------
+		/*Player‚ÆEnemyB‚Ì“–‚½‚è”»’è”»’è*/
+		//-------------------------------------------------------------------------------------------
 		int pla_enmB_atach = t2k::isIntersectRectToCorrectPosition(gamemanager->player->pos, gamemanager->player->preve_pos,
 			gamemanager->GetPlaSize_W() - 10, gamemanager->GetPlaSize_W() - 10, eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
 		
 
-		pla_enemyB_check = t2k::isIntersectSphere(gamemanager->player->pos, (gamemanager->player->pla_w>>1) + 5, 
+		pla_enemyB_check = t2k::isIntersectSphere(gamemanager->player->pos, static_cast<float>(gamemanager->player->pla_w>>1) + 5,
 			eb->pos, static_cast<float>(eb->enm_B_SIZE));
 		
 		//-------------------------------------------------------------------------------------------
-		/*Arrow‚ÆEnemyB*/
+		/*Arrow‚ÆEnemyB‚ÌHIT”»’è*/
 		//-------------------------------------------------------------------------------------------
 		for (auto atar : gamemanager->atach_arrow) {
 			/*Arrow‚Ì”»’è•”•ª‚Ì”»’è*/
 			arw_enm_chenk = t2k::isIntersectSphere(eb->pos, static_cast<float>(eb->enm_B_SIZE / 2),
 				atar->pos, static_cast<float>(atar->atach_Arrow_radius));
+
+			
 			
 			//------------------------------------------------------------------------------------------
 			/*Arrow*/
 			//------------------------------------------------------------------------------------------
-			if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 1) {
+
+			if (arw_enm_chenk) {
 				//ƒqƒbƒg‚µ‚½Žž‚ÌSE
 				PlaySoundMem(song.se_atach, DX_PLAYTYPE_BACK, true);
-
-				t2k::debugTrace("\nARROW_HIT:[%d]\n", 2);
 
 				//-------------------------------------------
 				/*–î‚Ì“–‚½‚è”»’è‚ªƒqƒbƒg‚µ‚½‚çÁ‚·*/
 				//-------------------------------------------
 				//EnemyB
 				eb->is_alive = false;
-				
+
 				//Arrow_Wing‚Ì“–‚½‚è”»’è
 				atar->arrow_alive = false;
 
 				//Arrow•`‰æ•”•ª
 				for (auto arw : gamemanager->bullet_player)arw->arrow_alive = false;
 
-			}
-			//------------------------------------------------------------------------------------------
-			/*Arrow_Wing*/
-			//------------------------------------------------------------------------------------------
-			else if (arw_enm_chenk && gamemanager->GetOnAt_Arw_arrow_type() == 2) {
-				
-				//-------------------------------------------
-				/*–î‚Ì“–‚½‚è”»’è‚ªƒqƒbƒg‚µ‚½‚çÁ‚·*/
-				//-------------------------------------------
-				//EnemyB
-				eb->is_alive = false;
-				
-				//Arrow_Wing‚Ì“–‚½‚è”»’è
-				atar->arrow_alive = false;
-				
 				//Arrow_Wing•`‰æ•”•ª
 				for (auto arw_w : gamemanager->arrow_wing)arw_w->arrow_alive = false;
 			}

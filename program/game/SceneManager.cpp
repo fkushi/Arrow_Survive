@@ -68,7 +68,9 @@ bool SceneManager::seqStage(const float deltatime) {
 		new map_StageA();
 		new map_Wall();
 		new Timer(t2k::Vector3(450, 90, 0));
+		gamemanager->atach = new OnAtachEnter();
 		gamemanager->player = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
+		
 		new Arrow_Manager();
 
 		//------------------------------------------------------------------
