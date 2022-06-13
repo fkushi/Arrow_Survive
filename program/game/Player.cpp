@@ -5,7 +5,7 @@
 #include"DxLib.h"
 #include "../support/Support.h"
 
-#define PLA_DEBUG 0
+#define PLA_DEBUG 1
 
 extern GameManager* gamemanager;
 extern SONG_load	song;
@@ -71,9 +71,8 @@ void Player::update(const float deltatime) {
 
 	//--------------------------------------------------------------------------------------------------
 	/*Arrow*/
-	//--------------------------------------------------------------------------------------------------
-	
 	//spaceを押したとき、その時の矢の属性を発射する
+	//--------------------------------------------------------------------------------------------------
 	if (gamemanager->trigger_sapce) {
 		for (auto arw_m : gamemanager->arrow_manager)arw_m->Create_Arrow(pos,pla_dir);
 	}
@@ -87,13 +86,13 @@ void Player::update(const float deltatime) {
 	if (check && count_interval == 0) {
 		flag_atack_EnemyB = true;
 		count_interval = 1.0f;
-		count_atack_Enemy_interval = 0.5f;
+		count_atack_Enemy_interval = 1.5f;
 	}
 
 	if (flag_atack_EnemyB) {
-		count_atack_Enemy_interval -= deltatime;
+		count_atack_Enemy_interval -= 1;
 		if (count_atack_Enemy_interval >= 0 && hp_frame % 2 == 0 && gezi_now_num > hp_min_num) {
-			gezi_now_num -= 3;
+			gezi_now_num -= 30;
 			t2k::debugTrace("\nダメージを受けた:[%d]\n", 3);
 		}
 		else {
@@ -138,7 +137,7 @@ void Player::render(const float deltatime) {
 	/*当たった時のPlayerの赤色に変わる処理*/
 	//-------------------------------------------------------------------------------
 	bool atach = gamemanager->atach->pla_enemyB_check;
-	if(atach)SetDrawBright(255, 0, 0);
+	if(flag_atack_EnemyB)SetDrawBright(255, 0, 0);
 	else SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	//-------------------------------------------------------------------------------

@@ -42,12 +42,6 @@ void Enemy_B::update(const float deltatime) {
 	dx = A / C;
 	dy = B / C;
 
-	//----------------------------------------------------------------
-	/*player‚É“–‚½‚Á‚½‚çuŠÔˆêŽž“I‚ÉŽ~‚Ü‚é*/
-	//----------------------------------------------------------------
-	if (gamemanager->atach->pla_enemyB_check != 0)init_enmB_move = false;
-	else init_enmB_move = true;
-
 	/*DEBUG*/
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_F))init_enmB_move = false;
 	

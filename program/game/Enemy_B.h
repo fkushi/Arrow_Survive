@@ -3,6 +3,8 @@
 #include"../library/t2klib.h"
 class Enemy_B : public Base {
 private:
+	bool flag_check = false;
+	float count_atack_interval = 0;
 	int SPEED;
 	int touch = 1;
 public:
