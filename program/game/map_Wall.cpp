@@ -45,25 +45,25 @@ void map_Wall::update(const float deltatime) {
 	//------------------------------------------------------------------
 	//bridge_up
 	else if (pos_x >= 512 - (bridge_w >> 1) && pos_x <= 512 + (bridge_w >> 1) &&
-		pos_y <= 84 && c_st.pla_next_pop != 2)atach_wal = atach_grand;
+		pos_y <= 84 && c_st.pla_next_pop != 2 && c_st.stage_type != 1)atach_wal = atach_grand;
 	else if (pos_x >= 512 + (bridge_w >> 1) && pos_y <= 64)atach_wal = atach_right;
 	else if (pos_x <= 512 - (bridge_w >> 1) && pos_y <= 64)atach_wal = atach_left;
 	
 	//bridge_down
 	else if (pos_x >= 512 - (bridge_w >> 1) && pos_x <= 512 + (bridge_w >> 1) &&
-		pos_y >= 681 && c_st.pla_next_pop != 1)atach_wal = atach_wal = atach_grand;
+		pos_y >= 681 && c_st.pla_next_pop != 1 && c_st.stage_type != 1)atach_wal = atach_wal = atach_grand;
 	else if (pos_x >= 512 + (bridge_w >> 1) && pos_y >= 688)atach_wal = atach_right;
 	else if (pos_x <= 512 - (bridge_w >> 1) && pos_y >= 688)atach_wal = atach_left;
 	
 	//bridge_right
 	else if (pos_y >= 384 - 42 && pos_y <= 384 + 38 - (pla_h >> 1) &&
-		pos_x <= 62 && c_st.pla_next_pop != 4) atach_wal = atach_grand;
+		pos_x <= 62 && c_st.pla_next_pop != 4 && c_st.stage_type != 1) atach_wal = atach_grand;
 	else if (pos_y <= 384 + 38 - (pla_h >> 1) && pos_x < 62) atach_wal = atach_up;
 	else if (pos_y >= 384 - 42 && pos_x < 62) atach_wal = atach_down;
 	
 	//bridge_left
 	else if (pos_y >= 384 - 42 && pos_y <= 384 + 38 - (pla_h >> 1) &&
-		pos_x >= 960 && c_st.pla_next_pop != 3)atach_wal = atach_grand;
+		pos_x >= 960 && c_st.pla_next_pop != 3 && c_st.stage_type != 1)atach_wal = atach_grand;
 	else if (pos_y >= 384 - 42 && pos_x > 962)atach_wal = atach_down;
 	else if (pos_y <= 384 + 38 - (pla_h >> 1) && pos_x > 962)atach_wal = atach_up;
 	
@@ -93,9 +93,8 @@ void map_Wall::render(const float deltatime) {
 	/*player‚ª“n‚Á‚Ä‚È‚¢‹´‚ð•`‰æ‚·‚é*/
 	//1:ã‚Ì‹´A2:‰º‚Ì‹´A3:‰E‚Ì‹´A4:¶‚Ì‹´‚ð“n‚Á‚½Žž‚É•`‰æ
 	//------------------------------------------------------------------
-	if(pla_next == 2)DrawRotaGraph(1024 >> 1, 32, 1.0f, 1.57f, img_no_Bridge, true);
-	if(pla_next == 1)DrawRotaGraph(1024 >> 1, 768 - 32, 1.0f, 1.57f, img_no_Bridge, true);
-	if(pla_next == 4)DrawRotaGraph(32, 768 >> 1, 1.0f, 0, img_no_Bridge, true);
-	if(pla_next == 3)DrawRotaGraph(1024 - 32, 768 >> 1, 1.0f, 0, img_no_Bridge, true);
-	
+	if(pla_next == 2 || c_st.stage_type == 1)DrawRotaGraph(1024 >> 1, 32, 1.0f, 1.57f, img_no_Bridge, true);
+	if(pla_next == 1 || c_st.stage_type == 1)DrawRotaGraph(1024 >> 1, 768 - 32, 1.0f, 1.57f, img_no_Bridge, true);
+	if(pla_next == 4 || c_st.stage_type == 1)DrawRotaGraph(32, 768 >> 1, 1.0f, 0, img_no_Bridge, true);
+	if(pla_next == 3 || c_st.stage_type == 1)DrawRotaGraph(1024 - 32, 768 >> 1, 1.0f, 0, img_no_Bridge, true);
 }

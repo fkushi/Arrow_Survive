@@ -90,7 +90,7 @@ void Player::update(const float deltatime) {
 	}
 
 	if (flag_atack_EnemyB) {
-		count_atack_Enemy_interval -= 1;
+		count_atack_Enemy_interval--;
 		if (count_atack_Enemy_interval >= 0 && hp_frame % 2 == 0 && gezi_now_num > hp_min_num) {
 			gezi_now_num -= 30;
 			t2k::debugTrace("\nÉ_ÉÅÅ[ÉWÇéÛÇØÇΩ:[%d]\n", 3);
@@ -118,11 +118,20 @@ void Player::render(const float deltatime) {
 	int gezi_max_y = static_cast<int>(pos.y) + (pla_h >> 1) + 10;
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	SetDrawBright(255, 255, 255);
-	//HP_CORVER
+
+	//-----------------------------------------------------------
+	//HP_CORVERÇÃï`âÊ
+	//-----------------------------------------------------------
 	DrawExtendGraph(gezi_min_x - 1, gezi_min_y - 2, gezi_max_x + 2, gezi_max_y + 2, hp_cover, true);
-	//HP_RED
+	
+	//-----------------------------------------------------------
+	//HP_REDÇÃï`âÊ
+	//-----------------------------------------------------------
 	DrawExtendGraph(gezi_min_x, gezi_min_y, gezi_max_x, gezi_max_y, hp_red, true);
-	//HP
+	
+	//-----------------------------------------------------------
+	//HPÇÃï`âÊ
+	//-----------------------------------------------------------
 	DrawExtendGraph(gezi_min_x, gezi_min_y,
 		gezi_min_x + (gezi_max_x - gezi_min_x) * (gezi_now_num - hp_min_num) / (hp_max_num - hp_min_num),
 		gezi_max_y, hp_green, true);

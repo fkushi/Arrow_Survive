@@ -21,7 +21,7 @@ private:
 	int light_blue_radius = 100;
 	
 	/*“–‚½‚è”»’è‚Ì“§‰ß‚·‚é’l*/
-	int img_alpha = 255;
+	int img_alpha = 0;
 
 	/*light_blue_radius‚ÌŽü‰ñ”¼Œa*/
 	float radius = 0;
