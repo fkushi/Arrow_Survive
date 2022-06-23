@@ -89,7 +89,6 @@ public:
 	bool trigger_enter = false;
 	bool trigger_sapce = false;
 
-	
 	void Control_Keyboard();
 
 	//----------------------------------------------------------------
@@ -107,8 +106,7 @@ public:
 	int GetPlaSize_W();
 	int GetPlaSize_H();
 	int GetPlaHp_now();
-	int GetAtachWall();
-
+	
 	//----------------------------------------------------------------
 	/*Arrow*/
 	//----------------------------------------------------------------
@@ -120,6 +118,7 @@ public:
 	/*STAGE*/
 	//----------------------------------------------------------------
 	int GetCreSt_stage_type();
+	int GetAtachWall();
 	int GetTime_S();
 	int GetTime_M();
 

@@ -42,7 +42,17 @@ void Enemy_B::update(const float deltatime) {
 	dx = A / C;
 	dy = B / C;
 
+	//----------------------------------------------------------------
+	/*playerが壁に当たっていてかつ、enemyがplayerに触れた場合にenemyの
+	動きを止める*/
+	//----------------------------------------------------------------
+	//if (gamemanager->GetAtachWall() > -1 && gamemanager->atach->player_enemyB_atach > 0)init_enmB_move = false;
+	//if(gamemanager->GetPosPlayer().x > 940 && gamemanager->atach->arw_enm_check)init_enmB_move = false;
+	
+	//----------------------------------------------------------------
 	/*DEBUG*/
+	//Fキーを押した場合、エネミーの動きを止める
+	//----------------------------------------------------------------
 	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_F))init_enmB_move = false;
 	
 	if (init_enmB_move) {
