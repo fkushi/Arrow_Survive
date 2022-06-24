@@ -74,6 +74,9 @@ bool SceneManager::seqStage(const float deltatime) {
 		
 		new Arrow_Manager();
 
+		/*Playerの死亡時のシーン移動インターバル初期化*/
+		count_move_seqGameEnd_interval = 1.0f;
+
 		//------------------------------------------------------------------
 		/*音源のload*/
 		//------------------------------------------------------------------
