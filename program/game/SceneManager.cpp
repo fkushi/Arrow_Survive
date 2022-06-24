@@ -5,6 +5,7 @@
 #include"SONG_load.h"
 #include"Create_Stage.h"
 #include"GameManager.h"
+#include"Fade.h"
 #include"Dxlib.h"
 
 extern GameManager* gamemanager;
@@ -12,6 +13,7 @@ extern Create_Stage	c_st;
 SONG_load		song;
 Taitle			taitle;
 GameEnd			end;
+//Fade fade;
 
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -109,7 +111,7 @@ bool SceneManager::seqStage(const float deltatime) {
 	//----------------------------------------------------------------------------------------
 	/*GameEnd*/
 	//----------------------------------------------------------------------------------------
-	if (gamemanager->GetPlaHp_now() <= 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&
+	if (count_move_seqGameEnd_interval < 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&
 		gamemanager->down_shift)){
 
 		//------------------------------------------------------------------

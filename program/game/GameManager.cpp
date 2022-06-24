@@ -95,7 +95,7 @@ int GameManager::GetPlaSize_H() {
 
 //PLAYER_HP
 int GameManager::GetPlaHp_now() {
-	return player->gezi_now_num;
+	return player->hp_gezi_now;
 }
 
 //------------------------------------------------------

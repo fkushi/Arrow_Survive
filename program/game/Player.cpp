@@ -5,7 +5,7 @@
 #include"DxLib.h"
 #include "../support/Support.h"
 
-#define PLA_DEBUG 1
+#define PLA_DEBUG false
 
 extern GameManager* gamemanager;
 extern SONG_load	song;
@@ -28,10 +28,15 @@ Player::Player(t2k::Vector3 start,int speed) {
 }
 
 void Player::update(const float deltatime) {
+
+	if (hp_gezi_now <= 0)anim_player->init_animation_player_dead = true;
+
+
 	//--------------------------------------------------------------------------------------------------
 	/*アニメーション*/
 	//--------------------------------------------------------------------------------------------------
-	anim_player->anim_Player_Controll(deltatime);
+	if (!anim_player->init_animation_player_dead)anim_player->anim_Player_Controll(deltatime);
+	else anim_player->animation_Player_Dead(deltatime);
 	
 	//--------------------------------------------------------------------------------------------------
 	/*当たり判定*/
@@ -58,17 +63,18 @@ void Player::update(const float deltatime) {
 
 	}*/
 	//右を向いたらpla_dir = false、左を向いたらpla_dir = true;
-	if (gamemanager->atach->pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
-	if (gamemanager->atach->pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
-	if (gamemanager->atach->pla_right && !triger_push_sift && gamemanager->down_right) {
-			pla_dir= false;
+	if (!anim_player->init_animation_player_dead) {
+		if (gamemanager->atach->pla_up && !triger_push_sift && gamemanager->down_up)pos.y -= pla_speed;
+		if (gamemanager->atach->pla_down && !triger_push_sift && gamemanager->down_down)pos.y += pla_speed;
+		if (gamemanager->atach->pla_right && !triger_push_sift && gamemanager->down_right) {
+			pla_dir = false;
 			pos.x += pla_speed;
-	}
-	if (gamemanager->atach->pla_left && !triger_push_sift && gamemanager->down_left) {
+		}
+		if (gamemanager->atach->pla_left && !triger_push_sift && gamemanager->down_left) {
 			pla_dir = true;
 			pos.x -= pla_speed;
+		}
 	}
-
 	//--------------------------------------------------------------------------------------------------
 	/*Arrow*/
 	//spaceを押したとき、その時の矢の属性を発射する
@@ -85,14 +91,22 @@ void Player::update(const float deltatime) {
 
 	if (check && count_interval == 0) {
 		flag_atack_EnemyB = true;
+		
+		//1秒間だけプレイヤに無敵時間をつける
 		count_interval = 1.0f;
+
+		//1.5フレーム、エネミーが攻撃する
 		count_atack_Enemy_interval = 1.5f;
 	}
 
+	//--------------------------------------------------------------------------
+	/*flag_atack_EnemyB=trueなら1.5フレームだけエネミーが攻撃
+	  flag_atack_EnemyB=falseになった場合、プレイヤに1秒間だけ無敵時間をつける*/
+	//--------------------------------------------------------------------------
 	if (flag_atack_EnemyB) {
 		count_atack_Enemy_interval--;
-		if (count_atack_Enemy_interval >= 0 && hp_frame % 2 == 0 && gezi_now_num > hp_min_num) {
-			gezi_now_num -= 30;
+		if (count_atack_Enemy_interval >= 0 && hp_frame % 2 == 0 && hp_gezi_now > hp_min_num) {
+			hp_gezi_now -= 30;
 			t2k::debugTrace("\nダメージを受けた:[%d]\n", 3);
 		}
 		else {
@@ -133,7 +147,7 @@ void Player::render(const float deltatime) {
 	//HPの描画
 	//-----------------------------------------------------------
 	DrawExtendGraph(gezi_min_x, gezi_min_y,
-		gezi_min_x + (gezi_max_x - gezi_min_x) * (gezi_now_num - hp_min_num) / (hp_max_num - hp_min_num),
+		gezi_min_x + (gezi_max_x - gezi_min_x) * (hp_gezi_now - hp_min_num) / (hp_max_num - hp_min_num),
 		gezi_max_y, hp_green, true);
 
 	//--------------------------------------------------------------------------------------------------
@@ -151,10 +165,19 @@ void Player::render(const float deltatime) {
 
 	//-------------------------------------------------------------------------------
 	/*playerの描画*/
+	//init_anim_pla = trueなら歩くアニメーション
+	//init_animation_player_dead = trueならplayer死亡のアニメーション
 	//-------------------------------------------------------------------------------
-	if (!anim_player->init_anim_pla) DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, img_player_stand, true, pla_dir);
-	else DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, anim_player->anim_pla[anim_player->anim_move][anim_player->anim_frame], true, pla_dir);
-
+	if (!anim_player->init_animation_player_dead) {
+		if (!anim_player->init_anim_pla) DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, 
+			img_player_stand, true, pla_dir);
+		else DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, 
+			anim_player->anim_pla[anim_player->anim_move][anim_player->anim_frame], true, pla_dir);
+	}
+	else {
+		DrawRotaGraph(static_cast<int>(pos.x), static_cast<int>(pos.y), 1.0f, 0, 
+			anim_player->animation_player_dead[anim_player->anim_move][anim_player->anim_frame], true, pla_dir);
+	}
 #if PLA_DEBUG
 	//-------------------------------------------------------------------------------
 	/*Debug*/

@@ -30,7 +30,7 @@ public:
 	int gh = 0;
 
 	/*HP*/
-	int gezi_now_num = 300;
+	int hp_gezi_now = 300;
 
 	Player(t2k::Vector3 start,int speed);
 
