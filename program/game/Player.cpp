@@ -29,9 +29,6 @@ Player::Player(t2k::Vector3 start,int speed) {
 
 void Player::update(const float deltatime) {
 
-	if (hp_gezi_now <= 0)anim_player->init_animation_player_dead = true;
-
-
 	//--------------------------------------------------------------------------------------------------
 	/*アニメーション*/
 	//--------------------------------------------------------------------------------------------------
@@ -87,6 +84,10 @@ void Player::update(const float deltatime) {
 	/*HPゲージのあった場合、HPが減る処理*/
 	//enemyの攻撃力:3,enemyに当たった場合、HPがへる
 	//--------------------------------------------------------------------------------------------------
+
+	//HPが0になったら死亡アニメーションに移行するflag
+	if (hp_gezi_now <= 0)anim_player->init_animation_player_dead = true;
+
 	bool check = gamemanager->atach->pla_enemyB_check;
 
 	if (check && count_interval == 0) {

@@ -64,9 +64,9 @@ void Anim_Player::anim_Player_Controll(const float deltatime) {
 void Anim_Player::animation_Player_Dead(const float deltatime) {
 	anim_move = 0;
 	if (anim_frame < 3) {
-		scene.count_move_seqGameEnd_interval = 1.0f;
+		scene.count_move_seqGameEnd_interval = 2.0f;
 		anim_frame_count++;
-		if (anim_frame_count == 20) {
+		if (anim_frame_count == 15) {
 			anim_frame++;
 			anim_frame_count = 0;
 		}

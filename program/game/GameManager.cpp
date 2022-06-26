@@ -1,10 +1,12 @@
 #include"GameManager.h"
 #include"SceneManager.h"
 #include"Create_Stage.h"
+#include"Fade_Manager.h"
 #include"DxLib.h"
 
 SceneManager scene;
-Create_Stage	c_st;
+Create_Stage c_st;
+Fade_Manager fade_manager;
 
 GameManager::GameManager() {
 	player = nullptr;
@@ -59,6 +61,15 @@ void GameManager::Control_Keyboard() {
 	trigger_sapce = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_SPACE);
 	trigger_left = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_LEFT) || t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_A);
 	trigger_right = t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_RIGHT) || t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_D);
+}
+
+//------------------------------------------------------
+/*Fade*/
+//------------------------------------------------------
+void GameManager::SetFade(bool fade) {
+	if (fade)fade_manager.FadeOut(5);
+	else fade_manager.FadeIn(5);
+
 }
 
 //------------------------------------------------------

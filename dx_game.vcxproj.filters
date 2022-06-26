@@ -157,6 +157,9 @@
     <ClCompile Include="program\game\Arrow_Manager.cpp">
       <Filter>program\game\Arrow</Filter>
     </ClCompile>
+    <ClCompile Include="program\game\Fade_Manager.cpp">
+      <Filter>program\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program\support\FrameRateController.h">
@@ -308,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="program\game\Arrow_Manager.h">
       <Filter>program\game\Arrow</Filter>
+    </ClInclude>
+    <ClInclude Include="program\game\Fade_Manager.h">
+      <Filter>program\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

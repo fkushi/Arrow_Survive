@@ -6,10 +6,12 @@
 #include"Create_Stage.h"
 #include"GameManager.h"
 #include"Fade.h"
+#include"Fade_Manager.h"
 #include"Dxlib.h"
 
 extern GameManager* gamemanager;
 extern Create_Stage	c_st;
+extern Fade_Manager fade_manager;
 SONG_load		song;
 Taitle			taitle;
 GameEnd			end;
@@ -41,6 +43,8 @@ bool SceneManager::seqTitle(const float deltatime) {
 		/*音_PLAY*/
 		//------------------------------------------------------------------
 		PlaySoundMem(song.bgm_taitle, DX_PLAYTYPE_LOOP, false);
+
+		fade_manager.init_fade = false;
 	}
 
 	//------------------------------------------------------------------
@@ -51,7 +55,19 @@ bool SceneManager::seqTitle(const float deltatime) {
 	//------------------------------------------------------------------
 	/*ENTER押したら次のプレイステージ_シーンへ*/
 	//------------------------------------------------------------------
-	if (gamemanager->trigger_enter)sequence_.change(&SceneManager::seqStage);
+	if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_SPACE))fade_manager.FadeOut(5);
+	else if (t2k::Input::isKeyDown(t2k::Input::KEYBORD_B))fade_manager.FadeIn(5);
+
+	//------------------------------------------------------------------
+	//フェード処理 & シーン移動
+	// Enterをおしたらフェードアウトする、フェードアウトし終えたらシーン移動
+	//------------------------------------------------------------------
+	fade_manager.Fade();
+	if (gamemanager->trigger_enter) {
+		fade_manager.init_fade = true;
+	}
+
+	if(fade_manager.FadeOut(0))sequence_.change(&SceneManager::seqStage);
 
 	return true;
 }
@@ -62,6 +78,8 @@ bool SceneManager::seqTitle(const float deltatime) {
 bool SceneManager::seqStage(const float deltatime) {
 
 	if (sequence_.isStart()) {
+
+		fade_manager.init_fade = false;
 
 		//------------------------------------------------------------------
 		/*最初のステージ*/
@@ -86,6 +104,11 @@ bool SceneManager::seqStage(const float deltatime) {
 		
 		init_st1_sound = false;
 	}
+
+	//------------------------------------------------------------------
+	//フェード処理
+	//------------------------------------------------------------------
+	fade_manager.Fade();
 
 	if (gamemanager->GetCreSt_stage_type() == 1) {
 		//------------------------------------------------------------------

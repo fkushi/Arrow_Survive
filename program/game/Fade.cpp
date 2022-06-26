@@ -11,9 +11,9 @@ extern Create_Stage c_st;
 /*フェードイン*/ 
 bool Fade::FadeIn(int fade_speed, int r, int g, int b)
 {
-	SetDrawBright(bright, bright, bright);
+	//SetDrawBright(bright, bright, bright);
 
-	DrawFormatString(40, 40, GetColor(0, 0, 255), "%d", bright);
+	//DrawFormatString(40, 40, GetColor(0, 0, 255), "%d", bright);
 
 	if (bright > 255)
 	{
@@ -30,8 +30,8 @@ bool Fade::FadeIn(int fade_speed, int r, int g, int b)
 /*フェードアウト*/
 bool Fade::FadeOut(int fade_speed, int r, int g, int b)
 {
-	SetDrawBright(bright, bright, bright);
-	DrawFormatString(40, 40, GetColor(0, 0, 255), "%d", bright);
+	//SetDrawBright(bright, bright, bright);
+	//DrawFormatString(40, 40, GetColor(0, 0, 255), "%d", bright);
 
 	if (bright <= 0)
 	{

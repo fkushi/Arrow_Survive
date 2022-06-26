@@ -22,6 +22,7 @@
     <ClCompile Include="program\game\End.cpp" />
     <ClCompile Include="program\game\Enemy_B.cpp" />
     <ClCompile Include="program\game\Fade.cpp" />
+    <ClCompile Include="program\game\Fade_Manager.cpp" />
     <ClCompile Include="program\game\GameManager.cpp" />
     <ClCompile Include="program\game\game_main.cpp" />
     <ClCompile Include="program\game\Anim_Enemy_B.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="program\game\End.h" />
     <ClInclude Include="program\game\Enemy_B.h" />
     <ClInclude Include="program\game\Fade.h" />
+    <ClInclude Include="program\game\Fade_Manager.h" />
     <ClInclude Include="program\game\GameManager.h" />
     <ClInclude Include="program\game\game_main.h" />
     <ClInclude Include="program\game\Anim_Enemy_B.h" />
