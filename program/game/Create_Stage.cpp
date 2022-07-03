@@ -1,10 +1,10 @@
 #include"Create_Stage.h"
 #include"GameManager.h"
-#include"Fade.h"
+#include"Fade_Manager.h"
 #include"DxLib.h"
 
-Fade fade;
 extern GameManager* gamemanager;
+extern Fade_Manager fade_manager;
 
 //--------------------------------------------------------------------------------------------------------------------------
 /*StageManagerクラス*/
@@ -17,11 +17,16 @@ Create_Stage::Create_Stage() {
 
 void Create_Stage::create_Stage() {
 	//-----------------------------------------------------------------------------------------
-	/*フェードアウトフラグ*/
+	/*フェードフラグ*/
 	//-----------------------------------------------------------------------------------------
+	fade_manager.Fade();
 	if (gamemanager->GetPosPlayer().y < 0 || gamemanager->GetPosPlayer().x < 0 ||
 		gamemanager->GetPosPlayer().y > 768 || gamemanager->GetPosPlayer().x > 1024) {
-		init_fade = true;
+		fade_manager.init_fade = true;
+	}
+	if (fade_manager.FadeOut(0)) {
+		init_change = false;
+		Changed_Delete();
 	}
 
 	//-----------------------------------------------------------------------------------------
@@ -50,15 +55,12 @@ void Create_Stage::create_Stage() {
 		if (pla_next_pop == choose_left)gamemanager->GetPos_ChangedPlayer(942, 384);
 		if (stage_type == 0)new map_StageA();
 		if(stage_type == 1)new map_StageB(0, 0);
+
+		fade_manager.init_fade = false;
+
 		init_change = true;
 	}
 
-	//-----------------------------------------------------------------------------------------
-	/*ステージ移動時のフェードアウト、フェードイン*/
-	//-----------------------------------------------------------------------------------------
-	/*if (!init_fade) fade.FadeIn(5);
-	else fade.FadeOut(5);*/
-	
 	//-----------------------------------------------------------------------------------------
 	/*DELETE_CHECK*/
 	//-----------------------------------------------------------------------------------------

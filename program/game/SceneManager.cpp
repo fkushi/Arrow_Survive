@@ -5,7 +5,6 @@
 #include"SONG_load.h"
 #include"Create_Stage.h"
 #include"GameManager.h"
-#include"Fade.h"
 #include"Fade_Manager.h"
 #include"Dxlib.h"
 
@@ -15,8 +14,6 @@ extern Fade_Manager fade_manager;
 SONG_load		song;
 Taitle			taitle;
 GameEnd			end;
-//Fade fade;
-
 
 //-------------------------------------------------------------------------------------------------------------------
 /*シーン制御*/
@@ -44,7 +41,9 @@ bool SceneManager::seqTitle(const float deltatime) {
 		//------------------------------------------------------------------
 		PlaySoundMem(song.bgm_taitle, DX_PLAYTYPE_LOOP, false);
 
+		//フェード処理
 		fade_manager.init_fade = false;
+		init_move_seqGameEnd = false;
 	}
 
 	//------------------------------------------------------------------
@@ -63,10 +62,13 @@ bool SceneManager::seqTitle(const float deltatime) {
 	// Enterをおしたらフェードアウトする、フェードアウトし終えたらシーン移動
 	//------------------------------------------------------------------
 	fade_manager.Fade();
+
+	//-----------------------------------
+	//フェード処理flag
+	//-----------------------------------
 	if (gamemanager->trigger_enter) {
 		fade_manager.init_fade = true;
 	}
-
 	if(fade_manager.FadeOut(0))sequence_.change(&SceneManager::seqStage);
 
 	return true;
@@ -79,6 +81,9 @@ bool SceneManager::seqStage(const float deltatime) {
 
 	if (sequence_.isStart()) {
 
+		//-----------------------------------
+		//フェード処理flag
+		//-----------------------------------
 		fade_manager.init_fade = false;
 
 		//------------------------------------------------------------------
@@ -89,10 +94,11 @@ bool SceneManager::seqStage(const float deltatime) {
 		new Timer(t2k::Vector3(450, 90, 0));
 		gamemanager->atach = new OnAtachEnter();
 		gamemanager->player = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
-		
 		new Arrow_Manager();
 
+		//-----------------------------------------------
 		/*Playerの死亡時のシーン移動インターバル初期化*/
+		//-----------------------------------------------
 		count_move_seqGameEnd_interval = 1.0f;
 
 		//------------------------------------------------------------------
@@ -101,7 +107,6 @@ bool SceneManager::seqStage(const float deltatime) {
 		song.init_bgm = false;
 		song.init_se = false;
 		song.SONG_SE_Arrow();
-		
 		init_st1_sound = false;
 	}
 
@@ -115,16 +120,19 @@ bool SceneManager::seqStage(const float deltatime) {
 		/*音源処理*/
 		//------------------------------------------------------------------
 		if (!init_st1_sound) {
-			//------------------------------------------------------------------
+			//-----------------------------------------------------
 			//音源_DELETE
-			//------------------------------------------------------------------
+			//-----------------------------------------------------
 			DeleteSoundMem(song.bgm_taitle);
 
-			//------------------------------------------------------------------
+			//-----------------------------------------------------
 			//音源_PLAY
-			//------------------------------------------------------------------
+			//-----------------------------------------------------
 			PlaySoundMem(song.bgm_stage, DX_PLAYTYPE_LOOP,false);
 
+			//-----------------------------------------------------
+			//フェード処理flag
+			//-----------------------------------------------------
 			init_st1_sound = true;
 		}
 	}
@@ -137,8 +145,7 @@ bool SceneManager::seqStage(const float deltatime) {
 	//----------------------------------------------------------------------------------------
 	/*GameEnd*/
 	//----------------------------------------------------------------------------------------
-	if (count_move_seqGameEnd_interval < 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&
-		gamemanager->down_shift)){
+	if (count_move_seqGameEnd_interval < 0){
 
 		//------------------------------------------------------------------
 		/*生存時間記録*/
@@ -158,11 +165,17 @@ bool SceneManager::seqStage(const float deltatime) {
 		//------------------------------------------------------------------
 		c_st.pla_next_pop = 0;
 
-		//------------------------------------------------------------------
-		/*次のシーンに移動*/
-		//------------------------------------------------------------------
-		sequence_.change(&SceneManager::seqGameEnd);
+		//-----------------------------------
+		//fade処理flag
+		//-----------------------------------
+		init_move_seqGameEnd = true;
+		fade_manager.init_fade = true;
 	}
+
+	//------------------------------------------------------------------
+	/*次のシーンに移動*/
+	//------------------------------------------------------------------
+	if (fade_manager.FadeOut(0) && init_move_seqGameEnd)sequence_.change(&SceneManager::seqGameEnd);
 
 	return true;
 }
@@ -170,6 +183,8 @@ bool SceneManager::seqStage(const float deltatime) {
 bool SceneManager::seqGameEnd(const float deltatime) {
 
 	if (sequence_.isStart()) {
+
+		fade_manager.init_fade = false;
 
 		//------------------------------------------------------------------
 		/*音源処理*/
@@ -186,6 +201,11 @@ bool SceneManager::seqGameEnd(const float deltatime) {
 		song.init_bgm = false;
 		PlaySoundMem(song.bgm_end, DX_PLAYTYPE_LOOP, true);
 	}
+
+	//------------------------------------------------------------------
+	//フェード処理
+	//------------------------------------------------------------------
+	fade_manager.Fade();
 
 	//------------------------------------------------------------------
 	/*背景描画*/

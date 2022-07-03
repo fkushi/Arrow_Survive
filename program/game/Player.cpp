@@ -86,7 +86,8 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 
 	//HPが0になったら死亡アニメーションに移行するflag
-	if (hp_gezi_now <= 0)anim_player->init_animation_player_dead = true;
+	if (hp_gezi_now <= 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&
+		gamemanager->down_shift))anim_player->init_animation_player_dead = true;
 
 	bool check = gamemanager->atach->pla_enemyB_check;
 

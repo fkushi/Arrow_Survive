@@ -2,6 +2,9 @@
 #include"Base.h"
 #include"../library/t2klib.h"
 class SceneManager {
+private:
+
+
 public:
 
 	t2k::Sequence<SceneManager*> sequence_ =
@@ -15,7 +18,7 @@ public:
 	bool seqGameEnd(const float deltatime);
 
 	bool init_st1_sound = false;
-
+	
 	//true‚È‚çŒ‹‰Ê”­•\ƒV[ƒ“‚ÉˆÚ‚é
 	bool init_move_seqGameEnd = false;
 

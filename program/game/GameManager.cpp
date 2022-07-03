@@ -77,7 +77,8 @@ void GameManager::SetFade(bool fade) {
 //------------------------------------------------------
 //PLAYER‚Ì•`‰æÀ•W‚ðŽæ“¾‚·‚éŠÖ”
 t2k::Vector3 GameManager::GetPosPlayer() {
-	return player->pos;
+	if(player != nullptr)return player->pos;
+	return t2k::Vector3(0,0,0);
 }
 t2k::Vector3 GameManager::GetPos_ChangedPlayer(int pos_x, int pos_y) {
 	player->pos.x = static_cast<float>(pos_x);
@@ -97,11 +98,12 @@ bool GameManager::GetPla_triger_push_sift() {
 
 //PLAYER_SIZE
 int GameManager::GetPlaSize_W() {
-	return player->pla_w;
+	if (player != nullptr)return player->pla_w;
+	else return 0;
 }
 int GameManager::GetPlaSize_H() {
-	return player->pla_h;
-
+	if (player != nullptr)return player->pla_h;
+	else return 0;
 }
 
 //PLAYER_HP

@@ -1,6 +1,7 @@
 #include"OnAtachEnter.h"
 #include"Anim_Player.h"
 #include"SONG_load.h"
+#include"SceneManager.h"
 #include"GameManager.h"
 #include "../support/Support.h"
 #include"DxLib.h"
@@ -8,6 +9,7 @@
 extern GameManager* gamemanager;
 extern SONG_load		song;
 extern Anim_Player* anim_player;
+extern SceneManager scene;
 
 OnAtachEnter::OnAtachEnter() {
 
@@ -71,7 +73,7 @@ void OnAtachEnter::Atach_Pla_Enemy() {
 		//-------------------------------------------------------------------------------------------
 		/*Player‚ÆEnemyB‚Ì“–‚½‚è”»’è*/
 		//-------------------------------------------------------------------------------------------
-		if (!anim_player->init_animation_player_dead) {
+		if (!anim_player->init_animation_player_dead || scene.init_move_seqGameEnd) {
 			player_enemyB_atach = t2k::isIntersectRectToCorrectPosition(gamemanager->player->pos, gamemanager->player->preve_pos,
 				gamemanager->GetPlaSize_W() - 10, gamemanager->GetPlaSize_W() - 10, eb->pos, eb->enm_B_SIZE, eb->enm_B_SIZE);
 		}

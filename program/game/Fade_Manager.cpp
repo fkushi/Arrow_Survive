@@ -23,9 +23,6 @@ bool Fade_Manager::FadeOut(int fade_speed) {
 
 	if (bright <= 0)
 	{
-		/*c_st.init_change = false;
-		c_st.init_fade = false;
-		c_st.Changed_Delete();*/
 		return true;
 	}
 	else
