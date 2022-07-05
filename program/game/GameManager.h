@@ -44,7 +44,7 @@ public:
 	Player* player;
 
 	/*当たり判定*/
-	OnAtachEnter*				atach;
+	OnAtachEnter* atach = nullptr;
 
 	/*Arrow*/
 	std::list<Arrow_Manager*>	arrow_manager;
@@ -55,6 +55,8 @@ public:
 
 	/*Stage*/
 	std::list<Timer*>			time;
+	Timer* timer = nullptr;
+
 	std::list<map_StageA*>		map_stageA;
 	std::list<map_StageB*>		map_stageB;
 	std::list<map_Wall*>		map_wall;
@@ -74,6 +76,20 @@ public:
 
 	//画像のロード,既ロードなら画像ハンドルを返す
 	int LoadGraphEx(std::string ghPass);
+
+	//タイマークラスのインスタンス生成
+	void CreateTimer();
+
+	//playerを作る関数
+	void CreatePlayer();
+
+	//今のシーンのID
+	int nowSceneNum = 0;
+	//今のシーンを取得する関数
+	inline void GetNowScene(int nowScene) {
+		nowSceneNum = nowScene;
+	}
+
 
 	//----------------------------------------------------------------
 	/*KEYBOARD*/
@@ -102,7 +118,7 @@ public:
 	//playerの描画座標を取得する関数
 	t2k::Vector3 GetPosPlayer();
 	//
-	t2k::Vector3 GetPos_ChangedPlayer(int pos_x,int pos_y);
+	t2k::Vector3 GetPos_ChangedPlayer(int pos_x, int pos_y);
 
 	//bool GetPlayerDir();
 
@@ -111,7 +127,7 @@ public:
 	int GetPlaSize_W();
 	int GetPlaSize_H();
 	int GetPlaHp_now();
-	
+
 	//----------------------------------------------------------------
 	/*Arrow*/
 	//----------------------------------------------------------------
@@ -136,7 +152,7 @@ public:
 	/*CREATE_OBJECT*/
 	//---------------------------------------------------------------------------------------------------
 	void createEnemyB(t2k::Vector3 start, int speed);
-	
+
 	//---------------------------------------------------------------------------------------------------
 	/*initialize*/
 	//---------------------------------------------------------------------------------------------------
@@ -153,4 +169,9 @@ public:
 	//---------------------------------------------------------------------------------------------------
 	void update(float deltatime);
 	void render(float deltatime);
+
+
+	//debug
+	int second = 0;
+
 };

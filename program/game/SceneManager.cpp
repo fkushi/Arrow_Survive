@@ -30,7 +30,7 @@ bool SceneManager::seqTitle(const float deltatime) {
 		//------------------------------------------------------------------
 		song.init_bgm = false;
 		song.SONG_bgm();
-		
+
 		//------------------------------------------------------------------
 		/*音量調節*/
 		//------------------------------------------------------------------
@@ -69,7 +69,14 @@ bool SceneManager::seqTitle(const float deltatime) {
 	if (gamemanager->trigger_enter) {
 		fade_manager.init_fade = true;
 	}
-	if(fade_manager.FadeOut(0))sequence_.change(&SceneManager::seqStage);
+	if (fade_manager.FadeOut(0)) {
+		sequence_.change(&SceneManager::seqStage);
+		nowScene = SCENE::STAGE;
+		gamemanager->GetNowScene(static_cast<uint32_t>(nowScene));
+
+		/*if (gamemanager->atach->pla_enemyB_check)t2k::debugTrace("\n当たってるよ\n");
+		else t2k::debugTrace("\n当たってないよ\n");*/
+	}
 
 	return true;
 }
@@ -91,9 +98,17 @@ bool SceneManager::seqStage(const float deltatime) {
 		//------------------------------------------------------------------
 		new map_StageA();
 		new map_Wall();
-		new Timer(t2k::Vector3(450, 90, 0));
-		gamemanager->atach = new OnAtachEnter();
-		gamemanager->player = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
+		//new Timer(t2k::Vector3(450, 90, 0));
+		gamemanager->CreateTimer();
+		if (gamemanager->atach == nullptr) {
+			gamemanager->atach = new OnAtachEnter();
+		}
+
+		if (gamemanager->atach->pla_enemyB_check)t2k::debugTrace("\n当たってるよ\n");
+		else t2k::debugTrace("\n当たってないよ\n");
+
+		gamemanager->CreatePlayer();
+		//gamemanager->player = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
 		new Arrow_Manager();
 
 		//-----------------------------------------------
@@ -128,7 +143,7 @@ bool SceneManager::seqStage(const float deltatime) {
 			//-----------------------------------------------------
 			//音源_PLAY
 			//-----------------------------------------------------
-			PlaySoundMem(song.bgm_stage, DX_PLAYTYPE_LOOP,false);
+			PlaySoundMem(song.bgm_stage, DX_PLAYTYPE_LOOP, false);
 
 			//-----------------------------------------------------
 			//フェード処理flag
@@ -145,7 +160,7 @@ bool SceneManager::seqStage(const float deltatime) {
 	//----------------------------------------------------------------------------------------
 	/*GameEnd*/
 	//----------------------------------------------------------------------------------------
-	if (count_move_seqGameEnd_interval < 0){
+	if (count_move_seqGameEnd_interval < 0) {
 
 		//------------------------------------------------------------------
 		/*生存時間記録*/
@@ -175,7 +190,13 @@ bool SceneManager::seqStage(const float deltatime) {
 	//------------------------------------------------------------------
 	/*次のシーンに移動*/
 	//------------------------------------------------------------------
-	if (fade_manager.FadeOut(0) && init_move_seqGameEnd)sequence_.change(&SceneManager::seqGameEnd);
+	if (fade_manager.FadeOut(0) && init_move_seqGameEnd) {
+
+		nowScene = SCENE::END;
+		gamemanager->GetNowScene(static_cast<uint32_t>(nowScene));
+		sequence_.change(&SceneManager::seqGameEnd);
+
+	}
 
 	return true;
 }
@@ -211,12 +232,21 @@ bool SceneManager::seqGameEnd(const float deltatime) {
 	/*背景描画*/
 	//------------------------------------------------------------------
 	end.render(deltatime);
-	
+
 	//------------------------------------------------------------------
 	/*ENTERを押したら次のシーンへ*/
 	//------------------------------------------------------------------
 	if (gamemanager->trigger_enter) {
+
+		gamemanager->player->Reset();
 		DeleteSoundMem(song.bgm_end);
+
+		nowScene = SCENE::TITLE;
+		gamemanager->GetNowScene(static_cast<uint32_t>(nowScene));
+
+		if (gamemanager->atach->pla_enemyB_check)t2k::debugTrace("\n当たってるよ\n");
+		else t2k::debugTrace("\n当たってないよ\n");
+
 		sequence_.change(&SceneManager::seqTitle);
 	}
 
@@ -230,7 +260,7 @@ void SceneManager::Del_END() {
 	//------------------------------------------------------------------
 	/*player*/
 	//------------------------------------------------------------------
-	gamemanager->player = nullptr;
+	//gamemanager->player = nullptr;
 
 	//------------------------------------------------------------------
 	/*stage_type初期化*/
@@ -262,5 +292,5 @@ void SceneManager::Del_END() {
 	//------------------------------------------------------------------
 	/*base*/
 	//------------------------------------------------------------------
-	for (auto ba : gamemanager->base)ba->is_alive = false;
+	//for (auto ba : gamemanager->base)ba->is_alive = false;
 }

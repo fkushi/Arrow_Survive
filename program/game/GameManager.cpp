@@ -13,7 +13,7 @@ GameManager::GameManager() {
 }
 
 void GameManager::initialize() {
-
+	
 }
 
 //-------------------------------------------------------------------------------------------------------------
@@ -45,6 +45,18 @@ int GameManager::LoadGraphEx(std::string ghPass)
 	}
 
 	return 0;
+}
+
+void GameManager::CreateTimer()
+{
+	timer = new Timer(t2k::Vector3(450, 90, 0));
+}
+
+void GameManager::CreatePlayer()
+{
+	if (player != nullptr)return;
+	player = new Player(t2k::Vector3(1024 >> 1, 768 >> 1, 0), 5);
+
 }
 
 //------------------------------------------------------
@@ -161,16 +173,20 @@ int GameManager::GetAtachWall() {
 //分カウントの取得関数
 //------------------------------
 int GameManager::GetTime_M() {
-	for (auto t : time)return t->m;
-	return true;
+
+	//second = time.front()->s;
+	return static_cast<int>(timer->m);
+	//for (auto t : time)return t->m;
+	return 0;
 }
 
 //------------------------------
 //秒カウントの取得関数
 //------------------------------
 int GameManager::GetTime_S() {
-	for (auto t : time)return (int)t->s;
-	return true;
+	return static_cast<int>(timer->s);
+	//for (auto t : time)return static_cast<int>(t->s);
+	return 0;
 }
 
 //------------------------------------------------------
@@ -187,8 +203,10 @@ int GameManager::GetOnAt_Arw_arrow_type() {
 void GameManager::update(float deltatime) {
 	for (auto ba : base)ba->update(deltatime);
 
+	if(nowSceneNum==1){
 	/*矢じりとEnemyBの当たり判定*/
 	atach->Atach_Pla_Enemy();
+	}
 
 	/*シーン*/
 	scene.sequence_.update(deltatime);
@@ -213,10 +231,17 @@ void GameManager::render(float deltatime) {
 	/*ENEMY*/
 	for (auto p_b : pop_enemyB)p_b->render(deltatime);
 	for (auto eb : enemy_B)eb->render(deltatime);
-	/*Timer*/
-	for (auto t : time)t->render(deltatime);
+	
+	//for (auto t : time)t->render(deltatime);
 	/*ARROW*/
 	for (auto arw_m : arrow_manager)arw_m->render(deltatime);
+
+	if (nowSceneNum != 1)return;
+
+	/*Timer*/
+	if (timer != nullptr) {
+		timer->render(deltatime);
+	}
 	/*PLAYER*/
 	if (player != nullptr)player->render(deltatime);
 }
@@ -266,14 +291,15 @@ void GameManager::eraceCheck() {
 		}
 	}
 	{
-		std::list<Timer*>::iterator it = time.begin();
+
+		/*std::list<Timer*>::iterator it = time.begin();
 		while (it != time.end()) {
 			if (!(*it)->is_alive) {
 				it = time.erase(it);
 				continue;
 			}
 			it++;
-		}
+		}*/
 	}
 	{
 		std::list<map_StageA*>::iterator it = map_stageA.begin();

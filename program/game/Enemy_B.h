@@ -12,6 +12,8 @@ public:
 	int enm_B_SIZE = 32;
 
 	Enemy_B(t2k::Vector3 start,int speed);
+	~Enemy_B();
+
 
 	void update(const float deltatime)override;
 	void render(const float detlatime)override;

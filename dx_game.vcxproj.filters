@@ -115,9 +115,6 @@
     <ClCompile Include="program\game\map_StageB.cpp">
       <Filter>program\game\Stage</Filter>
     </ClCompile>
-    <ClCompile Include="program\game\Fade.cpp">
-      <Filter>program\game\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="program\game\Pop_EnemeyB.cpp">
       <Filter>program\game\Enemy</Filter>
     </ClCompile>
@@ -269,9 +266,6 @@
     </ClInclude>
     <ClInclude Include="program\game\map_StageB.h">
       <Filter>program\game\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="program\game\Fade.h">
-      <Filter>program\game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="program\game\Pop_EnemeyB.h">
       <Filter>program\game\Enemy</Filter>

@@ -86,8 +86,11 @@ void Player::update(const float deltatime) {
 	//--------------------------------------------------------------------------------------------------
 
 	//HPが0になったら死亡アニメーションに移行するflag
-	if (hp_gezi_now <= 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&
-		gamemanager->down_shift))anim_player->init_animation_player_dead = true;
+	if (hp_gezi_now <= 0 || (t2k::Input::isKeyDownTrigger(t2k::Input::KEYBORD_Z) &&	gamemanager->down_shift)) {
+
+		anim_player->init_animation_player_dead = true;
+	
+	}
 
 	bool check = gamemanager->atach->pla_enemyB_check;
 
@@ -190,4 +193,15 @@ void Player::render(const float deltatime) {
 	DrawStringEx(100, 140, 255, "count_atack_Enemy_interval = %.1f", count_atack_Enemy_interval);
 	DrawStringEx(100, 160, 255, "count_interval = %.1f", count_interval);
 #endif
+}
+
+void Player::Reset()
+{
+	is_alive = true;
+	hp_gezi_now = hp_max_num;
+	anim_player->init_animation_player_dead = false;
+
+	pos = t2k::Vector3(1024 >> 1, 768 >> 1, 0);
+
+	gamemanager->atach->pla_enemyB_check = false;
 }

@@ -16,6 +16,12 @@ Enemy_B::Enemy_B(t2k::Vector3 start, int speed) {
 	gamemanager->enemy_B.emplace_back(this);
 }
 
+Enemy_B::~Enemy_B()
+{
+	t2k::debugTrace("\nenemy‚ªŽ€–S‚µ‚½\n");
+
+}
+
 void Enemy_B::update(const float deltatime) {
 	
 	//----------------------------------------------------------------

@@ -17,6 +17,21 @@ public:
 	//結果発表シーン
 	bool seqGameEnd(const float deltatime);
 
+	enum class SCENE:uint32_t {
+		TITLE,
+		STAGE,
+		END,
+		MAX
+	};
+
+	SCENE nowScene = SCENE::TITLE;
+
+	/*inline int GetNowScene() {
+		return static_cast<uint32_t>(nowScene);
+	}*/
+
+
+
 	bool init_st1_sound = false;
 	
 	//trueなら結果発表シーンに移る

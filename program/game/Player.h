@@ -36,4 +36,7 @@ public:
 
 	void update(const float deltatime)override;
 	void render(const float deltatime)override;
+
+	void Reset();
+
 };

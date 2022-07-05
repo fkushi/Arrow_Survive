@@ -46,6 +46,9 @@ Anim_Player::~Anim_Player() {
 
 }
 
+//--------------------------------------------------------------------------------------------------
+//playerの歩くアニメーション関数
+//--------------------------------------------------------------------------------------------------
 void Anim_Player::anim_Player_Controll(const float deltatime) {
 	if (gamemanager->down_up || gamemanager->down_down ||
 		gamemanager->down_right || gamemanager->down_left) {
@@ -61,6 +64,10 @@ void Anim_Player::anim_Player_Controll(const float deltatime) {
 	else init_anim_pla = false;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+//playerの死亡時アニメーション
+//--------------------------------------------------------------------------------------------------
 void Anim_Player::animation_Player_Dead(const float deltatime) {
 	anim_move = 0;
 	if (anim_frame < 3) {
@@ -72,6 +79,10 @@ void Anim_Player::animation_Player_Dead(const float deltatime) {
 		}
 		anim_frame %= 4;
 	}
+
+	//-----------------------------------------------------------------
+	/*アニメーション終了後、シーン移動のインターバルカウントをマイナスしていく*/
+	//-----------------------------------------------------------------
 	else {
 		anim_frame = 3;
 		scene.count_move_seqGameEnd_interval -= deltatime;
