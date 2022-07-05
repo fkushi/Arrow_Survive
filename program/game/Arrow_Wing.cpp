@@ -1,6 +1,7 @@
 #include"Arrow_Wing.h"
 #include "../support/Support.h"
 #include"GameManager.h"
+#include"OnAtach_Arrow.h"
 #include"DxLib.h"
 
 extern GameManager* gamemanager;

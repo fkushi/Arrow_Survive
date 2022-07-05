@@ -2,6 +2,8 @@
 #include"Anim_Player.h"
 #include"SONG_load.h"
 #include"GameManager.h"
+#include"OnAtachEnter.h"
+#include"Arrow_Manager.h"
 #include"DxLib.h"
 #include "../support/Support.h"
 

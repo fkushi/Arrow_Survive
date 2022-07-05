@@ -1,5 +1,6 @@
 #include"Pop_EnemeyB.h"
 #include"GameManager.h"
+#include"Enemy_B.h"
 #include"DxLib.h"
 #include"../library/t2klib.h"
 #include "../support/Support.h"

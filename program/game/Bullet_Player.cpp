@@ -1,5 +1,6 @@
 #include"Bullet_Player.h"
 #include"GameManager.h"
+#include"OnAtach_Arrow.h"
 #include"DxLib.h"
 
 extern GameManager* gamemanager;

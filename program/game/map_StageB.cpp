@@ -1,4 +1,5 @@
 #include"map_StageB.h"
+#include"Pop_EnemeyB.h"
 #include"DxLib.h"
 #include"GameManager.h"
 

@@ -3,6 +3,13 @@
 #include"SONG_load.h"
 #include"SceneManager.h"
 #include"GameManager.h"
+#include"Arrow_Base.h"
+#include"Player.h"
+#include"Pop_EnemeyB.h"
+#include"Enemy_B.h"
+#include"OnAtach_Arrow.h"
+#include"Arrow_Wing.h"
+#include"Bullet_Player.h"
 #include "../support/Support.h"
 #include"DxLib.h"
 

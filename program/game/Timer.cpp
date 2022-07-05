@@ -1,4 +1,6 @@
 #include"Timer.h"
+#include"Pop_EnemeyB.h"
+#include"map_StageB.h"
 #include"GameManager.h"
 #include"DxLib.h"
 #include"../support/Support.h"

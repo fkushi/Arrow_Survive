@@ -3,6 +3,26 @@
 #include"Create_Stage.h"
 #include"Fade_Manager.h"
 #include"DxLib.h"
+#include"Base.h"
+/*Player*/
+#include"Player.h"
+/*Arrow*/
+#include"Arrow_Manager.h"
+#include"Arrow_Base.h"
+#include"Arrow_Type.h"
+#include"Bullet_Player.h"
+#include"Arrow_Wing.h"
+/*Stage*/
+#include"Timer.h"
+#include"map_StageA.h"
+#include"map_StageB.h"
+/*Enemy*/
+#include"Pop_EnemeyB.h"
+#include"Enemy_B.h"
+#include"map_Wall.h"
+/*“–‚½‚è”»’è*/
+#include"OnAtachEnter.h"
+#include"OnAtach_Arrow.h"
 
 SceneManager scene;
 Create_Stage c_st;
@@ -226,8 +246,10 @@ void GameManager::render(float deltatime) {
 	/*STAGE*/
 	for (auto m_b : map_stageB)m_b->render(deltatime);
 	for (auto m_a : map_stageA)m_a->render(deltatime);
+	
 	/*WALL*/
-	for (auto m_w : map_wall)m_w->render(deltatime);
+	if (nowSceneNum == 1)for (auto m_w : map_wall)m_w->render(deltatime);
+
 	/*ENEMY*/
 	for (auto p_b : pop_enemyB)p_b->render(deltatime);
 	for (auto eb : enemy_B)eb->render(deltatime);

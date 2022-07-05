@@ -2,26 +2,23 @@
 #include<list>
 #include<unordered_map>
 #include<string>
-#include"Base.h"
-/*Player*/
-#include"Player.h"
-/*Arrow*/
-#include"Arrow_Manager.h"
-#include"Arrow_Base.h"
-#include"Arrow_Type.h"
-#include"Bullet_Player.h"
-#include"Arrow_Wing.h"
-/*Stage*/
-#include"Timer.h"
-#include"map_StageA.h"
-#include"map_StageB.h"
-/*Enemy*/
-#include"Pop_EnemeyB.h"
-#include"Enemy_B.h"
-#include"map_Wall.h"
-/*“–‚½‚è”»’è*/
-#include"OnAtachEnter.h"
-#include"OnAtach_Arrow.h"
+#include"../library/t2klib.h"
+
+class Base;
+class Arrow_Base;
+class Player;
+class OnAtachEnter;
+class Arrow_Manager;
+class Arrow_Type;
+class Bullet_Player;
+class Arrow_Wing;
+class OnAtach_Arrow;
+class Timer;
+class map_StageA;
+class map_StageB;
+class map_Wall;
+class Pop_EnemyB;
+class Enemy_B;
 
 class GameManager {
 public:

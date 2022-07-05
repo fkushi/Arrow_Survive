@@ -2,6 +2,9 @@
 #include"Arrow_Base.h"
 #include"SONG_load.h"
 #include"GameManager.h"
+#include"Arrow_Type.h"
+#include"Bullet_Player.h"
+#include"Arrow_Wing.h"
 #include"DxLib.h"
 
 extern GameManager* gamemanager;

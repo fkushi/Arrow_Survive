@@ -1,6 +1,7 @@
 #pragma once
 #include"Base.h"
 #include"../library/t2klib.h"
+
 class SceneManager {
 private:
 
